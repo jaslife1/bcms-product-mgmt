@@ -1,0 +1,29 @@
+scalar Time
+
+type Product {
+  id: ID!
+  code: String!
+  name: String!
+  description: String
+  sku: String!
+  barcode: String!
+  dateAdded: Time!
+  dateCancelled: Time
+  active: Boolean!
+}
+
+input NewProduct {
+  code: String!
+  name: String!
+  description: String
+  sku: String!
+  barcode: String!
+}
+
+type Query {
+  products: [Product!]!
+}
+
+type Mutation {
+  addNewProduct(product: NewProduct!) : Product!
+}

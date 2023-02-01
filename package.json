@@ -144,5 +144,11 @@
     "plugins": [
       "relay"
     ]
+  },
+  "relay": {
+    "src": "./src",
+    "schema": "./schema.graphql",
+    "language": "javascript",
+    "exclude": ["**/node_modules/**", "**/__mocks__/**", "**/__generated__/**"]
   }
 }

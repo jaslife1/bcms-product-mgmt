@@ -12,7 +12,7 @@ const {
   // Create network that knows the GraphQL server. Returns a promise
   const network = Network.create((operation, variables) => {
     // Server endpoint
-    return fetch('http://localhost:8080', {
+    return fetch('http://localhost:8080/query', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

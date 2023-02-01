@@ -1,23 +1,29 @@
-import React, {Component} from "react";
-import Product from "./Product";
+// import React, {Component} from "react";
+// import Product from "./Product";
+// import {
+//     createFragmentContainer,
+//     graphql
+// } from 'react-relay'
 
-class ProductList extends Component {
+// class ProductList extends Component {
 
-    render() {
+//     render() {
+//         return(<>
+//             {this.props.product.products.edges.map(({node})=>
+//                 <Product key={node.__id} product={node} />
+//             )}
+//         </>)
+//     }
+// }
 
-        const products = [{
-            id: '1',
-            name: "90% Dark chocolate"
-        },{
-            id: "2",
-            name: "80% Dark chocolate"
-        }]
-        return(<>
-            {products.map(p =>(
-                <Product key={p.id} product={p} />
-            ))}
-        </>)
-    }
-}
-
-export default ProductList
+// export default createFragmentContainer(ProductList, graphql`
+//     fragment ProductList_product on Product{
+//         products @connection(key: "ProductList_products", filters: []) {
+//             edges {
+//                 node {
+//                 ...Product_product
+//                 }
+//             }
+//         }
+//     }
+// `)

@@ -1,14 +1,14 @@
 import logo from '../logo.svg';
 import '../styles/App.css';
 import React, {Component} from 'react';
-import ProductList from './ProductList';
+import ProductListPage from './ProductListPage';
 
 class App extends Component {
 
   render() {
     return (
       <div>
-        <ProductList />
+        <ProductListPage />
       </div>
     );
   }
