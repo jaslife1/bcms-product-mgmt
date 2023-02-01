@@ -37,6 +37,7 @@
     ]
   },
   "devDependencies": {
+    "babel-plugin-relay": "^14.1.0",
     "relay-compiler": "^14.1.0"
   }
 }
