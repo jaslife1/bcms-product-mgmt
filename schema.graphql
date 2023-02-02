@@ -20,8 +20,48 @@ input NewProduct {
   barcode: String!
 }
 
+# Information about pagination in a connection.
+type PageInfo {
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+}
+
+# An edge in the connection
+type ProductEdge {
+  # item at the end of the edge
+  node: Product
+  # A cursor used for pagination
+  cursor: String
+}
+
+# A collection to a list of products
+type ProductConnection {
+  # Information to aid in Pagination
+  pageInfo: PageInfo
+  # A list of edges
+  edges: [ProductEdge]
+}
+
+input ProductFilter {
+  id: ID
+}
+
+type Viewer {
+  allProducts(filter: ProductFilter, last: Int): ProductConnection!
+}
+
 type Query {
-  products: [Product!]!
+  #products: [Product!]!
+  viewer: Viewer!
 }
 
 type Mutation {

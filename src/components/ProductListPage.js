@@ -4,12 +4,12 @@ import {
     graphql
 } from 'react-relay'
 import environment from "../Environment";
-import Product from "./Product";
+import ProductList from "./ProductList";
 
 const ProductListPageQuery = graphql`
     query ProductListPageQuery {
-        products {
-            ...Product_product
+        viewer {
+            ...ProductList_viewer
         }
     }
 `
@@ -25,7 +25,7 @@ class ProductListPage extends Component {
                         return <div>{error.message}</div>
                     } else if (props != null){
                         console.log(props)
-                        return <Product product={props} />
+                        return <ProductList viewer={props.viewer} />
                     }
                     return <div>Loading</div>
                 }}
