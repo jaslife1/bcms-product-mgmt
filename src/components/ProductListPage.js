@@ -24,7 +24,6 @@ class ProductListPage extends Component {
                     if (error) {
                         return <div>{error.message}</div>
                     } else if (props != null){
-                        console.log(props)
                         return <ProductList viewer={props.viewer} />
                     }
                     return <div>Loading</div>
