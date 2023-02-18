@@ -4,6 +4,7 @@ This contains the product management front-end.
 
 # System application versions
 Node version: 18.14.1 (Hydrogen)
+React-Router version: 6.8.1
 
 # Running the front end
 
