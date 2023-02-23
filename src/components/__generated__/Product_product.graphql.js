@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<5984d6433100dfc75cdf7a41087e4176>>
+ * @generated SignedSource<<1b53735c6784a6a82789475552f9da3a>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -32,14 +32,14 @@ var node = {
       "alias": null,
       "args": null,
       "kind": "ScalarField",
-      "name": "description",
+      "name": "sku",
       "storageKey": null
     },
     {
       "alias": null,
       "args": null,
       "kind": "ScalarField",
-      "name": "sku",
+      "name": "price",
       "storageKey": null
     },
     {
@@ -48,19 +48,12 @@ var node = {
       "kind": "ScalarField",
       "name": "barcode",
       "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "dateAdded",
-      "storageKey": null
     }
   ],
   "type": "Product",
   "abstractKey": null
 };
 
-node.hash = "b8dc41f38f6b0f36a41bcc44dd245ed4";
+node.hash = "1a62f9c28df575b5cc8fd9cf132c6653";
 
 module.exports = node;

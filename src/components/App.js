@@ -13,17 +13,29 @@ export default function App () {
     navigate("/addproduct")
   }
 
+  const listProducts = () => {
+    navigate("/products")
+  }
+
   return (
     <div>
-      {/* <ProductListPage /> */}
+      {/* Add this to a navigation bar */}
       <button
         onClick={addNewProduct}
       >
         Add New Product
       </button>
+      <button
+        onClick={listProducts}
+      >
+        All Products
+      </button>
       <Routes>
         <Route path="/addproduct" element={<AddProduct />} />
-        {/* <Route path="/" element={} /> */}
+        <Route path="/products" element={<ProductListPage />} />
+        {/* Add list of products. Add prompt that successful addition of product. Clear form when product is successfully added. Add prompt when addition
+        of product fails. Add edit of quantity for product */}
+        {/* <Route path="/" element={()} /> */}
       </Routes>
     </div>
   );

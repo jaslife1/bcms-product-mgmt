@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<eda554fcccf4c2a0a452db4759850a0c>>
+ * @generated SignedSource<<7615d45f370837beec69bf09d5bb2566>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -99,13 +99,6 @@ return {
                         "alias": null,
                         "args": null,
                         "kind": "ScalarField",
-                        "name": "description",
-                        "storageKey": null
-                      },
-                      {
-                        "alias": null,
-                        "args": null,
-                        "kind": "ScalarField",
                         "name": "sku",
                         "storageKey": null
                       },
@@ -113,14 +106,14 @@ return {
                         "alias": null,
                         "args": null,
                         "kind": "ScalarField",
-                        "name": "barcode",
+                        "name": "price",
                         "storageKey": null
                       },
                       {
                         "alias": null,
                         "args": null,
                         "kind": "ScalarField",
-                        "name": "dateAdded",
+                        "name": "barcode",
                         "storageKey": null
                       },
                       {
@@ -186,12 +179,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "a81b7f24f0aa11343b8115d10577b219",
+    "cacheID": "912a24225d5758b02ce25733f45fe858",
     "id": null,
     "metadata": {},
     "name": "ProductListPageQuery",
     "operationKind": "query",
-    "text": "query ProductListPageQuery {\n  viewer {\n    ...ProductList_viewer\n  }\n}\n\nfragment ProductList_viewer on Viewer {\n  allProducts(last: 100) {\n    edges {\n      node {\n        ...Product_product\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n\nfragment Product_product on Product {\n  id\n  name\n  description\n  sku\n  barcode\n  dateAdded\n}\n"
+    "text": "query ProductListPageQuery {\n  viewer {\n    ...ProductList_viewer\n  }\n}\n\nfragment ProductList_viewer on Viewer {\n  allProducts(last: 100) {\n    edges {\n      node {\n        ...Product_product\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n\nfragment Product_product on Product {\n  id\n  name\n  sku\n  price\n  barcode\n}\n"
   }
 };
 })();
