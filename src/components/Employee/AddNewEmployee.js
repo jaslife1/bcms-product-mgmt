@@ -29,6 +29,7 @@ class AddNewEmployee extends Component {
         birthMonth: '',
         birthYear: '',
         birthDate: '',
+        birthPlace:'',
         address1: '',
         address2: '',
         barangay: '',
@@ -339,13 +340,21 @@ class AddNewEmployee extends Component {
                                 onChange={(e) => this.setState({ storeId: e.target.value })} 
                             />
                     </Grid>
+                    <Grid xs={3}>
+                            <TextField
+                                fullWidth={true}
+                                id="outlined-basic" 
+                                label="Hiring Date Placeholder" 
+                                variant="outlined" 
+                                //value={this.state.storeId}
+                                //onChange={(e) => this.setState({ storeId: e.target.value })} 
+                            />
+                    </Grid>
                 </Grid>
                 <Grid xs={6}>
                     <Grid>
                         <Button variant="contained"
                             onClick={()=> {
-                                // TODO: Use Time now for Date hired
-                                this.setState({dateHired: new Date().toLocaleString()});
                                 this.addNewEmployee()
                             }}
                         >
@@ -402,8 +411,9 @@ class AddNewEmployee extends Component {
             salary,
             storeId,
             type,
-            dateHired,
+            //dateHired,
             active,} = this.state
+        const dateHired = new Date().toISOString();
         AddNewEmployeeMutation(
             firstName,
             lastName,
@@ -446,6 +456,7 @@ class AddNewEmployee extends Component {
                     birthMonth: '',
                     birthYear: '',
                     birthDate: '',
+                    birthPlace: '',
                     address1: '',
                     address2: '',
                     barangay: '',
@@ -464,6 +475,7 @@ class AddNewEmployee extends Component {
                     salary: '',
                     store: '',
                     type: '',
+                    dateHired: '',
                     active: true,
                 })
 
