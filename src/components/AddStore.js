@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import Box from "@mui/material/Box"
-import { TextField, FormControl, InputLabel, OutlinedInput, Button, InputAdornment } from "@mui/material";
+import { TextField, Button, FormControl, FormControlLabel, FormGroup, FormLabel, FormHelperText } from "@mui/material";
+import Switch from "@mui/material/Switch"
 import AddNewStoreMutation from "../mutations/AddNewStoreMutation";
 import SimpleDialog from "./SimpleDialog";
 
@@ -114,13 +115,21 @@ class AddStore extends Component {
                         />
                 </div>
                 <div>
-                    <TextField 
-                        id="outlined-basic" 
-                        label="Active" 
-                        variant="outlined" 
-                        value={this.state.active}
-                        onChange={(e) => this.setState({ active: e.target.value })}
-                        />
+                    <FormControl component="fieldset" variant="standard">
+                        <FormLabel component="legend">Active</FormLabel>
+                        <FormGroup>
+                            <FormControlLabel
+                                control={
+                                    <Switch 
+                                        checked={this.state.active} 
+                                        onChange={(e) => this.setState({ active: e.target.checked })}
+                                        name="active" />
+                                }
+                                label="Active store?"
+                            />
+                        </FormGroup>
+                        <FormHelperText>Active store means that there is inventory that is available in that location.</FormHelperText>
+                    </FormControl>
                 </div>
                 <div>
                     <Button variant="contained"
