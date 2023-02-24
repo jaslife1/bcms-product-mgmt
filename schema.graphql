@@ -64,7 +64,9 @@ input NewStore {
 
 type Employee{
   id: ID!
+  idNumber: Int!
   personalInformation: PersonalInformation!
+  contactInformation: ContactInformation!
   address: Address!
   statutoryInformation: StatutoryInformation!
   dependents: [Dependent!]
@@ -74,7 +76,9 @@ type Employee{
   dateResigned: Time  
   position: String!
   salary: Float!
-  store: Store!
+  storeId: Int!
+  # Regular, Probation, Contractual
+  type: String!
 }
 
 type PersonalInformation {
@@ -82,9 +86,16 @@ type PersonalInformation {
   lastName: String!
   middleName: String
   extensionName: String
-  birthMonth: Int
-  birthdate: Int
-  birthYear: Int
+  birthMonth: Int!
+  birthDate: Int!
+  birthYear: Int!
+  birthPlace: String!
+}
+
+type ContactInformation {
+  telephoneNumber: String
+  mobileNumber: String
+  emailAddress: String
 }
 
 type StatutoryInformation {
@@ -102,13 +113,16 @@ type Dependent {
 input NewEmployee {
   personalInformation: NewPersonalInformation!
   address: NewAddress!
+  contactInformation: NewContactInformation!
   active: Boolean!
   dateHired: Time!
   statutoryInformation: NewStatutoryInformation!
   position: String!
   salary: Float!
   dependents: [NewDependent!]
-  store: NewStore!
+  storeId: Int!
+  # Regular, Probation, Contractual
+  type: String!
 }
 
 input NewDependent {
@@ -121,14 +135,22 @@ input NewPersonalInformation {
   lastName: String!
   middleName: String
   extensionName: String
-  birthMonth: Int
-  birthdate: Int
-  birthYear: Int
+  birthMonth: Int!
+  birthDate: Int!
+  birthYear: Int!
+  birthPlace: String!
 }
+
+input NewContactInformation {
+  telephoneNumber: String
+  mobileNumber: String
+  emailAddress: String
+}
+
 
 input NewStatutoryInformation {
   sssNumber: String
-  philhealthNumber: String
+  philHealthNumber: String
   hdmfNumber: String
   tinNumber: String
 }

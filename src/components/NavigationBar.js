@@ -7,8 +7,11 @@ import { useNavigate } from "react-router-dom";
 export default function NavigationBar() {
     const [prodEl, setProdEl] = React.useState(null);
     const [storeEl, setStoreEl] = React.useState(null);
+    const [employeeEl, setEmployeeEl] = React.useState(null);
+
     const openProduct = Boolean(prodEl);
     const openStore = Boolean(storeEl);
+    const openEmployee = Boolean(employeeEl);
 
     const navigate = useNavigate();
 
@@ -23,9 +26,14 @@ export default function NavigationBar() {
         setStoreEl(event.currentTarget);
     }
 
+    const handleEmployeeClick = (event)=> {
+        setEmployeeEl(event.currentTarget);
+    }
+
     const handleClose = () => {
         setProdEl(null);
         setStoreEl(null);
+        setEmployeeEl(null);
     };
 
     const addNewProduct = () => {
@@ -53,9 +61,24 @@ export default function NavigationBar() {
         navigate("/reports")
     }
 
-    const employee = () => {
+    const listEmployees = () => {
         handleClose()
-        navigate("/employee")
+        navigate("/listemployees")
+    }
+
+    const addNewEmployee = () => {
+        handleClose()
+        navigate("/addemployee")
+    }
+
+    const addEmployeeDepdendent = () => {
+        handleClose()
+        navigate("/adddependent")
+    }
+
+    const addEmployeeEmergencyContact = () => {
+        handleClose()
+        navigate("/addemergencycontact")
     }
 
     const listStores = () => {
@@ -130,10 +153,24 @@ export default function NavigationBar() {
         </Button>
         <Button
             id="basic-button"
-            onClick={employee}
+            onClick={handleEmployeeClick}
         >
             Employee
         </Button>
+        <Menu
+            id="basic-menu"
+            anchorEl={employeeEl}
+            open={openEmployee}
+            onClose={handleClose}
+            MenuListProps={{
+            'aria-labelledby': 'basic-button',
+            }}
+        >
+            <MenuItem onClick={listEmployees}>Employee List</MenuItem>
+            <MenuItem onClick={addNewEmployee}>Add New Employee</MenuItem>
+            <MenuItem onClick={addEmployeeDepdendent}>Add Employee Dependent</MenuItem>
+            <MenuItem onClick={addEmployeeEmergencyContact}>Add Employee Emergency Contact</MenuItem>
+        </Menu>
         </div>
     );
 }
