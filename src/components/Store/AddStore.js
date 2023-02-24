@@ -4,8 +4,8 @@ import { TextField, Button, FormControl,
     FormControlLabel, FormGroup, FormLabel, FormHelperText,
     InputLabel, Select, MenuItem } from "@mui/material";
 import Switch from "@mui/material/Switch"
-import AddNewStoreMutation from "../mutations/AddNewStoreMutation";
-import SimpleDialog from "./SimpleDialog";
+import AddNewStoreMutation from "../../mutations/AddNewStoreMutation";
+import SimpleDialog from "../SimpleDialog";
 
 class AddStore extends Component {
 
