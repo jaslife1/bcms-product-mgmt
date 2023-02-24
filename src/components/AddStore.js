@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import Box from "@mui/material/Box"
-import { TextField, Button, FormControl, FormControlLabel, FormGroup, FormLabel, FormHelperText } from "@mui/material";
+import { TextField, Button, FormControl, 
+    FormControlLabel, FormGroup, FormLabel, FormHelperText,
+    InputLabel, Select, MenuItem } from "@mui/material";
 import Switch from "@mui/material/Switch"
 import AddNewStoreMutation from "../mutations/AddNewStoreMutation";
 import SimpleDialog from "./SimpleDialog";
@@ -106,13 +108,21 @@ class AddStore extends Component {
                         />
                 </div>
                 <div>
-                    <TextField 
-                        id="outlined-basic" 
-                        label="Type" 
-                        variant="outlined" 
-                        value={this.state.type}
-                        onChange={(e) => this.setState({ type: e.target.value })}
-                        />
+                    <FormControl fullWidth>
+                        <InputLabel id="type-select-label">Type of Store</InputLabel>
+                        <Select
+                            labelId="type-select-label"
+                            id="type-simple-select"
+                            value={this.state.type}
+                            label="type of store"
+                            onChange={(e) => this.setState({ type: e.target.value })}
+                        >
+                            <MenuItem value="Main">Main</MenuItem>
+                            <MenuItem value="Branch">Branch</MenuItem>
+                            <MenuItem value="Bazaar">Bazaar</MenuItem>
+                            <MenuItem value="Trade Fair">Trade Fair</MenuItem>
+                        </Select>
+                    </FormControl>
                 </div>
                 <div>
                     <FormControl component="fieldset" variant="standard">
