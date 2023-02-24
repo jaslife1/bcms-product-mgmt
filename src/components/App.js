@@ -1,15 +1,12 @@
 import logo from '../logo.svg';
 import '../styles/App.css';
-import React, {Component} from 'react';
+import React from 'react';
 import ProductListPage from './ProductListPage';
-import { Route, useNavigate, Link, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import AddProduct from './AddProduct';
 import Home from './Home';
 
 export default function App () {
-
-  
-
   return (
     <div>
       <Routes>

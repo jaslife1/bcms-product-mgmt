@@ -8,6 +8,8 @@ export default function NavigationBar() {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const openProduct = Boolean(anchorEl);
 
+    const navigate = useNavigate();
+
     const handleHomeClick = (event) => {
         navigate("/")
     };
@@ -17,8 +19,6 @@ export default function NavigationBar() {
     const handleClose = () => {
         setAnchorEl(null);
     };
-
-    const navigate = useNavigate();
 
     const addNewProduct = () => {
         handleClose()
@@ -30,13 +30,30 @@ export default function NavigationBar() {
         navigate("/products")
     }
 
+    const newProduction = () => {
+        handleClose()
+        navigate("/newproduction")
+    }
+
+    const pointofsales = () => {
+        handleClose()
+        navigate("/pointofsales")
+    }
+
+    const reports = () => {
+        handleClose()
+        navigate("/reports")
+    }
+
+    const employee = () => {
+        handleClose()
+        navigate("/employee")
+    }
+
     return (
         <div>
         <Button
             id="basic-button"
-            aria-controls={openProduct ? 'basic-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={openProduct ? 'true' : undefined}
             onClick={handleHomeClick}
         >
             Home
@@ -61,7 +78,26 @@ export default function NavigationBar() {
         >
             <MenuItem onClick={listProducts}>Product List</MenuItem>
             <MenuItem onClick={addNewProduct}>Add New Product</MenuItem>
+            <MenuItem onClick={newProduction}>New Production</MenuItem>
         </Menu>
+        <Button
+            id="basic-button"
+            onClick={pointofsales}
+        >
+            Point-of-Sales
+        </Button>
+        <Button
+            id="basic-button"
+            onClick={reports}
+        >
+            Reports
+        </Button>
+        <Button
+            id="basic-button"
+            onClick={employee}
+        >
+            Employee
+        </Button>
         </div>
     );
 }
