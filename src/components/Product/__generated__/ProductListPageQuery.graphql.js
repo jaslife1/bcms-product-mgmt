@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<7615d45f370837beec69bf09d5bb2566>>
+ * @generated SignedSource<<8179716aedb48a7cd97195b80ac7b67e>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,7 +15,14 @@ var v0 = [
     "name": "last",
     "value": 100
   }
-];
+],
+v1 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+};
 return {
   "fragment": {
     "argumentDefinitions": [],
@@ -81,13 +88,7 @@ return {
                     "name": "node",
                     "plural": false,
                     "selections": [
-                      {
-                        "alias": null,
-                        "args": null,
-                        "kind": "ScalarField",
-                        "name": "id",
-                        "storageKey": null
-                      },
+                      (v1/*: any*/),
                       {
                         "alias": null,
                         "args": null,
@@ -172,19 +173,20 @@ return {
             "key": "ProductList_allProducts",
             "kind": "LinkedHandle",
             "name": "allProducts"
-          }
+          },
+          (v1/*: any*/)
         ],
         "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "912a24225d5758b02ce25733f45fe858",
+    "cacheID": "2f1e5ad9eb665780b3b587c6c36b3486",
     "id": null,
     "metadata": {},
     "name": "ProductListPageQuery",
     "operationKind": "query",
-    "text": "query ProductListPageQuery {\n  viewer {\n    ...ProductList_viewer\n  }\n}\n\nfragment ProductList_viewer on Viewer {\n  allProducts(last: 100) {\n    edges {\n      node {\n        ...Product_product\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n\nfragment Product_product on Product {\n  id\n  name\n  sku\n  price\n  barcode\n}\n"
+    "text": "query ProductListPageQuery {\n  viewer {\n    ...ProductList_viewer\n    id\n  }\n}\n\nfragment ProductList_viewer on Viewer {\n  allProducts(last: 100) {\n    edges {\n      node {\n        ...Product_product\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n\nfragment Product_product on Product {\n  id\n  name\n  sku\n  price\n  barcode\n}\n"
   }
 };
 })();

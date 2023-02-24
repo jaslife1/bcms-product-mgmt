@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<efe66b845e8fa97b5f72a612061b5b7c>>
+ * @generated SignedSource<<97aa69a77be81ce732e37516185e7e2b>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,7 +15,14 @@ var v0 = [
     "name": "last",
     "value": 100
   }
-];
+],
+v1 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+};
 return {
   "fragment": {
     "argumentDefinitions": [],
@@ -81,13 +88,7 @@ return {
                     "name": "node",
                     "plural": false,
                     "selections": [
-                      {
-                        "alias": null,
-                        "args": null,
-                        "kind": "ScalarField",
-                        "name": "id",
-                        "storageKey": null
-                      },
+                      (v1/*: any*/),
                       {
                         "alias": null,
                         "args": null,
@@ -225,19 +226,20 @@ return {
             "key": "StoreList_allStores",
             "kind": "LinkedHandle",
             "name": "allStores"
-          }
+          },
+          (v1/*: any*/)
         ],
         "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "de8dd5d7d4b2889787d23c10a6888dd3",
+    "cacheID": "eca4373aeaa587e51fabb13c1d4bd073",
     "id": null,
     "metadata": {},
     "name": "StoreListPageQuery",
     "operationKind": "query",
-    "text": "query StoreListPageQuery {\n  viewer {\n    ...StoreList_viewer\n  }\n}\n\nfragment StoreList_viewer on Viewer {\n  allStores(last: 100) {\n    edges {\n      node {\n        ...Store_store\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n\nfragment Store_store on Store {\n  id\n  name\n  address {\n    address1\n    address2\n    barangay\n    city\n    province\n    country\n    zipcode\n  }\n  active\n  type\n}\n"
+    "text": "query StoreListPageQuery {\n  viewer {\n    ...StoreList_viewer\n    id\n  }\n}\n\nfragment StoreList_viewer on Viewer {\n  allStores(last: 100) {\n    edges {\n      node {\n        ...Store_store\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n\nfragment Store_store on Store {\n  id\n  name\n  address {\n    address1\n    address2\n    barangay\n    city\n    province\n    country\n    zipcode\n  }\n  active\n  type\n}\n"
   }
 };
 })();

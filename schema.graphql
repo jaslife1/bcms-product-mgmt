@@ -234,11 +234,24 @@ type Viewer {
   allProducts(filter: ProductFilter, last: Int): ProductConnection!
   allStores(filter: StoreFilter, last: Int): StoreConnection!
   allEmployees(filter: EmployeeFilter, last: Int): EmployeeConnection!
+  id: ID!
+}
+
+# An object with an ID
+interface Node {
+  # The id of the object.
+  id: ID!
 }
 
 type Query {
   #products: [Product!]!
   viewer: Viewer!
+
+  # Fetches an object given its ID
+  node(
+    # The ID of an object
+    id: ID!
+  ): Node
 }
 
 type Mutation {
