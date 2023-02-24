@@ -65,7 +65,7 @@ export default function NavigationBar() {
 
     const addNewStore = () => {
         handleClose()
-        navigate("/addnewstore")
+        navigate("/addstore")
     }
 
     return (
