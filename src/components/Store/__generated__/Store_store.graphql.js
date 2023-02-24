@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<0bd83f3e6acc69814b61ef9892a39d3b>>
+ * @generated SignedSource<<35ca0fa84141438c63c71907b2484011>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -31,50 +31,61 @@ var node = {
     {
       "alias": null,
       "args": null,
-      "kind": "ScalarField",
-      "name": "address1",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "address2",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "barangay",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "city",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "province",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "country",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "zipcode",
+      "concreteType": "Address",
+      "kind": "LinkedField",
+      "name": "address",
+      "plural": false,
+      "selections": [
+        {
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
+          "name": "address1",
+          "storageKey": null
+        },
+        {
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
+          "name": "address2",
+          "storageKey": null
+        },
+        {
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
+          "name": "barangay",
+          "storageKey": null
+        },
+        {
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
+          "name": "city",
+          "storageKey": null
+        },
+        {
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
+          "name": "province",
+          "storageKey": null
+        },
+        {
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
+          "name": "country",
+          "storageKey": null
+        },
+        {
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
+          "name": "zipcode",
+          "storageKey": null
+        }
+      ],
       "storageKey": null
     },
     {
@@ -96,6 +107,6 @@ var node = {
   "abstractKey": null
 };
 
-node.hash = "9196d955395c5f5c34f19152fc023517";
+node.hash = "0957e7086c85a16477683b3cdb757587";
 
 module.exports = node;

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<a7eb432a313bcc404bbfe7762dada94b>>
+ * @generated SignedSource<<8164198a533229b3a703195f48886aac>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -55,50 +55,61 @@ v1 = [
       {
         "alias": null,
         "args": null,
-        "kind": "ScalarField",
-        "name": "address1",
-        "storageKey": null
-      },
-      {
-        "alias": null,
-        "args": null,
-        "kind": "ScalarField",
-        "name": "address2",
-        "storageKey": null
-      },
-      {
-        "alias": null,
-        "args": null,
-        "kind": "ScalarField",
-        "name": "barangay",
-        "storageKey": null
-      },
-      {
-        "alias": null,
-        "args": null,
-        "kind": "ScalarField",
-        "name": "city",
-        "storageKey": null
-      },
-      {
-        "alias": null,
-        "args": null,
-        "kind": "ScalarField",
-        "name": "province",
-        "storageKey": null
-      },
-      {
-        "alias": null,
-        "args": null,
-        "kind": "ScalarField",
-        "name": "country",
-        "storageKey": null
-      },
-      {
-        "alias": null,
-        "args": null,
-        "kind": "ScalarField",
-        "name": "zipcode",
+        "concreteType": "Address",
+        "kind": "LinkedField",
+        "name": "address",
+        "plural": false,
+        "selections": [
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "address1",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "address2",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "barangay",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "city",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "province",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "country",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "zipcode",
+            "storageKey": null
+          }
+        ],
         "storageKey": null
       },
       {
@@ -137,16 +148,16 @@ return {
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "4b436d23786a2545f742e9e8ddf5a5f4",
+    "cacheID": "86dbe24afdcf29a4c4f06790ba491ad4",
     "id": null,
     "metadata": {},
     "name": "AddNewStoreMutation",
     "operationKind": "mutation",
-    "text": "mutation AddNewStoreMutation(\n  $store: NewStore!\n) {\n  addNewStore(store: $store) {\n    id\n    type\n    name\n    address1\n    address2\n    barangay\n    city\n    province\n    country\n    zipcode\n    dateAdded\n    active\n  }\n}\n"
+    "text": "mutation AddNewStoreMutation(\n  $store: NewStore!\n) {\n  addNewStore(store: $store) {\n    id\n    type\n    name\n    address {\n      address1\n      address2\n      barangay\n      city\n      province\n      country\n      zipcode\n    }\n    dateAdded\n    active\n  }\n}\n"
   }
 };
 })();
 
-node.hash = "faf752dceb3d2568cc487ec5b2df6af3";
+node.hash = "4a55f72c3baf0840ff3febc432910a29";
 
 module.exports = node;

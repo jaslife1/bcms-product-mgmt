@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<4cd48986889bee1c90aab8a208af3c81>>
+ * @generated SignedSource<<efe66b845e8fa97b5f72a612061b5b7c>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -98,50 +98,61 @@ return {
                       {
                         "alias": null,
                         "args": null,
-                        "kind": "ScalarField",
-                        "name": "address1",
-                        "storageKey": null
-                      },
-                      {
-                        "alias": null,
-                        "args": null,
-                        "kind": "ScalarField",
-                        "name": "address2",
-                        "storageKey": null
-                      },
-                      {
-                        "alias": null,
-                        "args": null,
-                        "kind": "ScalarField",
-                        "name": "barangay",
-                        "storageKey": null
-                      },
-                      {
-                        "alias": null,
-                        "args": null,
-                        "kind": "ScalarField",
-                        "name": "city",
-                        "storageKey": null
-                      },
-                      {
-                        "alias": null,
-                        "args": null,
-                        "kind": "ScalarField",
-                        "name": "province",
-                        "storageKey": null
-                      },
-                      {
-                        "alias": null,
-                        "args": null,
-                        "kind": "ScalarField",
-                        "name": "country",
-                        "storageKey": null
-                      },
-                      {
-                        "alias": null,
-                        "args": null,
-                        "kind": "ScalarField",
-                        "name": "zipcode",
+                        "concreteType": "Address",
+                        "kind": "LinkedField",
+                        "name": "address",
+                        "plural": false,
+                        "selections": [
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "address1",
+                            "storageKey": null
+                          },
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "address2",
+                            "storageKey": null
+                          },
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "barangay",
+                            "storageKey": null
+                          },
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "city",
+                            "storageKey": null
+                          },
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "province",
+                            "storageKey": null
+                          },
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "country",
+                            "storageKey": null
+                          },
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "zipcode",
+                            "storageKey": null
+                          }
+                        ],
                         "storageKey": null
                       },
                       {
@@ -221,12 +232,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "a63b7d161927deb30eaffb239e2a7c51",
+    "cacheID": "de8dd5d7d4b2889787d23c10a6888dd3",
     "id": null,
     "metadata": {},
     "name": "StoreListPageQuery",
     "operationKind": "query",
-    "text": "query StoreListPageQuery {\n  viewer {\n    ...StoreList_viewer\n  }\n}\n\nfragment StoreList_viewer on Viewer {\n  allStores(last: 100) {\n    edges {\n      node {\n        ...Store_store\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n\nfragment Store_store on Store {\n  id\n  name\n  address1\n  address2\n  barangay\n  city\n  province\n  country\n  zipcode\n  active\n  type\n}\n"
+    "text": "query StoreListPageQuery {\n  viewer {\n    ...StoreList_viewer\n  }\n}\n\nfragment StoreList_viewer on Viewer {\n  allStores(last: 100) {\n    edges {\n      node {\n        ...Store_store\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n\nfragment Store_store on Store {\n  id\n  name\n  address {\n    address1\n    address2\n    barangay\n    city\n    province\n    country\n    zipcode\n  }\n  active\n  type\n}\n"
   }
 };
 })();

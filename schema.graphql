@@ -1,5 +1,26 @@
 scalar Time
 
+type Address {
+  address1: String!
+  address2: String
+  barangay: String!
+  city: String!
+  province: String!
+  country: String!
+  zipcode: Int!
+}
+
+input NewAddress {
+  address1: String!
+  address2: String
+  barangay: String!
+  city: String!
+  province: String!
+  country: String!
+  zipcode: Int!
+}
+
+
 type Product {
   id: ID!
   code: String!
@@ -27,13 +48,7 @@ type Store {
   # Main branch / Outlet/ Pop-up
   type: String!
   name: String!
-  address1: String!
-  address2: String
-  barangay: String!
-  city: String!
-  province: String!
-  country: String!
-  zipcode: Int!
+  address: Address!
   active: Boolean!
   dateAdded: Time!
   # TODO: Add UserID once User table is ready already
@@ -42,13 +57,7 @@ type Store {
 input NewStore {
   type: String!
   name: String!
-  address1: String!
-  address2: String
-  barangay: String!
-  city: String!
-  province: String!
-  country: String!
-  zipcode: Int!
+  address: NewAddress!
   active: Boolean!
   # TODO: Add UserID once User table is ready already
 }

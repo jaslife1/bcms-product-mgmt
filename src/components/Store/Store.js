@@ -36,7 +36,7 @@ class Store extends Component {
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
                 <StyledTableCell  component="th" scope="row">{this.props.store.name}</StyledTableCell>
-                <StyledTableCell align="left">{this.props.store.address1}</StyledTableCell>
+                <StyledTableCell align="left">{this.props.store.address.address1}</StyledTableCell>
                 <StyledTableCell align="left">{this.props.store.type}</StyledTableCell>
                 <StyledTableCell align="left">{"" + this.props.store.active}</StyledTableCell>
             </StyledTableRow>
@@ -50,13 +50,15 @@ export default createFragmentContainer(Store, {
         fragment Store_store on Store {
             id
             name
-            address1
-            address2
-            barangay
-            city
-            province
-            country
-            zipcode
+            address {
+                address1,
+                address2,
+                barangay,
+                city,
+                province,
+                country,
+                zipcode,
+            },
             active
             type
     }`
