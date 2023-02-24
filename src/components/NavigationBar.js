@@ -91,6 +91,11 @@ export default function NavigationBar() {
         navigate("/addstore")
     }
 
+    const addNewUser = () => {
+        handleClose()
+        navigate("/adduser")
+    }
+
     return (
         <div>
         <Button
@@ -170,6 +175,7 @@ export default function NavigationBar() {
             <MenuItem onClick={addNewEmployee}>Add New Employee</MenuItem>
             <MenuItem onClick={addEmployeeDepdendent}>Add Employee Dependent</MenuItem>
             <MenuItem onClick={addEmployeeEmergencyContact}>Add Employee Emergency Contact</MenuItem>
+            <MenuItem onClick={addNewUser}>Add New User</MenuItem>
         </Menu>
         </div>
     );

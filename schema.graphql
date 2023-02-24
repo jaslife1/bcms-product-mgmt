@@ -156,6 +156,17 @@ input NewStatutoryInformation {
 }
 
 
+type User {
+  id: ID!
+  employeeId: ID!
+  access: String!
+}
+
+input NewUser {
+  employeeId: ID!
+  access: String!
+}
+
 # Information about pagination in a connection.
 type PageInfo {
   # When paginating forwards, are there more items?
@@ -234,4 +245,5 @@ type Mutation {
   addNewProduct(product: NewProduct!) : Product!
   addNewStore(store: NewStore!) : Store!
   addNewEmployee(employee: NewEmployee!): Employee!
+  addNewUser(user: NewUser!) : User!
 }

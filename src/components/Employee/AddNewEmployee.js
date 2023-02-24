@@ -59,7 +59,12 @@ class AddNewEmployee extends Component {
         return(
             <>
             <h1>Add New Employee</h1>
-            <Box sx={{ flexGrow: 1 }}>
+            <Box 
+                sx={{ flexGrow: 1 }}
+                component="form"
+                noValidate
+                autoComplete="off"
+            >
                 <h3>Personal Information</h3>
                 <Grid container spacing={4}>
                     <Grid xs={3}>
