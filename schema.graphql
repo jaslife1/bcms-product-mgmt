@@ -62,6 +62,78 @@ input NewStore {
   # TODO: Add UserID once User table is ready already
 }
 
+type Employee{
+  id: ID!
+  personalInformation: PersonalInformation!
+  address: Address!
+  statutoryInformation: StatutoryInformation!
+  dependents: [Dependent!]
+  active: Boolean!
+  dateHired: Time!
+  dateAdded: Time!
+  dateResigned: Time  
+  position: String!
+  salary: Float!
+  store: Store!
+}
+
+type PersonalInformation {
+  firstName: String!
+  lastName: String!
+  middleName: String
+  extensionName: String
+  birthMonth: Int
+  birthdate: Int
+  birthYear: Int
+}
+
+type StatutoryInformation {
+  sssNumber: String
+  philhealthNumber: String
+  hdmfNumber: String
+  tinNumber: String
+}
+
+type Dependent {
+  personalInformation: PersonalInformation!
+  relation: String!
+}
+
+input NewEmployee {
+  personalInformation: NewPersonalInformation!
+  address: NewAddress!
+  active: Boolean!
+  dateHired: Time!
+  statutoryInformation: NewStatutoryInformation!
+  position: String!
+  salary: Float!
+  dependents: [NewDependent!]
+  store: NewStore!
+}
+
+input NewDependent {
+  personalInformation: NewPersonalInformation!
+  relation: String!
+}
+
+input NewPersonalInformation {
+  firstName: String!
+  lastName: String!
+  middleName: String
+  extensionName: String
+  birthMonth: Int
+  birthdate: Int
+  birthYear: Int
+}
+
+input NewStatutoryInformation {
+  sssNumber: String
+  philhealthNumber: String
+  hdmfNumber: String
+  tinNumber: String
+}
+
+
 # Information about pagination in a connection.
 type PageInfo {
   # When paginating forwards, are there more items?
@@ -90,6 +162,11 @@ type StoreEdge {
   cursor: String
 }
 
+type EmployeeEdge {
+  node: Employee
+  cursor: String
+}
+
 # A collection to a list of products
 type ProductConnection {
   # Information to aid in Pagination
@@ -103,6 +180,11 @@ type StoreConnection {
   edges: [StoreEdge]
 }
 
+type EmployeeConnection {
+  pageInfo: PageInfo
+  edges: [EmployeeEdge]
+}
+
 input ProductFilter {
   id: ID
 }
@@ -111,9 +193,14 @@ input StoreFilter {
   id: ID
 }
 
+input EmployeeFilter {
+  id: ID
+}
+
 type Viewer {
   allProducts(filter: ProductFilter, last: Int): ProductConnection!
   allStores(filter: StoreFilter, last: Int): StoreConnection!
+  allEmployees(filter: EmployeeFilter, last: Int): EmployeeConnection!
 }
 
 type Query {
@@ -124,4 +211,5 @@ type Query {
 type Mutation {
   addNewProduct(product: NewProduct!) : Product!
   addNewStore(store: NewStore!) : Store!
+  addNewEmployee(employee: NewEmployee!): Employee!
 }
