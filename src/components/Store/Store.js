@@ -38,7 +38,7 @@ class Store extends Component {
                 <StyledTableCell  component="th" scope="row">{this.props.store.name}</StyledTableCell>
                 <StyledTableCell align="left">{this.props.store.address1}</StyledTableCell>
                 <StyledTableCell align="left">{this.props.store.type}</StyledTableCell>
-                <StyledTableCell align="left">{this.props.store.active}</StyledTableCell>
+                <StyledTableCell align="left">{"" + this.props.store.active}</StyledTableCell>
             </StyledTableRow>
         )
     }

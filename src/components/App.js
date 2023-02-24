@@ -7,6 +7,7 @@ import AddProduct from './Product/AddProduct';
 import ProductListPage from './Product/ProductListPage';
 import AddStore from './Store/AddStore';
 import Home from './Home';
+import StoreListPage from './Store/StoreListPage';
 
 export default function App () {
   return (
@@ -16,6 +17,7 @@ export default function App () {
         <Route path="/addproduct" element={<AddProduct />} />
         <Route path="/products" element={<ProductListPage />} />
         <Route path="/addstore" element={<AddStore />} />
+        <Route path="/stores" element={<StoreListPage />} />
         {/*Add edit of quantity for product */}
       </Routes>
     </div>
