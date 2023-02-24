@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import Box from "@mui/material/Box"
 import { TextField, FormControl, InputLabel, OutlinedInput, Button, InputAdornment } from "@mui/material";
 import AddNewProductMutation from "../mutations/AddNewProductMutation";
+import SimpleDialog from "./SimpleDialog";
 
 class AddProduct extends Component {
 
@@ -11,8 +12,11 @@ class AddProduct extends Component {
         description: '',
         sku: '', 
         barcode: '',
-        price: 0
-    }
+        price: 0,
+        showDialog: false,
+        showErrorDialog: false,
+        showErrorContent: '',
+    };
 
 
     render() {
@@ -82,13 +86,40 @@ class AddProduct extends Component {
                         onClick={()=> this.addNewProduct()}
                     >Save</Button>
                 </div>
+                <SimpleDialog
+                    open={this.state.showDialog}
+                    title="Add New Product"
+                    content="New product successfully added"
+                    onClose={()=>{
+                        this.setState({showDialog: false})
+                    }}
+                />
+                <SimpleDialog
+                    open={this.state.showErrorDialog}
+                    title="Add New Product"
+                    content={"Failed to add new product." + this.state.showErrorContent}
+                    onClose={()=>{
+                        this.setState({showErrorDialog: false})
+                    }}
+                />
             </Box>
         )
     }
 
+
     addNewProduct = () => {
         const {code, description, name, sku, barcode, price} = this.state
-        AddNewProductMutation(code, name, description, sku, barcode, price, ()=>console.log("Add new product successful."))
+        AddNewProductMutation(code, name, description, sku, barcode, price, ()=>{
+            console.log("Add new product successful.");
+            // Clean up the form
+            // Prompt the user of successful addition of product
+            this.setState({showDialog: true});
+
+        }, (err) => {
+            console.log(err)
+            this.setState({showErrorDialog: true, showErrorContent: err});
+            
+        })
     }
 
 }
