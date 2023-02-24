@@ -13,8 +13,7 @@ export default function App () {
         <Route path="/" element={<Home />} />
         <Route path="/addproduct" element={<AddProduct />} />
         <Route path="/products" element={<ProductListPage />} />
-        {/*Add prompt that successful addition of product. Clear form when product is successfully added. Add prompt when addition
-        of product fails. Add edit of quantity for product */}
+        {/*Add edit of quantity for product */}
       </Routes>
     </div>
   );

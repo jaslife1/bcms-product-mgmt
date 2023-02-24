@@ -12,10 +12,9 @@ class AddProduct extends Component {
         description: '',
         sku: '', 
         barcode: '',
-        price: 0,
+        price: '',
         showDialog: false,
         showErrorDialog: false,
-        showErrorContent: '',
     };
 
 
@@ -34,6 +33,7 @@ class AddProduct extends Component {
                         id="outlined-basic" 
                         label="Code" 
                         variant="outlined" 
+                        value={this.state.code}
                         onChange={(e) => this.setState({ code: e.target.value })} 
                         />
                 </div>
@@ -42,6 +42,7 @@ class AddProduct extends Component {
                         id="outlined-basic" 
                         label="Name" 
                         variant="outlined" 
+                        value={this.state.name}
                         onChange={(e) => this.setState({ name: e.target.value })}
                         />
                 </div>
@@ -51,6 +52,7 @@ class AddProduct extends Component {
                     label="Description"
                     multiline
                     rows={4}
+                    value={this.state.description}
                     onChange={(e) => this.setState({ description: e.target.value })}
                     />
                 </div>
@@ -59,6 +61,7 @@ class AddProduct extends Component {
                         id="outlined-basic" 
                         label="SKU" 
                         variant="outlined" 
+                        value={this.state.sku}
                         onChange={(e) => this.setState({ sku: e.target.value })} 
                         />
                 </div>
@@ -67,6 +70,7 @@ class AddProduct extends Component {
                         id="outlined-basic" 
                         label="Barcode" 
                         variant="outlined" 
+                        value={this.state.barcode}
                         onChange={(e) => this.setState({ barcode: e.target.value })}
                         />
                 </div>
@@ -77,6 +81,7 @@ class AddProduct extends Component {
                         id="outlined-adornment-amount"
                         startAdornment={<InputAdornment position="start">₱</InputAdornment>}
                         label="Price"
+                        value={this.state.price}
                         onChange={(e) => this.setState({ price: e.target.value })}
                         />
                     </FormControl>
@@ -111,9 +116,17 @@ class AddProduct extends Component {
         const {code, description, name, sku, barcode, price} = this.state
         AddNewProductMutation(code, name, description, sku, barcode, price, ()=>{
             console.log("Add new product successful.");
-            // Clean up the form
             // Prompt the user of successful addition of product
             this.setState({showDialog: true});
+             // Clean up the form
+            this.setState({
+                code:'',
+                name:'',
+                description:'',
+                sku:'',
+                barcode:'',
+                price:''
+            })
 
         }, (err) => {
             console.log(err)
