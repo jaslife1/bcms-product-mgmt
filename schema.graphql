@@ -22,6 +22,37 @@ input NewProduct {
   price: Float!
 }
 
+type Store {
+  id: ID!
+  # Main branch / Outlet/ Pop-up
+  type: String!
+  name: String!
+  address1: String!
+  address2: String
+  barangay: String!
+  city: String!
+  province: String!
+  country: String!
+  zipcode: Int!
+  active: Boolean!
+  dateAdded: Time!
+  # TODO: Add UserID once User table is ready already
+}
+
+input NewStore {
+  type: String!
+  name: String!
+  address1: String!
+  address2: String
+  barangay: String!
+  city: String!
+  province: String!
+  country: String!
+  zipcode: Int!
+  active: Boolean!
+  # TODO: Add UserID once User table is ready already
+}
+
 # Information about pagination in a connection.
 type PageInfo {
   # When paginating forwards, are there more items?
@@ -45,6 +76,11 @@ type ProductEdge {
   cursor: String
 }
 
+type StoreEdge {
+  node: Store
+  cursor: String
+}
+
 # A collection to a list of products
 type ProductConnection {
   # Information to aid in Pagination
@@ -53,12 +89,22 @@ type ProductConnection {
   edges: [ProductEdge]
 }
 
+type StoreConnection {
+  pageInfo: PageInfo
+  edges: [StoreEdge]
+}
+
 input ProductFilter {
+  id: ID
+}
+
+input StoreFilter {
   id: ID
 }
 
 type Viewer {
   allProducts(filter: ProductFilter, last: Int): ProductConnection!
+  allStores(filter: StoreFilter, last: Int): StoreConnection!
 }
 
 type Query {
@@ -68,4 +114,5 @@ type Query {
 
 type Mutation {
   addNewProduct(product: NewProduct!) : Product!
+  addNewStore(store: NewStore!) : Store!
 }
