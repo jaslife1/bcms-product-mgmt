@@ -1,8 +1,8 @@
 import React, {Component} from "react";
 import Box from "@mui/material/Box"
 import { TextField, FormControl, InputLabel, OutlinedInput, Button, InputAdornment } from "@mui/material";
-import AddNewProductMutation from "../mutations/AddNewProductMutation";
-import SimpleDialog from "./SimpleDialog";
+import AddNewProductMutation from "../../mutations/AddNewProductMutation";
+import SimpleDialog from "../SimpleDialog";
 
 class AddProduct extends Component {
 

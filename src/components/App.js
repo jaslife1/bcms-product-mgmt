@@ -1,9 +1,10 @@
 import logo from '../logo.svg';
 import '../styles/App.css';
 import React from 'react';
-import ProductListPage from './ProductListPage';
 import { Route, Routes } from "react-router-dom";
-import AddProduct from './AddProduct';
+
+import AddProduct from './Product/AddProduct';
+import ProductListPage from './Product/ProductListPage';
 import AddStore from './AddStore';
 import Home from './Home';
 

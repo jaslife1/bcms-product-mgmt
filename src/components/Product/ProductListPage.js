@@ -3,7 +3,7 @@ import {
     QueryRenderer,
     graphql
 } from 'react-relay'
-import environment from "../Environment";
+import environment from "../../Environment";
 import ProductList from "./ProductList";
 
 const ProductListPageQuery = graphql`
