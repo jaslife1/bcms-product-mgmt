@@ -5,8 +5,10 @@ import MenuItem from '@mui/material/MenuItem';
 import { useNavigate } from "react-router-dom";
 
 export default function NavigationBar() {
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const openProduct = Boolean(anchorEl);
+    const [prodEl, setProdEl] = React.useState(null);
+    const [storeEl, setStoreEl] = React.useState(null);
+    const openProduct = Boolean(prodEl);
+    const openStore = Boolean(storeEl);
 
     const navigate = useNavigate();
 
@@ -14,10 +16,16 @@ export default function NavigationBar() {
         navigate("/")
     };
     const handleProductClick = (event) => {
-        setAnchorEl(event.currentTarget);
+        setProdEl(event.currentTarget);
     };
+
+    const handleStoreClick = (event) => {
+        setStoreEl(event.currentTarget);
+    }
+
     const handleClose = () => {
-        setAnchorEl(null);
+        setProdEl(null);
+        setStoreEl(null);
     };
 
     const addNewProduct = () => {
@@ -50,6 +58,16 @@ export default function NavigationBar() {
         navigate("/employee")
     }
 
+    const listStores = () => {
+        handleClose()
+        navigate("/stores")
+    }
+
+    const addNewStore = () => {
+        handleClose()
+        navigate("/addnewstore")
+    }
+
     return (
         <div>
         <Button
@@ -69,7 +87,7 @@ export default function NavigationBar() {
         </Button>
         <Menu
             id="basic-menu"
-            anchorEl={anchorEl}
+            anchorEl={prodEl}
             open={openProduct}
             onClose={handleClose}
             MenuListProps={{
@@ -86,6 +104,24 @@ export default function NavigationBar() {
         >
             Point-of-Sales
         </Button>
+        <Button
+            id="basic-button"
+            onClick={handleStoreClick}
+        >
+            Stores
+        </Button>
+        <Menu
+            id="basic-menu"
+            anchorEl={storeEl}
+            open={openStore}
+            onClose={handleClose}
+            MenuListProps={{
+            'aria-labelledby': 'basic-button',
+            }}
+        >
+            <MenuItem onClick={listStores}>Store List</MenuItem>
+            <MenuItem onClick={addNewStore}>Add New Store</MenuItem>
+        </Menu>
         <Button
             id="basic-button"
             onClick={reports}
