@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import Box from "@mui/material/Box"
-import { TextField, FormControl, InputLabel, OutlinedInput, Button, InputAdornment } from "@mui/material";
+import { TextField, FormControl, InputLabel, OutlinedInput, Button, InputAdornment,
+FormLabel, FormGroup, FormControlLabel, FormHelperText, Switch } from "@mui/material";
 import AddNewProductMutation from "../../mutations/AddNewProductMutation";
 import SimpleDialog from "../SimpleDialog";
 
@@ -13,6 +14,7 @@ class AddProduct extends Component {
         sku: '', 
         barcode: '',
         price: '',
+        active: true,
         showDialog: false,
         showErrorDialog: false,
     };
@@ -20,6 +22,8 @@ class AddProduct extends Component {
 
     render() {
         return(
+            <>
+            <h1>Add New Product</h1>
             <Box 
                 component="form"
                 sx={{
@@ -39,8 +43,9 @@ class AddProduct extends Component {
                 </div>
                 <div>
                     <TextField 
+                        fullWidth={true}
                         id="outlined-basic" 
-                        label="Name" 
+                        label="Product Name" 
                         variant="outlined" 
                         value={this.state.name}
                         onChange={(e) => this.setState({ name: e.target.value })}
@@ -48,6 +53,7 @@ class AddProduct extends Component {
                 </div>
                 <div>
                 <TextField
+                    fullWidth={true}
                     id="outlined-multiline-static"
                     label="Description"
                     multiline
@@ -87,6 +93,23 @@ class AddProduct extends Component {
                     </FormControl>
                 </div>
                 <div>
+                    <FormControl component="fieldset" variant="standard">
+                        <FormLabel component="legend">Active</FormLabel>
+                        <FormGroup>
+                            <FormControlLabel
+                                control={
+                                    <Switch 
+                                        checked={this.state.active} 
+                                        onChange={(e) => this.setState({ active: e.target.checked })}
+                                        name="active" />
+                                }
+                                label="Active product?"
+                            />
+                        </FormGroup>
+                        <FormHelperText>Active product means that this product is actively produced and sold</FormHelperText>
+                    </FormControl>
+                </div>
+                <div>
                     <Button variant="contained"
                         onClick={()=> this.addNewProduct()}
                     >Save</Button>
@@ -108,13 +131,14 @@ class AddProduct extends Component {
                     }}
                 />
             </Box>
+            </>
         )
     }
 
 
     addNewProduct = () => {
-        const {code, description, name, sku, barcode, price} = this.state
-        AddNewProductMutation(code, name, description, sku, barcode, price, ()=>{
+        const {code, description, name, sku, barcode, price, active} = this.state
+        AddNewProductMutation(code, name, description, sku, barcode, price, active, ()=>{
             console.log("Add new product successful.");
             // Prompt the user of successful addition of product
             this.setState({showDialog: true});
@@ -125,7 +149,8 @@ class AddProduct extends Component {
                 description:'',
                 sku:'',
                 barcode:'',
-                price:''
+                price:'',
+                active: true,
             })
 
         }, (err) => {

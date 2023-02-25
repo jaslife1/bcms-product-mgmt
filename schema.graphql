@@ -41,6 +41,7 @@ input NewProduct {
   sku: String!
   barcode: String!
   price: Float!
+  active: Boolean!
 }
 
 type Store {
