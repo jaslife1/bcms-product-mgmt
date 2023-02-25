@@ -14,6 +14,7 @@ class AddProduct extends Component {
         sku: '', 
         barcode: '',
         price: '',
+        quantity:'',
         active: true,
         showDialog: false,
         showErrorDialog: false,
@@ -81,6 +82,15 @@ class AddProduct extends Component {
                         />
                 </div>
                 <div>
+                    <TextField 
+                        id="outlined-basic" 
+                        label="Quantity" 
+                        variant="outlined" 
+                        value={this.state.quantity}
+                        onChange={(e) => this.setState({ quantity: e.target.value })}
+                        />
+                </div>
+                <div>
                 <FormControl fullWidth sx={{ m: 1, width:'25ch' }}>
                     <InputLabel htmlFor="outlined-adornment-amount">Price</InputLabel>
                     <OutlinedInput
@@ -137,8 +147,8 @@ class AddProduct extends Component {
 
 
     addNewProduct = () => {
-        const {code, description, name, sku, barcode, price, active} = this.state
-        AddNewProductMutation(code, name, description, sku, barcode, price, active, ()=>{
+        const {code, description, name, sku, barcode, quantity, price, active} = this.state
+        AddNewProductMutation(code, name, description, sku, barcode, quantity, price, active, ()=>{
             console.log("Add new product successful.");
             // Prompt the user of successful addition of product
             this.setState({showDialog: true});
@@ -150,6 +160,7 @@ class AddProduct extends Component {
                 sku:'',
                 barcode:'',
                 price:'',
+                quantity: '',
                 active: true,
             })
 

@@ -23,7 +23,7 @@ const mutation = graphql`
     `
 
 // 3
-export default (code, name, description, sku, barcode, price, active, onSuccessCallback, onErrorCallback) => {
+export default (code, name, description, sku, barcode, quantity, price, active, onSuccessCallback, onErrorCallback) => {
 // 4
     const variables = {
         product: {
@@ -32,6 +32,7 @@ export default (code, name, description, sku, barcode, price, active, onSuccessC
             description,
             sku,
             barcode,
+            quantity,
             price,
             active
         },

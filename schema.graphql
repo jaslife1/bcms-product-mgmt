@@ -41,7 +41,23 @@ input NewProduct {
   sku: String!
   barcode: String!
   price: Float!
+  quantity: Int!
   active: Boolean!
+}
+
+type Adjustment{
+  id: ID!
+  productId: ID!
+  quantity: Int!
+  dateAdded: Time!
+  #TODO: Add UserId once the table is ready already
+}
+
+input NewAdjustment {
+  productId: ID!
+  quantity: Int!
+  dateAdded: Time!
+  #TODO: Add UserId once the table is ready already
 }
 
 type Store {
@@ -260,4 +276,5 @@ type Mutation {
   addNewStore(store: NewStore!) : Store!
   addNewEmployee(employee: NewEmployee!): Employee!
   addNewUser(user: NewUser!) : User!
+  addNewProductAdjustment(adjustment: NewAdjustment!) : Adjustment!
 }
