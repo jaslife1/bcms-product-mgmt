@@ -1,5 +1,6 @@
 scalar Time
 
+# Contains all the data type
 type Address {
   address1: String!
   address2: String
@@ -10,41 +11,6 @@ type Address {
   zipcode: Int!
 }
 
-input NewAddress {
-  address1: String!
-  address2: String
-  barangay: String!
-  city: String!
-  province: String!
-  country: String!
-  zipcode: Int!
-}
-
-
-type Product {
-  id: ID!
-  code: String!
-  name: String!
-  description: String
-  sku: String!
-  barcode: String!
-  price: Float!
-  dateAdded: Time!
-  dateCancelled: Time
-  active: Boolean!
-}
-
-input NewProduct {
-  code: String!
-  name: String!
-  description: String
-  sku: String!
-  barcode: String!
-  price: Float!
-  quantity: Int!
-  active: Boolean!
-}
-
 type Adjustment{
   id: ID!
   productId: ID!
@@ -53,30 +19,15 @@ type Adjustment{
   #TODO: Add UserId once the table is ready already
 }
 
-input NewAdjustment {
-  productId: ID!
-  quantity: Int!
-  dateAdded: Time!
-  #TODO: Add UserId once the table is ready already
+type ContactInformation {
+  telephoneNumber: String
+  mobileNumber: String
+  emailAddress: String
 }
 
-type Store {
-  id: ID!
-  # Main branch / Outlet/ Pop-up
-  type: String!
-  name: String!
-  address: Address!
-  active: Boolean!
-  dateAdded: Time!
-  # TODO: Add UserID once User table is ready already
-}
-
-input NewStore {
-  type: String!
-  name: String!
-  address: NewAddress!
-  active: Boolean!
-  # TODO: Add UserID once User table is ready already
+type Dependent {
+  personalInformation: PersonalInformation!
+  relation: String!
 }
 
 type Employee{
@@ -109,10 +60,17 @@ type PersonalInformation {
   birthPlace: String!
 }
 
-type ContactInformation {
-  telephoneNumber: String
-  mobileNumber: String
-  emailAddress: String
+type Product {
+  id: ID!
+  code: String!
+  name: String!
+  description: String
+  sku: String!
+  barcode: String!
+  price: Float!
+  dateAdded: Time!
+  dateCancelled: Time
+  active: Boolean!
 }
 
 type StatutoryInformation {
@@ -122,8 +80,50 @@ type StatutoryInformation {
   tinNumber: String
 }
 
-type Dependent {
-  personalInformation: PersonalInformation!
+type Store {
+  id: ID!
+  # Main branch / Outlet/ Pop-up
+  type: String!
+  name: String!
+  address: Address!
+  active: Boolean!
+  dateAdded: Time!
+  # TODO: Add UserID once User table is ready already
+}
+
+type User {
+  id: ID!
+  employeeId: ID!
+  access: String!
+}
+
+# Contains all the INPUT type
+
+input NewAddress {
+  address1: String!
+  address2: String
+  barangay: String!
+  city: String!
+  province: String!
+  country: String!
+  zipcode: Int!
+}
+
+input NewAdjustment {
+  productId: ID!
+  quantity: Int!
+  dateAdded: Time!
+  #TODO: Add UserId once the table is ready already
+}
+
+input NewContactInformation {
+  telephoneNumber: String
+  mobileNumber: String
+  emailAddress: String
+}
+
+input NewDependent {
+  personalInformation: NewPersonalInformation!
   relation: String!
 }
 
@@ -142,11 +142,6 @@ input NewEmployee {
   type: String!
 }
 
-input NewDependent {
-  personalInformation: NewPersonalInformation!
-  relation: String!
-}
-
 input NewPersonalInformation {
   firstName: String!
   lastName: String!
@@ -158,12 +153,16 @@ input NewPersonalInformation {
   birthPlace: String!
 }
 
-input NewContactInformation {
-  telephoneNumber: String
-  mobileNumber: String
-  emailAddress: String
+input NewProduct {
+  code: String!
+  name: String!
+  description: String
+  sku: String!
+  barcode: String!
+  price: Float!
+  quantity: Int!
+  active: Boolean!
 }
-
 
 input NewStatutoryInformation {
   sssNumber: String
@@ -172,11 +171,12 @@ input NewStatutoryInformation {
   tinNumber: String
 }
 
-
-type User {
-  id: ID!
-  employeeId: ID!
-  access: String!
+input NewStore {
+  type: String!
+  name: String!
+  address: NewAddress!
+  active: Boolean!
+  # TODO: Add UserID once User table is ready already
 }
 
 input NewUser {
@@ -199,11 +199,19 @@ type PageInfo {
   endCursor: String
 }
 
+# Contains all the EDGES
+
 # An edge in the connection
-type ProductEdge {
+type EmployeeEdge {
   # item at the end of the edge
-  node: Product
+  node: Employee
   # A cursor used for pagination
+  cursor: String
+}
+
+
+type ProductEdge {
+  node: Product
   cursor: String
 }
 
@@ -212,16 +220,19 @@ type StoreEdge {
   cursor: String
 }
 
-type EmployeeEdge {
-  node: Employee
-  cursor: String
-}
 
-# A collection to a list of products
-type ProductConnection {
+# Contains all the CONNECTIONS
+
+# A connection to a list of employees
+type EmployeeConnection {
   # Information to aid in Pagination
   pageInfo: PageInfo
   # A list of edges
+  edges: [EmployeeEdge]
+}
+
+type ProductConnection {
+  pageInfo: PageInfo
   edges: [ProductEdge]
 }
 
@@ -230,9 +241,10 @@ type StoreConnection {
   edges: [StoreEdge]
 }
 
-type EmployeeConnection {
-  pageInfo: PageInfo
-  edges: [EmployeeEdge]
+# Contains all the FILTERS
+
+input EmployeeFilter {
+  id: ID
 }
 
 input ProductFilter {
@@ -243,9 +255,7 @@ input StoreFilter {
   id: ID
 }
 
-input EmployeeFilter {
-  id: ID
-}
+# Special section
 
 type Viewer {
   allProducts(filter: ProductFilter, last: Int): ProductConnection!
