@@ -6,31 +6,8 @@ import { TextField, Button, FormControl,
 import Switch from "@mui/material/Switch"
 import AddNewStoreMutation from "../../mutations/AddNewStoreMutation";
 import SimpleDialog from "../SimpleDialog";
-import {
-    QueryRenderer,
-    graphql
-} from 'react-relay'
-import environment from "../../Environment";
+import AddUserEmployeeListPage from "./AddUserEmployeeListPage";
 
-const AddUserQuery = graphql`
-    query AddUserQuery {
-        viewer {
-            allEmployees(last:100) @connection(key: "AddUser_allEmployees", filters: []) {
-                edges {
-                    node {
-                       id,
-                       personalInformation {
-                            firstName
-                            middleName
-                            lastName
-                            extensionName
-                       }
-                    }
-                }
-            }
-        }
-    }
-`
 
 class AddUser extends Component {
 
@@ -41,94 +18,68 @@ class AddUser extends Component {
         showErrorDialog: false,
     };
 
+    setEmployeeId=(val) => {
+        console.log(val)
+        this.setState({employeeId: val})
+    }
+
 
     render() {
         return(
-            <QueryRenderer
-                environment={environment}
-                query={AddUserQuery}
-                render={({error, props}) => {
-                    if (error) {
-                        return <div>{error.message}</div>
-                    } else if (props != null){
-                        //return <StoreList viewer={props.viewer} />
-                        return <>
-                                <h1>Add New User</h1>
-                                <Box 
-                                    component="form"
-                                    sx={{
-                                        '& > :not(style)': { m: 1, width: '25ch' },
-                                    }}
-                                    noValidate
-                                    autoComplete="off"
-                                >
-                                    <div>
-                                        <FormControl fullWidth>
-                                            <InputLabel id="employee-select-label">Employee</InputLabel>
-                                            <Select
-                                                labelId="employee-select-label"
-                                                id="employee-simple-select"
-                                                value={this.state.employeeId}
-                                                label="Employee"
-                                                onChange={(e) => this.setState({ employeeId: e.target.value })}
-                                            >
-                                                {props.viewer.allEmployees.edges.map(({node}) => {
-                                                    return <MenuItem key={node.id} value={node.id}>
-                                                        {node.personalInformation.firstName + " " + 
-                                                        node.personalInformation.lastName + " " + 
-                                                        (node.personalInformation.extensionName != null ? node.personalInformation.extensionName : "")}</MenuItem>
-                                                    }
-                                                )}
-                                            </Select>
-                                        </FormControl>
-                                    </div>
-                                    
-                                    <div>
-                                        <FormControl fullWidth>
-                                            <InputLabel id="access-select-label">Access Level</InputLabel>
-                                            <Select
-                                                labelId="access-select-label"
-                                                id="access-simple-select"
-                                                value={this.state.access}
-                                                label="Access Level"
-                                                onChange={(e) => this.setState({ access: e.target.value })}
-                                            >
-                                                <MenuItem value="Staff">Staff</MenuItem>
-                                                <MenuItem value="Admin">Admin</MenuItem>
-                                                <MenuItem value="Super Admin">Super Admin</MenuItem>
-                                            </Select>
-                                        </FormControl>
-                                    </div>
-                                    
-                                    <div>
-                                        <Button variant="contained"
-                                            onClick={()=> this.addNewUser()}
-                                        >Save</Button>
-                                    </div>
-                                    <SimpleDialog
-                                        open={this.state.showDialog}
-                                        title="Add New User"
-                                        content="New user successfully created"
-                                        onClose={()=>{
-                                            this.setState({showDialog: false})
-                                        }}
-                                    />
-                                    <SimpleDialog
-                                        open={this.state.showErrorDialog}
-                                        title="Add New User"
-                                        content={"Failed to add new user." + this.state.showErrorContent}
-                                        onClose={()=>{
-                                            this.setState({showErrorDialog: false})
-                                        }}
-                                    />
-                                </Box>
-                                </>
-                    }
-                    return <div>Loading</div>
+             <>
+            <h1>Add User Access to Employee</h1>
+            <Box 
+                component="form"
+                sx={{
+                    '& > :not(style)': { m: 1, width: '25ch' },
                 }}
-            
-            />
-
+                noValidate
+                autoComplete="off"
+            >
+                <div>
+                    <AddUserEmployeeListPage employeeId={this.state.employeeId} onEmployeeChange={this.setEmployeeId} />
+                </div>
+                
+                <div>
+                    <FormControl fullWidth>
+                        <InputLabel id="access-select-label">Access Level</InputLabel>
+                        <Select
+                            labelId="access-select-label"
+                            id="access-simple-select"
+                            value={this.state.access}
+                            label="Access Level"
+                            onChange={(e) => this.setState({ access: e.target.value })}
+                        >
+                            <MenuItem value="Staff">Staff</MenuItem>
+                            <MenuItem value="Admin">Admin</MenuItem>
+                            <MenuItem value="Super Admin">Super Admin</MenuItem>
+                        </Select>
+                    </FormControl>
+                </div>
+                
+                <div>
+                    <Button variant="contained"
+                        onClick={()=> this.addNewUser()}
+                    >Save</Button>
+                </div>
+                <SimpleDialog
+                    open={this.state.showDialog}
+                    title="Add New User"
+                    content="New user successfully created"
+                    onClose={()=>{
+                        this.setState({showDialog: false})
+                    }}
+                />
+                <SimpleDialog
+                    open={this.state.showErrorDialog}
+                    title="Add New User"
+                    content={"Failed to add new user." + this.state.showErrorContent}
+                    onClose={()=>{
+                        this.setState({showErrorDialog: false})
+                    }}
+                />
+            </Box>
+            </>
             
         )
     }
