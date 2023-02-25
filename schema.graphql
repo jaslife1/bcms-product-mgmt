@@ -184,14 +184,14 @@ input NewProduct {
   active: Boolean!
 }
 
-type NewProductInventory{
+input NewProductInventory{
   productId: ID!
   storeId: ID!
   quantity: Int!
 }
 
 # Contains the history of the chnages to the inventory
-type NewProductInventoryHistory {
+input NewProductInventoryHistory {
   adjustmentId: ID # Not required. Changes can come from production
   productId: ID!
   produdctionId: ID # Not required. Changes can come from adjustment
@@ -324,4 +324,6 @@ type Mutation {
   addNewEmployee(employee: NewEmployee!): Employee!
   addNewUser(user: NewUser!) : User!
   addNewProductAdjustment(adjustment: NewAdjustment!) : Adjustment!
+  addNewProductInventory(inventory: NewProductInventory!): ProductInventory!
+  addNewProductInventoryHistory(inventoryHistory: NewProductInventoryHistory!) : ProductInventoryHistory!
 }
