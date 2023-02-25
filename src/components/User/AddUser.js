@@ -1,13 +1,10 @@
 import React, {Component} from "react";
 import Box from "@mui/material/Box"
-import { TextField, Button, FormControl, 
-    FormControlLabel, FormGroup, FormLabel, FormHelperText,
+import { Button, FormControl, 
     InputLabel, Select, MenuItem } from "@mui/material";
-import Switch from "@mui/material/Switch"
-import AddNewStoreMutation from "../../mutations/AddNewStoreMutation";
 import SimpleDialog from "../SimpleDialog";
 import AddUserEmployeeListPage from "./AddUserEmployeeListPage";
-
+import AddNewUserMutation from "../../mutations/AddNewUserMutation"
 
 class AddUser extends Component {
 
@@ -87,7 +84,7 @@ class AddUser extends Component {
 
     addNewUser = () => {
         const {employeeId, access} = this.state
-        AddNewStoreMutation(
+        AddNewUserMutation(
             employeeId,
             access, 
             ()=>{
