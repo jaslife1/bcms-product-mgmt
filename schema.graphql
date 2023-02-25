@@ -73,6 +73,26 @@ type Product {
   active: Boolean!
 }
 
+type ProductInventory{
+  id: ID!
+  productId: ID!
+  storeId: ID!
+  quantity: Int!
+}
+
+# Contains the history of the chnages to the inventory
+type ProductInventoryHistory {
+  id: ID!
+  adjustmentId: ID # Not required. Changes can come from production
+  productId: ID!
+  produdctionId: ID # Not required. Changes can come from adjustment
+  storeId: ID!
+  userId: ID!
+  dateTransaction: Time!
+  quantity: Int!
+  type: String! #New Product, Production, Adjustment
+}
+
 type StatutoryInformation {
   sssNumber: String
   philhealthNumber: String
@@ -162,6 +182,23 @@ input NewProduct {
   price: Float!
   quantity: Int!
   active: Boolean!
+}
+
+type NewProductInventory{
+  productId: ID!
+  storeId: ID!
+  quantity: Int!
+}
+
+# Contains the history of the chnages to the inventory
+type NewProductInventoryHistory {
+  adjustmentId: ID # Not required. Changes can come from production
+  productId: ID!
+  produdctionId: ID # Not required. Changes can come from adjustment
+  storeId: ID!
+  userId: ID!
+  quantity: Int!
+  type: String! #New Product, Production, Adjustment
 }
 
 input NewStatutoryInformation {
