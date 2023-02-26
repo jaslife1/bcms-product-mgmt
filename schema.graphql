@@ -149,7 +149,7 @@ input NewAddress {
 input NewAdjustment {
   productId: ID!
   quantity: Int!
-  dateAdded: Time!
+  dateAdded: Time
   #TODO: Add UserId once the table is ready already
 }
 
@@ -355,4 +355,5 @@ type Mutation {
   addNewProductInventory(inventory: NewProductInventory!): ProductInventory!
   addNewProductInventoryHistory(inventoryHistory: NewProductInventoryHistory!) : ProductInventoryHistory!
   addNewProduction(production: NewProduction!) : Production!
+  adjustProductQuantity(adjustment: NewAdjustment!) : Adjustment!
 }
