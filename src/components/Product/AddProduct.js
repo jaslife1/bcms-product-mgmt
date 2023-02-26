@@ -4,6 +4,7 @@ import { TextField, FormControl, InputLabel, OutlinedInput, Button, InputAdornme
 FormLabel, FormGroup, FormControlLabel, FormHelperText, Switch, Select, MenuItem } from "@mui/material";
 import AddNewProductMutation from "../../mutations/AddNewProductMutation";
 import SimpleDialog from "../SimpleDialog";
+import Grid from '@mui/material/Unstable_Grid2';
 
 class AddProduct extends Component {
 
@@ -28,96 +29,117 @@ class AddProduct extends Component {
             <h1>Add New Product</h1>
             <Box 
                 component="form"
-                sx={{
-                    '& > :not(style)': { m: 1, width: '25ch' },
-                }}
+                // sx={{
+                //     '& > :not(style)': { m: 1, width: '25ch' },
+                // }}
+                sx={{ flexGrow: 1 }}
                 noValidate
                 autoComplete="off"
             >
-                <div>
-                    <FormControl fullWidth>
-                        <InputLabel id="code-select-label">Product Code</InputLabel>
-                        <Select
-                            labelId="code-select-label"
-                            id="code-simple-select"
-                            value={this.state.code}
-                            label="Product Code"
-                            onChange={(e) => this.setState({ code: e.target.value })}
-                        >
-                            <MenuItem value="Classic">Classic</MenuItem>
-                            <MenuItem value="Creations">Creations</MenuItem>
-                            <MenuItem value="Drinks">Drinks</MenuItem>
-                            <MenuItem value="Food">Food</MenuItem>
-                            <MenuItem value="Guilt-Free">Guilt-Free</MenuItem>
-                            <MenuItem value="Premium">Premium</MenuItem>
-                            <MenuItem value="Specialty">Specialty</MenuItem>
-                        </Select>
-                    </FormControl>
-                </div>
-                <div>
+                <Grid container spacing={1}>
+                    <Grid xs={2}>
+                        <FormControl fullWidth>
+                            <InputLabel id="code-select-label">Product Code</InputLabel>
+                            <Select
+                                labelId="code-select-label"
+                                id="code-simple-select"
+                                value={this.state.code}
+                                label="Product Code"
+                                onChange={(e) => this.setState({ code: e.target.value })}
+                            >
+                                <MenuItem value="Classic">Classic</MenuItem>
+                                <MenuItem value="Creations">Creations</MenuItem>
+                                <MenuItem value="Drinks">Drinks</MenuItem>
+                                <MenuItem value="Food">Food</MenuItem>
+                                <MenuItem value="Guilt-Free">Guilt-Free</MenuItem>
+                                <MenuItem value="Premium">Premium</MenuItem>
+                                <MenuItem value="Specialty">Specialty</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </Grid>
+                </Grid>
+                <Grid container spacing={1}>
+                    <Grid xs={3}>
+                        <TextField 
+                            fullWidth={true}
+                            id="outlined-basic" 
+                            label="Product Name" 
+                            variant="outlined" 
+                            value={this.state.name}
+                            onChange={(e) => this.setState({ name: e.target.value })}
+                            />
+                    </Grid>
+                </Grid>
+                <Grid container spacing={1}>
+                    <Grid xs={3}>
+                        <TextField
+                            fullWidth={true}
+                            id="outlined-multiline-static"
+                            label="Description"
+                            multiline
+                            rows={5}
+                            value={this.state.description}
+                            onChange={(e) => this.setState({ description: e.target.value })}
+                            />
+                    </Grid>
+               </Grid>
+               <Grid container spacing={2}>
+                   <Grid xs={2}>
+                        <TextField 
+                            fullWidth={true}
+                            id="outlined-basic" 
+                            label="SKU" 
+                            variant="outlined" 
+                            value={this.state.sku}
+                            onChange={(e) => this.setState({ sku: e.target.value })} 
+                            />
+                   </Grid>
+                   <Grid xs={2}>
                     <TextField 
-                        fullWidth={true}
-                        id="outlined-basic" 
-                        label="Product Name" 
-                        variant="outlined" 
-                        value={this.state.name}
-                        onChange={(e) => this.setState({ name: e.target.value })}
-                        />
-                </div>
+                            fullWidth={true}
+                            id="outlined-basic" 
+                            label="Barcode" 
+                            variant="outlined" 
+                            value={this.state.barcode}
+                            onChange={(e) => this.setState({ barcode: e.target.value })}
+                            />
+                   </Grid>
+               </Grid>
+               <Grid container spacing={2}>
+                    <Grid xs={2}>
+                        <TextField 
+                            fullWidth={true}
+                            id="outlined-basic" 
+                            label="Net weight" 
+                            variant="outlined" 
+                            type="number"
+                            value={this.state.weight}
+                            onChange={(e) => this.setState({ weight: e.target.value })}
+                            />
+                    </Grid>
+                    <Grid xs={2}>
+                        <TextField 
+                            fullWidth={true}
+                            id="outlined-basic" 
+                            label="Initial Quantity" 
+                            variant="outlined" 
+                            type="number"
+                            value={this.state.quantity}
+                            onChange={(e) => this.setState({ quantity: e.target.value })}
+                            />
+                     </Grid>
+                </Grid>
                 <div>
-                <TextField
-                    fullWidth={true}
-                    id="outlined-multiline-static"
-                    label="Description"
-                    multiline
-                    rows={4}
-                    value={this.state.description}
-                    onChange={(e) => this.setState({ description: e.target.value })}
-                    />
-                </div>
-                <div>
-                    <TextField 
-                        id="outlined-basic" 
-                        label="SKU" 
-                        variant="outlined" 
-                        value={this.state.sku}
-                        onChange={(e) => this.setState({ sku: e.target.value })} 
-                        />
-                </div>
-                <div>
-                    <TextField 
-                        id="outlined-basic" 
-                        label="Barcode" 
-                        variant="outlined" 
-                        value={this.state.barcode}
-                        onChange={(e) => this.setState({ barcode: e.target.value })}
-                        />
-                </div>
-                <div>
-                    <TextField 
-                        id="outlined-basic" 
-                        label="Net weight" 
-                        variant="outlined" 
-                        value={this.state.weight}
-                        onChange={(e) => this.setState({ weight: e.target.value })}
-                        />
-                </div>
-                <div>
-                    <TextField 
-                        id="outlined-basic" 
-                        label="Quantity" 
-                        variant="outlined" 
-                        value={this.state.quantity}
-                        onChange={(e) => this.setState({ quantity: e.target.value })}
-                        />
-                </div>
-                <div>
-                <FormControl fullWidth sx={{ m: 1, width:'25ch' }}>
+                <FormControl fullWidth 
+                    sx={{ m: 1, width:'25ch' }}
+                >
                     <InputLabel htmlFor="outlined-adornment-amount">Price</InputLabel>
                     <OutlinedInput
+                        fullWidth={true}
                         id="outlined-adornment-amount"
                         startAdornment={<InputAdornment position="start">₱</InputAdornment>}
                         label="Price"
+                        type="number"
                         value={this.state.price}
                         onChange={(e) => this.setState({ price: e.target.value })}
                         />
