@@ -87,7 +87,9 @@ type ProductInventoryHistory {
   productId: ID!
   produdctionId: ID # Not required. Changes can come from adjustment
   storeId: ID!
-  userId: ID!
+  #TODO: Add UserId once the table is ready already
+  #userId: ID!
+  batchCode: String! # Empty for Adjustment
   dateTransaction: Time!
   quantity: Int!
   type: String! #New Product, Production, Adjustment
@@ -196,7 +198,10 @@ input NewProductInventoryHistory {
   productId: ID!
   produdctionId: ID # Not required. Changes can come from adjustment
   storeId: ID!
-  userId: ID!
+  #TODO: Add UserId once the table is ready already
+  #userId: ID!
+  batchCode: String! # Empty for Adjustment
+  dateTransaction: Time!
   quantity: Int!
   type: String! #New Product, Production, Adjustment
 }
