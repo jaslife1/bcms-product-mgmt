@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import Box from "@mui/material/Box"
 import { TextField, FormControl, InputLabel, OutlinedInput, Button, InputAdornment,
-FormLabel, FormGroup, FormControlLabel, FormHelperText, Switch } from "@mui/material";
+FormLabel, FormGroup, FormControlLabel, FormHelperText, Switch, Dialog, DialogContent } from "@mui/material";
 import AddNewProductMutation from "../../mutations/AddNewProductMutation";
 import SimpleDialog from "../SimpleDialog";
 
@@ -17,7 +17,8 @@ import Paper from '@mui/material/Paper';
 class PointOfSales extends Component {
 
     state = {
-        
+        products: [],
+        showClassicDialog: false,
         showDialog: false,
         showErrorDialog: false,
     };
@@ -42,15 +43,64 @@ class PointOfSales extends Component {
     }
 
     rows = [
-    this.createRow('Paperclips (Box)', 100, 1.15),
-    this.createRow('Paper (Case)', 10, 45.99),
-    this.createRow('Waste Basket', 2, 17.99),
+    // this.createRow('Paperclips (Box)', 100, 1.15),
+    // this.createRow('Paper (Case)', 10, 45.99),
+    // this.createRow('Waste Basket', 2, 17.99),
     ];
 
     invoiceSubtotal = this.subtotal(this.rows);
     invoiceTaxes = this.TAX_RATE * this.invoiceSubtotal;
     invoiceTotal = this.invoiceTaxes + this.invoiceSubtotal;
 
+
+    button1Clicked = (e) => {
+        console.log("button 1 clicked")
+    }
+
+    button2Clicked = (e) => {
+        console.log("button 2 clicked")
+    }
+
+    button3Clicked = (e) => {
+        console.log("button 3 clicked")
+    }
+
+    button4Clicked = (e) => {
+        console.log("button 4 clicked")
+    }
+
+    classicButtonClicked = (e) => {
+        console.log("Classic Button clicked")
+        this.setState({showClassicDialog: true})
+    }
+
+    button6Clicked = (e) => {
+        console.log("button 6 clicked")
+    }
+
+    button7Clicked = (e) => {
+        console.log("button 7 clicked")
+    }
+
+    button8Clicked = (e) => {
+        console.log("button 8 clicked")
+    }
+
+    button9Clicked = (e) => {
+        console.log("button 9 clicked")
+    }
+
+    button10Clicked = (e) => {
+        console.log("button 10 clicked")
+    }
+
+    button11Clicked = (e) => {
+        console.log("button 11 clicked")
+    }
+
+    button12Clicked = (e) => {
+        console.log("button 12 clicked")
+    }
 
     render() {
         return(
@@ -62,6 +112,44 @@ class PointOfSales extends Component {
                 noValidate
                 autoComplete="off"
             >
+                <Grid container spacing={6}>
+                    <Grid xs={2}>
+                        <Button variant="contained"
+                            fullWidth={true}
+                            onClick={this.button1Clicked}
+                        >
+                            Scan Item
+                        </Button>
+                    </Grid>
+                    <Grid xs={2}>
+                        <Button variant="contained"
+                            fullWidth={true}
+                            onClick={this.button2Clicked}
+                        >
+                            Customer
+                        </Button>
+                    </Grid>
+                    <Grid xs={2}>
+                        <Button variant="contained"
+                            fullWidth={true}
+                            onClick={this.button3Clicked}
+                        >
+                            Apply Discount
+                        </Button>
+                    </Grid>
+                    
+                </Grid>
+                <Grid container spacing={2}>
+                    <Grid xs={6}>
+                    <TextField
+                        fullWidth={true}
+                        id="outlined-basic" 
+                        variant="outlined" 
+                        label="Scan Item"
+                    />
+                    </Grid>
+                </Grid>
+                
                 <Grid container spacing={2}>
                     <Grid xs={6}>
                         <TableContainer component={Paper}>
@@ -96,7 +184,7 @@ class PointOfSales extends Component {
                                     <TableCell align="right">{this.ccyFormat(this.invoiceSubtotal)}</TableCell>
                                 </TableRow>
                                 <TableRow>
-                                    <TableCell>Tax</TableCell>
+                                    <TableCell>Discount</TableCell>
                                     <TableCell align="right">{`${(this.TAX_RATE * 100).toFixed(0)} %`}</TableCell>
                                     <TableCell align="right">{this.ccyFormat(this.invoiceTaxes)}</TableCell>
                                 </TableRow>
@@ -109,111 +197,109 @@ class PointOfSales extends Component {
                         </TableContainer>
                     </Grid>
                     <Grid xs={6}>
-                            
+                            <Grid container spacing={2}>
+                                <Grid xs={6}>
+                                    <Button variant="contained"
+                                        fullWidth={true}
+                                        onClick={this.classicButtonClicked}
+                                    >
+                                        Classic
+                                    </Button>
+                                </Grid>
+                                <Grid xs={6}>
+                                    <Button variant="contained"
+                                        fullWidth={true}
+                                        onClick={this.button6Clicked}
+                                    >
+                                        Guilt-Free
+                                    </Button>
+                                </Grid>
+                                <Grid xs={6}>
+                                    <Button variant="contained"
+                                        fullWidth={true}
+                                        onClick={this.button5Clicked}
+                                    >
+                                        Premium
+                                    </Button>
+                                </Grid>
+                                <Grid xs={6}>
+                                    <Button variant="contained"
+                                        fullWidth={true}
+                                        onClick={this.button6Clicked}
+                                    >
+                                        Specialty
+                                    </Button>
+                                </Grid>
+                                <Grid xs={6}>
+                                    <Button variant="contained"
+                                        fullWidth={true}
+                                        onClick={this.button5Clicked}
+                                    >
+                                        Food
+                                    </Button>
+                                </Grid>
+                                <Grid xs={6}>
+                                    <Button variant="contained"
+                                        fullWidth={true}
+                                        onClick={this.button6Clicked}
+                                    >
+                                        Drinks
+                                    </Button>
+                                </Grid>
+                            </Grid>
                     </Grid>
                 </Grid>
-                
+                <Grid container spacing={1}>
+                    <Grid xs={6}>
+                        <Button variant="contained"
+                            fullWidth={true}
+                            onClick={this.button6Clicked}
+                        >
+                            Pay
+                        </Button>
+                    </Grid>
+                </Grid>
             </Box>
-            {/* <Box 
-                component="form"
-                sx={{
-                    '& > :not(style)': { m: 1, width: '25ch' },
+            <Dialog
+                fullWidth={true}
+                maxWidth={"md"}
+                open={this.state.showClassicDialog}
+                onClose={(e)=>{
+                    this.setState({showClassicDialog: false})
                 }}
-                noValidate
-                autoComplete="off"
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
             >
-                <div>
-                    <TextField 
-                        id="outlined-basic" 
-                        label="Code" 
-                        variant="outlined" 
-                        value={this.state.code}
-                        onChange={(e) => this.setState({ code: e.target.value })} 
-                        />
-                </div>
-                <div>
-                    <TextField 
-                        fullWidth={true}
-                        id="outlined-basic" 
-                        label="Product Name" 
-                        variant="outlined" 
-                        value={this.state.name}
-                        onChange={(e) => this.setState({ name: e.target.value })}
-                        />
-                </div>
-                <div>
-                <TextField
-                    fullWidth={true}
-                    id="outlined-multiline-static"
-                    label="Description"
-                    multiline
-                    rows={4}
-                    value={this.state.description}
-                    onChange={(e) => this.setState({ description: e.target.value })}
-                    />
-                </div>
-                <div>
-                    <TextField 
-                        id="outlined-basic" 
-                        label="SKU" 
-                        variant="outlined" 
-                        value={this.state.sku}
-                        onChange={(e) => this.setState({ sku: e.target.value })} 
-                        />
-                </div>
-                <div>
-                    <TextField 
-                        id="outlined-basic" 
-                        label="Barcode" 
-                        variant="outlined" 
-                        value={this.state.barcode}
-                        onChange={(e) => this.setState({ barcode: e.target.value })}
-                        />
-                </div>
-                <div>
-                    <TextField 
-                        id="outlined-basic" 
-                        label="Quantity" 
-                        variant="outlined" 
-                        value={this.state.quantity}
-                        onChange={(e) => this.setState({ quantity: e.target.value })}
-                        />
-                </div>
-                <div>
-                <FormControl fullWidth sx={{ m: 1, width:'25ch' }}>
-                    <InputLabel htmlFor="outlined-adornment-amount">Price</InputLabel>
-                    <OutlinedInput
-                        id="outlined-adornment-amount"
-                        startAdornment={<InputAdornment position="start">₱</InputAdornment>}
-                        label="Price"
-                        value={this.state.price}
-                        onChange={(e) => this.setState({ price: e.target.value })}
-                        />
-                    </FormControl>
-                </div>
-                <div>
-                    <FormControl component="fieldset" variant="standard">
-                        <FormLabel component="legend">Active</FormLabel>
-                        <FormGroup>
-                            <FormControlLabel
-                                control={
-                                    <Switch 
-                                        checked={this.state.active} 
-                                        onChange={(e) => this.setState({ active: e.target.checked })}
-                                        name="active" />
-                                }
-                                label="Active product?"
-                            />
-                        </FormGroup>
-                        <FormHelperText>Active product means that this product is actively produced and sold</FormHelperText>
-                    </FormControl>
-                </div>
-                <div>
-                    <Button variant="contained"
-                        onClick={()=> this.addNewProduct()}
-                    >Save</Button>
-                </div>
-                <SimpleDialog
+                <DialogContent>
+                    <Grid container spacing={3}>
+                        <Grid xs={4}>
+                            <Button variant="contained"
+                                fullWidth={true}
+                                onClick={this.button6Clicked}
+                            >
+                                Milk Chocolate
+                            </Button>
+                        </Grid>
+                        <Grid xs={4}>
+                            <Button variant="contained"
+                                fullWidth={true}
+                                onClick={this.button6Clicked}
+                            >
+                                55% Dark Chocolate
+                            </Button>
+                        </Grid>
+                        <Grid xs={4}>
+                            <Button variant="contained"
+                                fullWidth={true}
+                                onClick={this.button6Clicked}
+                            >
+                                70% Dark Chocolate
+                            </Button>
+                        </Grid>
+                    </Grid>
+                </DialogContent>
+            </Dialog>
+            <SimpleDialog
                     open={this.state.showDialog}
                     title="Add New Product"
                     content="New product successfully added"
@@ -229,7 +315,6 @@ class PointOfSales extends Component {
                         this.setState({showErrorDialog: false})
                     }}
                 />
-            </Box> */}
             </>
         )
     }
