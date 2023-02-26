@@ -80,6 +80,16 @@ type ProductInventory{
   quantity: Int!
 }
 
+type Production {
+  id: ID!
+  productId: ID!
+  #TODO: Add UserId once the table is ready already
+  #userId: ID!
+  batchCode: String!
+  dateAdded: Time!
+  quantity: Int!
+}
+
 # Contains the history of the chnages to the inventory
 type ProductInventoryHistory {
   id: ID!
@@ -189,6 +199,14 @@ input NewProduct {
 input NewProductInventory{
   productId: ID!
   storeId: ID!
+  quantity: Int!
+}
+
+input NewProduction {
+  productId: ID!
+  #TODO: Add UserId once the table is ready already
+  #userId: ID!
+  batchCode: String!
   quantity: Int!
 }
 
@@ -331,4 +349,5 @@ type Mutation {
   addNewProductAdjustment(adjustment: NewAdjustment!) : Adjustment!
   addNewProductInventory(inventory: NewProductInventory!): ProductInventory!
   addNewProductInventoryHistory(inventoryHistory: NewProductInventoryHistory!) : ProductInventoryHistory!
+  addNewProduction(production: NewProduction!) : Production!
 }

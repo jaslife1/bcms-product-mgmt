@@ -10,6 +10,7 @@ import Home from './Home';
 import StoreListPage from './Store/StoreListPage';
 import AddNewEmployee from './Employee/AddNewEmployee';
 import AddUser from './User/AddUser';
+import AddProduction from './Production/AddProduction';
 
 export default function App () {
   return (
@@ -22,6 +23,7 @@ export default function App () {
         <Route path="/stores" element={<StoreListPage />} />
         <Route path="/addemployee" element={<AddNewEmployee />} />
         <Route path="/adduser" element={<AddUser />} />
+        <Route path="/addproduction" element={<AddProduction />} />
         {/*Add edit of quantity for product */}
       </Routes>
     </div>

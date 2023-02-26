@@ -48,7 +48,7 @@ export default function NavigationBar() {
 
     const newProduction = () => {
         handleClose()
-        navigate("/newproduction")
+        navigate("/addproduction")
     }
 
     const pointofsales = () => {
