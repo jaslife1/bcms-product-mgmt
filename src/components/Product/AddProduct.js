@@ -1,20 +1,21 @@
 import React, {Component} from "react";
 import Box from "@mui/material/Box"
 import { TextField, FormControl, InputLabel, OutlinedInput, Button, InputAdornment,
-FormLabel, FormGroup, FormControlLabel, FormHelperText, Switch } from "@mui/material";
+FormLabel, FormGroup, FormControlLabel, FormHelperText, Switch, Select, MenuItem } from "@mui/material";
 import AddNewProductMutation from "../../mutations/AddNewProductMutation";
 import SimpleDialog from "../SimpleDialog";
 
 class AddProduct extends Component {
 
     state = {
-        code: '',
+        code: 'Classic', //default
         name: '',
         description: '',
         sku: '', 
         barcode: '',
         price: '',
         quantity:'',
+        weight: '',
         active: true,
         showDialog: false,
         showErrorDialog: false,
@@ -34,13 +35,24 @@ class AddProduct extends Component {
                 autoComplete="off"
             >
                 <div>
-                    <TextField 
-                        id="outlined-basic" 
-                        label="Code" 
-                        variant="outlined" 
-                        value={this.state.code}
-                        onChange={(e) => this.setState({ code: e.target.value })} 
-                        />
+                    <FormControl fullWidth>
+                        <InputLabel id="code-select-label">Product Code</InputLabel>
+                        <Select
+                            labelId="code-select-label"
+                            id="code-simple-select"
+                            value={this.state.code}
+                            label="Product Code"
+                            onChange={(e) => this.setState({ code: e.target.value })}
+                        >
+                            <MenuItem value="Classic">Classic</MenuItem>
+                            <MenuItem value="Creations">Creations</MenuItem>
+                            <MenuItem value="Drinks">Drinks</MenuItem>
+                            <MenuItem value="Food">Food</MenuItem>
+                            <MenuItem value="Guilt-Free">Guilt-Free</MenuItem>
+                            <MenuItem value="Premium">Premium</MenuItem>
+                            <MenuItem value="Specialty">Specialty</MenuItem>
+                        </Select>
+                    </FormControl>
                 </div>
                 <div>
                     <TextField 
@@ -79,6 +91,15 @@ class AddProduct extends Component {
                         variant="outlined" 
                         value={this.state.barcode}
                         onChange={(e) => this.setState({ barcode: e.target.value })}
+                        />
+                </div>
+                <div>
+                    <TextField 
+                        id="outlined-basic" 
+                        label="Net weight" 
+                        variant="outlined" 
+                        value={this.state.weight}
+                        onChange={(e) => this.setState({ weight: e.target.value })}
                         />
                 </div>
                 <div>
@@ -147,19 +168,20 @@ class AddProduct extends Component {
 
 
     addNewProduct = () => {
-        const {code, description, name, sku, barcode, quantity, price, active} = this.state
-        AddNewProductMutation(code, name, description, sku, barcode, quantity, price, active, ()=>{
+        const {code, description, name, sku, barcode, weight, quantity, price, active} = this.state
+        AddNewProductMutation(code, name, description, sku, barcode, weight, quantity, price, active, ()=>{
             console.log("Add new product successful.");
             // Prompt the user of successful addition of product
             this.setState({showDialog: true});
              // Clean up the form
             this.setState({
-                code:'',
+                code:'Classic',
                 name:'',
                 description:'',
                 sku:'',
                 barcode:'',
                 price:'',
+                weight:'',
                 quantity: '',
                 active: true,
             })

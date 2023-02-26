@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<5a4925d9ba390d293815626c9bd93f07>>
+ * @generated SignedSource<<c37aa50a5ddcb1c65c5a14ff518efdc3>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -13,7 +13,7 @@ var v0 = [
   {
     "defaultValue": null,
     "kind": "LocalArgument",
-    "name": "product"
+    "name": "newOrder"
   }
 ],
 v1 = [
@@ -22,13 +22,13 @@ v1 = [
     "args": [
       {
         "kind": "Variable",
-        "name": "product",
-        "variableName": "product"
+        "name": "newOrder",
+        "variableName": "newOrder"
       }
     ],
-    "concreteType": "Product",
+    "concreteType": "OrderTransaction",
     "kind": "LinkedField",
-    "name": "addNewProduct",
+    "name": "addNewOrderTransaction",
     "plural": false,
     "selections": [
       {
@@ -47,7 +47,7 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "AddNewProductMutation",
+    "name": "AddNewOrderTransactionMutation",
     "selections": (v1/*: any*/),
     "type": "Mutation",
     "abstractKey": null
@@ -56,20 +56,20 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "AddNewProductMutation",
+    "name": "AddNewOrderTransactionMutation",
     "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "c3eef42dac40f632f30851ded80232b8",
+    "cacheID": "de2e415c91d395e031e52fab3225ed08",
     "id": null,
     "metadata": {},
-    "name": "AddNewProductMutation",
+    "name": "AddNewOrderTransactionMutation",
     "operationKind": "mutation",
-    "text": "mutation AddNewProductMutation(\n  $product: NewProduct!\n) {\n  addNewProduct(product: $product) {\n    id\n  }\n}\n"
+    "text": "mutation AddNewOrderTransactionMutation(\n  $newOrder: NewOrderTransaction!\n) {\n  addNewOrderTransaction(newOrder: $newOrder) {\n    id\n  }\n}\n"
   }
 };
 })();
 
-node.hash = "a6c737e585b12fa6c336151c40c04bfc";
+node.hash = "eb01f944edd76c017df7fa06574da009";
 
 module.exports = node;

@@ -112,6 +112,7 @@ type Product {
   sku: String!
   barcode: String!
   price: Float!
+  weight: Float!
   dateAdded: Time!
   dateCancelled: Time
   active: Boolean!
@@ -204,9 +205,9 @@ input NewContactInformation {
 }
 
 input NewCustomer {
-  name: PersonalInformation!
-  address: Address
-  contactInformation: ContactInformation
+  personalInformation: NewPersonalInformation!
+  address: NewAddress
+  contactInformation: NewContactInformation
   receiveUpdates: Boolean!
 }
 
@@ -218,7 +219,7 @@ input NewDependent {
 input NewDiscount {
   code: String!
   name: String!
-  customer: Customer
+  customer: NewCustomer
   amount: Float!
   remarks: String
 }
@@ -239,7 +240,7 @@ input NewEmployee {
 }
 
 input NewOnlineOrder {
-  store: OnlineStore!
+  store: NewOnlineStore!
   orderLink: String!
 }
 
@@ -249,16 +250,16 @@ input NewOnlineStore {
 }
 
 input  NewOrderTransaction {
-  products: [ProductList!]!
+  products: [NewProductList!]!
   totalAmountDue: Float!
-  discount: Discount
+  discount: NewDiscount
   shippingFee: Float
   tax: Float
   remarks: String
-  customer: Customer
-  store: Store
+  customer: NewCustomer
+  store: NewStore
   #Todo add user
-  online: OnlineOrder
+  online: NewOnlineOrder
   type: String! #online, walk-in
 }
 
@@ -280,6 +281,7 @@ input NewProduct {
   sku: String!
   barcode: String!
   price: Float!
+  weight: Float!
   quantity: Int!
   active: Boolean!
 }
@@ -296,6 +298,11 @@ input NewProduction {
   #userId: ID!
   batchCode: String!
   quantity: Int!
+}
+
+input NewProductList {
+  product: NewProduct!
+  inventory: NewProductInventory!
 }
 
 # Contains the history of the chnages to the inventory
@@ -439,5 +446,5 @@ type Mutation {
   addNewProductInventoryHistory(inventoryHistory: NewProductInventoryHistory!) : ProductInventoryHistory!
   addNewProduction(production: NewProduction!) : Production!
   adjustProductQuantity(adjustment: NewAdjustment!) : Adjustment!
-  addNewOrderTransaction(newOrder: NewOrderTransaction!) : Order!
+  addNewOrderTransaction(newOrder: NewOrderTransaction!) : OrderTransaction!
 }

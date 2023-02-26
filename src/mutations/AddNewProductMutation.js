@@ -9,21 +9,12 @@ const mutation = graphql`
     mutation AddNewProductMutation($product: NewProduct!) {
         addNewProduct(product: $product) {
             id,
-            code,
-            name,
-            description,
-            sku,
-            barcode,
-            price,
-            dateAdded,
-            dateCancelled,
-            active,
         }
     }
     `
 
 // 3
-export default (code, name, description, sku, barcode, quantity, price, active, onSuccessCallback, onErrorCallback) => {
+export default (code, name, description, sku, barcode, weight, quantity, price, active, onSuccessCallback, onErrorCallback) => {
 // 4
     const variables = {
         product: {
@@ -32,6 +23,7 @@ export default (code, name, description, sku, barcode, quantity, price, active, 
             description,
             sku,
             barcode,
+            weight,
             quantity,
             price,
             active

@@ -6,7 +6,7 @@ import {
 
   // 2
 const mutation = graphql`
-    mutation AddNewOrderTransactionMutation($newOrder: NewOrder!) {
+    mutation AddNewOrderTransactionMutation($newOrder: NewOrderTransaction!) {
         addNewOrderTransaction(newOrder: $newOrder) {
             id
         }
