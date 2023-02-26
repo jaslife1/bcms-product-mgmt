@@ -25,9 +25,26 @@ type ContactInformation {
   emailAddress: String
 }
 
+type Customer {
+  id:ID!
+  name: PersonalInformation!
+  address: Address
+  contactInformation: ContactInformation
+  receiveUpdates: Boolean!
+}
+
 type Dependent {
   personalInformation: PersonalInformation!
   relation: String!
+}
+
+type Discount {
+  id: ID!
+  code: String!
+  name: String!
+  customer: Customer
+  amount: Float!
+  remarks: String
 }
 
 type Employee{
@@ -47,6 +64,33 @@ type Employee{
   storeId: Int!
   # Regular, Probation, Contractual
   type: String!
+}
+
+type OnlineOrder {
+  store: OnlineStore!
+  orderLink: String!
+}
+
+type OnlineStore {
+  id:ID!
+  name: String!
+  link: String!
+}
+
+type OrderTransaction {
+  id: ID!
+  products: [ProductList!]!
+  totalAmountDue: Float!
+  discount: Discount
+  shippingFee: Float
+  tax: Float
+  remarks: String
+  customer: Customer
+  store: Store
+  #Todo add user
+  online: OnlineOrder
+  type: String! #online, walk-in
+  dateOfTransaction: Time!
 }
 
 type PersonalInformation {
@@ -159,9 +203,24 @@ input NewContactInformation {
   emailAddress: String
 }
 
+input NewCustomer {
+  name: PersonalInformation!
+  address: Address
+  contactInformation: ContactInformation
+  receiveUpdates: Boolean!
+}
+
 input NewDependent {
   personalInformation: NewPersonalInformation!
   relation: String!
+}
+
+input NewDiscount {
+  code: String!
+  name: String!
+  customer: Customer
+  amount: Float!
+  remarks: String
 }
 
 input NewEmployee {
@@ -177,6 +236,30 @@ input NewEmployee {
   storeId: Int!
   # Regular, Probation, Contractual
   type: String!
+}
+
+input NewOnlineOrder {
+  store: OnlineStore!
+  orderLink: String!
+}
+
+input NewOnlineStore {
+  name: String!
+  link: String!
+}
+
+input  NewOrderTransaction {
+  products: [ProductList!]!
+  totalAmountDue: Float!
+  discount: Discount
+  shippingFee: Float
+  tax: Float
+  remarks: String
+  customer: Customer
+  store: Store
+  #Todo add user
+  online: OnlineOrder
+  type: String! #online, walk-in
 }
 
 input NewPersonalInformation {
@@ -356,4 +439,5 @@ type Mutation {
   addNewProductInventoryHistory(inventoryHistory: NewProductInventoryHistory!) : ProductInventoryHistory!
   addNewProduction(production: NewProduction!) : Production!
   adjustProductQuantity(adjustment: NewAdjustment!) : Adjustment!
+  addNewOrderTransaction(newOrder: NewOrderTransaction!) : Order!
 }

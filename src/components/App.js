@@ -11,6 +11,7 @@ import StoreListPage from './Store/StoreListPage';
 import AddNewEmployee from './Employee/AddNewEmployee';
 import AddUser from './User/AddUser';
 import AddProduction from './Production/AddProduction';
+import PointOfSales from './POS/PointOfSales';
 
 export default function App () {
   return (
@@ -24,6 +25,7 @@ export default function App () {
         <Route path="/addemployee" element={<AddNewEmployee />} />
         <Route path="/adduser" element={<AddUser />} />
         <Route path="/addproduction" element={<AddProduction />} />
+        <Route path="/pointofsales" element={<PointOfSales />} />
         {/*Add edit of quantity for product */}
       </Routes>
     </div>
