@@ -43,6 +43,7 @@ class ProductList extends Component {
                 <StyledTableRow>
                     <StyledTableCell>Barcode</StyledTableCell>
                     <StyledTableCell align="left">Product Name</StyledTableCell>
+                    <StyledTableCell align="left">Quantity</StyledTableCell>
                     <StyledTableCell align="left">Price</StyledTableCell>
                 </StyledTableRow>
                 </TableHead>

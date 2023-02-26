@@ -35,9 +35,10 @@ class Product extends Component {
                         key={this.props.product.id}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-                <StyledTableCell  component="th" scope="row">{this.props.product.barcode}</StyledTableCell>
-                <StyledTableCell align="left">{this.props.product.name}</StyledTableCell>
-                <StyledTableCell align="left">{this.props.product.price}</StyledTableCell>
+                <StyledTableCell  component="th" scope="row">{this.props.product.product.barcode}</StyledTableCell>
+                <StyledTableCell align="left">{this.props.product.product.name}</StyledTableCell>
+                <StyledTableCell align="left">{this.props.product.inventory.quantity}</StyledTableCell>
+                <StyledTableCell align="left">{this.props.product.product.price}</StyledTableCell>
             </StyledTableRow>
         )
     }
