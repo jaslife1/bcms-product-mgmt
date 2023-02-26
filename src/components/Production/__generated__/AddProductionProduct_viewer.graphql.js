@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<ec8690f94a2e91fa64bb224637831190>>
+ * @generated SignedSource<<399a91ee7d4ea7f109db0ab637c59212>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -44,7 +44,7 @@ var node = {
             {
               "alias": null,
               "args": null,
-              "concreteType": "Product",
+              "concreteType": "ProductList",
               "kind": "LinkedField",
               "name": "node",
               "plural": false,
@@ -52,15 +52,26 @@ var node = {
                 {
                   "alias": null,
                   "args": null,
-                  "kind": "ScalarField",
-                  "name": "id",
-                  "storageKey": null
-                },
-                {
-                  "alias": null,
-                  "args": null,
-                  "kind": "ScalarField",
-                  "name": "name",
+                  "concreteType": "Product",
+                  "kind": "LinkedField",
+                  "name": "product",
+                  "plural": false,
+                  "selections": [
+                    {
+                      "alias": null,
+                      "args": null,
+                      "kind": "ScalarField",
+                      "name": "id",
+                      "storageKey": null
+                    },
+                    {
+                      "alias": null,
+                      "args": null,
+                      "kind": "ScalarField",
+                      "name": "name",
+                      "storageKey": null
+                    }
+                  ],
                   "storageKey": null
                 },
                 {
@@ -116,6 +127,6 @@ var node = {
   "abstractKey": null
 };
 
-node.hash = "030a69aaf3ad2cef033c3d8f9d4c2751";
+node.hash = "03a341c086f8d7ff31c77d704362980e";
 
 module.exports = node;

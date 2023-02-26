@@ -46,12 +46,16 @@ class Product extends Component {
 
 export default createFragmentContainer(Product, {
     product: graphql`
-        fragment Product_product on Product {
-            id
-            name
-            sku
-            price
-            barcode
-
+        fragment Product_productList on ProductList {
+              product {
+                id
+                name
+                sku
+                price
+                barcode
+              }
+              inventory {
+                quantity
+              }
     }`
 })

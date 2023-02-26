@@ -40,8 +40,10 @@ export default createFragmentContainer(AddProductionProduct, {
             allProducts(last:100) @connection(key: "AddProductionProduct_allProducts", filters: []) {
                 edges {
                     node {
+                        product {
                             id
                             name
+                        }
                     }
                 }
             }

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<8179716aedb48a7cd97195b80ac7b67e>>
+ * @generated SignedSource<<a05aa071fd09b0197829e0505a9530f3>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -83,38 +83,68 @@ return {
                   {
                     "alias": null,
                     "args": null,
-                    "concreteType": "Product",
+                    "concreteType": "ProductList",
                     "kind": "LinkedField",
                     "name": "node",
                     "plural": false,
                     "selections": [
-                      (v1/*: any*/),
                       {
                         "alias": null,
                         "args": null,
-                        "kind": "ScalarField",
-                        "name": "name",
+                        "concreteType": "Product",
+                        "kind": "LinkedField",
+                        "name": "product",
+                        "plural": false,
+                        "selections": [
+                          (v1/*: any*/),
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "name",
+                            "storageKey": null
+                          },
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "sku",
+                            "storageKey": null
+                          },
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "price",
+                            "storageKey": null
+                          },
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "barcode",
+                            "storageKey": null
+                          }
+                        ],
                         "storageKey": null
                       },
                       {
                         "alias": null,
                         "args": null,
-                        "kind": "ScalarField",
-                        "name": "sku",
-                        "storageKey": null
-                      },
-                      {
-                        "alias": null,
-                        "args": null,
-                        "kind": "ScalarField",
-                        "name": "price",
-                        "storageKey": null
-                      },
-                      {
-                        "alias": null,
-                        "args": null,
-                        "kind": "ScalarField",
-                        "name": "barcode",
+                        "concreteType": "ProductInventory",
+                        "kind": "LinkedField",
+                        "name": "inventory",
+                        "plural": false,
+                        "selections": [
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "quantity",
+                            "storageKey": null
+                          },
+                          (v1/*: any*/)
+                        ],
                         "storageKey": null
                       },
                       {
@@ -181,12 +211,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "2f1e5ad9eb665780b3b587c6c36b3486",
+    "cacheID": "8d6b5ae546b39b20f91129c3c7e9e6aa",
     "id": null,
     "metadata": {},
     "name": "ProductListPageQuery",
     "operationKind": "query",
-    "text": "query ProductListPageQuery {\n  viewer {\n    ...ProductList_viewer\n    id\n  }\n}\n\nfragment ProductList_viewer on Viewer {\n  allProducts(last: 100) {\n    edges {\n      node {\n        ...Product_product\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n\nfragment Product_product on Product {\n  id\n  name\n  sku\n  price\n  barcode\n}\n"
+    "text": "query ProductListPageQuery {\n  viewer {\n    ...ProductList_viewer\n    id\n  }\n}\n\nfragment ProductList_viewer on Viewer {\n  allProducts(last: 100) {\n    edges {\n      node {\n        ...Product_productList\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n\nfragment Product_productList on ProductList {\n  product {\n    id\n    name\n    sku\n    price\n    barcode\n  }\n  inventory {\n    quantity\n    id\n  }\n}\n"
   }
 };
 })();

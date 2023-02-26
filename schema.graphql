@@ -90,6 +90,11 @@ type Production {
   quantity: Int!
 }
 
+type ProductList {
+  product: Product!
+  inventory: ProductInventory!
+}
+
 # Contains the history of the chnages to the inventory
 type ProductInventoryHistory {
   id: ID!
@@ -271,7 +276,7 @@ type EmployeeEdge {
 
 
 type ProductEdge {
-  node: Product
+  node: ProductList
   cursor: String
 }
 

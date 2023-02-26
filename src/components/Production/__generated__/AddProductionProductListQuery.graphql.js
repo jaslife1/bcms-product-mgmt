@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<d0f1e4b97cca06c311f2be7ad3a9c0f0>>
+ * @generated SignedSource<<7198fd666fdfae0a4fc1c8ea873b4f83>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -83,17 +83,28 @@ return {
                   {
                     "alias": null,
                     "args": null,
-                    "concreteType": "Product",
+                    "concreteType": "ProductList",
                     "kind": "LinkedField",
                     "name": "node",
                     "plural": false,
                     "selections": [
-                      (v1/*: any*/),
                       {
                         "alias": null,
                         "args": null,
-                        "kind": "ScalarField",
-                        "name": "name",
+                        "concreteType": "Product",
+                        "kind": "LinkedField",
+                        "name": "product",
+                        "plural": false,
+                        "selections": [
+                          (v1/*: any*/),
+                          {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "name",
+                            "storageKey": null
+                          }
+                        ],
                         "storageKey": null
                       },
                       {
@@ -160,12 +171,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "8f141e98bc57b8cc50b82f6a3664ed88",
+    "cacheID": "cf46402d52d9fc9be43d13565282ccfd",
     "id": null,
     "metadata": {},
     "name": "AddProductionProductListQuery",
     "operationKind": "query",
-    "text": "query AddProductionProductListQuery {\n  viewer {\n    ...AddProductionProduct_viewer\n    id\n  }\n}\n\nfragment AddProductionProduct_viewer on Viewer {\n  allProducts(last: 100) {\n    edges {\n      node {\n        id\n        name\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n"
+    "text": "query AddProductionProductListQuery {\n  viewer {\n    ...AddProductionProduct_viewer\n    id\n  }\n}\n\nfragment AddProductionProduct_viewer on Viewer {\n  allProducts(last: 100) {\n    edges {\n      node {\n        product {\n          id\n          name\n        }\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n"
   }
 };
 })();

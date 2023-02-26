@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<bc4ca5659c42663a22f51a83cb6253ce>>
+ * @generated SignedSource<<be5ac7fcfa0dd128f8b448322f9620bc>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -44,7 +44,7 @@ var node = {
             {
               "alias": null,
               "args": null,
-              "concreteType": "Product",
+              "concreteType": "ProductList",
               "kind": "LinkedField",
               "name": "node",
               "plural": false,
@@ -52,7 +52,7 @@ var node = {
                 {
                   "args": null,
                   "kind": "FragmentSpread",
-                  "name": "Product_product"
+                  "name": "Product_productList"
                 },
                 {
                   "alias": null,
@@ -107,6 +107,6 @@ var node = {
   "abstractKey": null
 };
 
-node.hash = "1870d16dd5317adf3ee99a2e9b9ea6b0";
+node.hash = "af65127cfd4b9d1dce0be2aa9401d664";
 
 module.exports = node;

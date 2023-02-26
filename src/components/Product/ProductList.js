@@ -63,7 +63,7 @@ export default createFragmentContainer(ProductList, {
             allProducts(last:100) @connection(key: "ProductList_allProducts", filters: []) {
                 edges {
                     node {
-                        ...Product_product
+                        ...Product_productList
                     }
                 }
             }
