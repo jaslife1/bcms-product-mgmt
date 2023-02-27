@@ -13,6 +13,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import ProductClassicPage from "./ProductClassicPage";
 
 class PointOfSales extends Component {
 
@@ -271,7 +272,8 @@ class PointOfSales extends Component {
                 aria-describedby="alert-dialog-description"
             >
                 <DialogContent>
-                    <Grid container spacing={3}>
+                    <ProductClassicPage />
+                    {/* <Grid container spacing={3}>
                         <Grid xs={4}>
                             <Button variant="contained"
                                 fullWidth={true}
@@ -296,7 +298,7 @@ class PointOfSales extends Component {
                                 70% Dark Chocolate
                             </Button>
                         </Grid>
-                    </Grid>
+                    </Grid> */}
                 </DialogContent>
             </Dialog>
             <SimpleDialog
