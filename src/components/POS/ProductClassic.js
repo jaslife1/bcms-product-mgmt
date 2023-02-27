@@ -30,8 +30,8 @@ class ProductClassic extends Component {
 
 export default createFragmentContainer(ProductClassic, {
     viewer: graphql`
-        fragment ProductClassic_viewer on Viewer{
-            allProducts(last:100) @connection(key: "ProductClassic_allProducts", filters: []) {
+        fragment ProductClassic_viewer on Viewer @argumentDefinitions(filter: {type: ProductFilter} ){
+            allProducts(filter: $filter, last:100) @connection(key: "ProductClassic_allProducts", filters: []) {
                 edges {
                     node {
                         product {

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<68e6ea13ec8aefb0d5304191023dc12f>>
+ * @generated SignedSource<<04cf1ffc1b1164657828830b88b5c61e>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,12 +11,25 @@
 var node = (function(){
 var v0 = [
   {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "filter"
+  }
+],
+v1 = {
+  "kind": "Variable",
+  "name": "filter",
+  "variableName": "filter"
+},
+v2 = [
+  (v1/*: any*/),
+  {
     "kind": "Literal",
     "name": "last",
     "value": 100
   }
 ],
-v1 = {
+v3 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
@@ -25,7 +38,7 @@ v1 = {
 };
 return {
   "fragment": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
     "name": "ProductClassicPageQuery",
@@ -39,7 +52,9 @@ return {
         "plural": false,
         "selections": [
           {
-            "args": null,
+            "args": [
+              (v1/*: any*/)
+            ],
             "kind": "FragmentSpread",
             "name": "ProductClassic_viewer"
           }
@@ -52,7 +67,7 @@ return {
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
     "name": "ProductClassicPageQuery",
     "selections": [
@@ -66,7 +81,7 @@ return {
         "selections": [
           {
             "alias": null,
-            "args": (v0/*: any*/),
+            "args": (v2/*: any*/),
             "concreteType": "ProductConnection",
             "kind": "LinkedField",
             "name": "allProducts",
@@ -96,7 +111,7 @@ return {
                         "name": "product",
                         "plural": false,
                         "selections": [
-                          (v1/*: any*/),
+                          (v3/*: any*/),
                           {
                             "alias": null,
                             "args": null,
@@ -157,7 +172,7 @@ return {
                             "name": "quantity",
                             "storageKey": null
                           },
-                          (v1/*: any*/)
+                          (v3/*: any*/)
                         ],
                         "storageKey": null
                       },
@@ -207,34 +222,34 @@ return {
                 "storageKey": null
               }
             ],
-            "storageKey": "allProducts(last:100)"
+            "storageKey": null
           },
           {
             "alias": null,
-            "args": (v0/*: any*/),
+            "args": (v2/*: any*/),
             "filters": [],
             "handle": "connection",
             "key": "ProductClassic_allProducts",
             "kind": "LinkedHandle",
             "name": "allProducts"
           },
-          (v1/*: any*/)
+          (v3/*: any*/)
         ],
         "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "e6d69bcfb47c147b2f555d35409776e2",
+    "cacheID": "a2e423556e6f25a0646103bd81b8b8c2",
     "id": null,
     "metadata": {},
     "name": "ProductClassicPageQuery",
     "operationKind": "query",
-    "text": "query ProductClassicPageQuery {\n  viewer {\n    ...ProductClassic_viewer\n    id\n  }\n}\n\nfragment ProductClassic_viewer on Viewer {\n  allProducts(last: 100) {\n    edges {\n      node {\n        product {\n          id\n          name\n          sku\n          price\n          barcode\n          weight\n          code\n        }\n        inventory {\n          quantity\n          id\n        }\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n"
+    "text": "query ProductClassicPageQuery(\n  $filter: ProductFilter\n) {\n  viewer {\n    ...ProductClassic_viewer_Vt7Yj\n    id\n  }\n}\n\nfragment ProductClassic_viewer_Vt7Yj on Viewer {\n  allProducts(filter: $filter, last: 100) {\n    edges {\n      node {\n        product {\n          id\n          name\n          sku\n          price\n          barcode\n          weight\n          code\n        }\n        inventory {\n          quantity\n          id\n        }\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n"
   }
 };
 })();
 
-node.hash = "b872e3c516dbdf6973f9527a06e59d41";
+node.hash = "208f36089186c742f6b0a02059d512d0";
 
 module.exports = node;
