@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<04cf1ffc1b1164657828830b88b5c61e>>
+ * @generated SignedSource<<25ebf759f47bc94435ef6de846e9f196>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -14,28 +14,40 @@ var v0 = [
     "defaultValue": null,
     "kind": "LocalArgument",
     "name": "filter"
+  },
+  {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "type"
   }
 ],
-v1 = {
+v1 = [
+  {
+    "kind": "Variable",
+    "name": "type",
+    "variableName": "type"
+  }
+],
+v2 = {
   "kind": "Variable",
   "name": "filter",
   "variableName": "filter"
 },
-v2 = [
-  (v1/*: any*/),
-  {
-    "kind": "Literal",
-    "name": "last",
-    "value": 100
-  }
-],
 v3 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "id",
   "storageKey": null
-};
+},
+v4 = [
+  (v2/*: any*/),
+  {
+    "kind": "Literal",
+    "name": "last",
+    "value": 100
+  }
+];
 return {
   "fragment": {
     "argumentDefinitions": (v0/*: any*/),
@@ -45,7 +57,7 @@ return {
     "selections": [
       {
         "alias": null,
-        "args": null,
+        "args": (v1/*: any*/),
         "concreteType": "Viewer",
         "kind": "LinkedField",
         "name": "viewer",
@@ -53,11 +65,12 @@ return {
         "selections": [
           {
             "args": [
-              (v1/*: any*/)
+              (v2/*: any*/)
             ],
             "kind": "FragmentSpread",
             "name": "ProductClassic_viewer"
-          }
+          },
+          (v3/*: any*/)
         ],
         "storageKey": null
       }
@@ -73,7 +86,7 @@ return {
     "selections": [
       {
         "alias": null,
-        "args": null,
+        "args": (v1/*: any*/),
         "concreteType": "Viewer",
         "kind": "LinkedField",
         "name": "viewer",
@@ -81,7 +94,7 @@ return {
         "selections": [
           {
             "alias": null,
-            "args": (v2/*: any*/),
+            "args": (v4/*: any*/),
             "concreteType": "ProductConnection",
             "kind": "LinkedField",
             "name": "allProducts",
@@ -226,7 +239,7 @@ return {
           },
           {
             "alias": null,
-            "args": (v2/*: any*/),
+            "args": (v4/*: any*/),
             "filters": [],
             "handle": "connection",
             "key": "ProductClassic_allProducts",
@@ -240,16 +253,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "a2e423556e6f25a0646103bd81b8b8c2",
+    "cacheID": "1cbddf19ba41b2c342d268112de124b5",
     "id": null,
     "metadata": {},
     "name": "ProductClassicPageQuery",
     "operationKind": "query",
-    "text": "query ProductClassicPageQuery(\n  $filter: ProductFilter\n) {\n  viewer {\n    ...ProductClassic_viewer_Vt7Yj\n    id\n  }\n}\n\nfragment ProductClassic_viewer_Vt7Yj on Viewer {\n  allProducts(filter: $filter, last: 100) {\n    edges {\n      node {\n        product {\n          id\n          name\n          sku\n          price\n          barcode\n          weight\n          code\n        }\n        inventory {\n          quantity\n          id\n        }\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n"
+    "text": "query ProductClassicPageQuery(\n  $filter: ProductFilter\n  $type: String\n) {\n  viewer(type: $type) {\n    ...ProductClassic_viewer_Vt7Yj\n    id\n  }\n}\n\nfragment ProductClassic_viewer_Vt7Yj on Viewer {\n  allProducts(filter: $filter, last: 100) {\n    edges {\n      node {\n        product {\n          id\n          name\n          sku\n          price\n          barcode\n          weight\n          code\n        }\n        inventory {\n          quantity\n          id\n        }\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n"
   }
 };
 })();
 
-node.hash = "208f36089186c742f6b0a02059d512d0";
+node.hash = "d465e2419da9100b3712389ec45309c9";
 
 module.exports = node;

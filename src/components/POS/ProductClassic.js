@@ -12,10 +12,11 @@ class ProductClassic extends Component {
         return(
             <Grid container spacing={3}>
                 {this.props.viewer.allProducts.edges.map(({node}) => {
-                    return <Grid xs={4} key={node.__id}>
+                    return <Grid xs={4} key={node.product.id}>
                              <Button variant="contained"
                                         fullWidth={true}
                                         onClick={this.button5Clicked}
+                                        key={node.product.id}
                                     >
                                         {node.product.name}
                                     </Button>
@@ -30,7 +31,7 @@ class ProductClassic extends Component {
 
 export default createFragmentContainer(ProductClassic, {
     viewer: graphql`
-        fragment ProductClassic_viewer on Viewer @argumentDefinitions(filter: {type: ProductFilter} ){
+        fragment ProductClassic_viewer on Viewer @argumentDefinitions(filter: {type: ProductFilter}){
             allProducts(filter: $filter, last:100) @connection(key: "ProductClassic_allProducts", filters: []) {
                 edges {
                     node {
