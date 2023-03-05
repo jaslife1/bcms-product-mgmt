@@ -33,20 +33,20 @@ class PointOfSales extends Component {
     TAX_RATE = 0.07;
 
     ccyFormat(num) {
-    return `${num.toFixed(2)}`;
+        return `${num.toFixed(2)}`;
     }
 
     priceRow(qty, unit) {
-    return qty * unit;
+        return qty * unit;
     }
 
-    createRow(desc, qty, unit) {
-    const price = this.priceRow(qty, unit);
-    return { desc, qty, unit, price };
-    }
+    // createRow(desc, qty, unit) {
+    //     const price = this.priceRow(qty, unit);
+    //     return { desc, qty, unit, price };
+    // }
 
-     subtotal(items) {
-    return items.map(({ price }) => price).reduce((sum, i) => sum + i, 0);
+    subtotal(items) {
+        return items.map(({ price }) => price).reduce((sum, i) => sum + i, 0);
     }
 
     rows = [
@@ -55,13 +55,22 @@ class PointOfSales extends Component {
     // this.createRow('Waste Basket', 2, 17.99),
     ];
 
-    invoiceSubtotal = this.subtotal(this.rows);
+    invoiceSubtotal = this.subtotal(this.state.products);
     invoiceTaxes = this.TAX_RATE * this.invoiceSubtotal;
     invoiceTotal = this.invoiceTaxes + this.invoiceSubtotal;
 
     
-    addProductToCart = (e) => {
-        console.log("AddProductToCart: ", e)
+    addProductToCart = (product, inventory) => {
+        console.log("AddProductToCart: ", product, inventory)
+
+        // TODO: Add a check that the purchase has still enough inventory quantity
+        // TODO: Add a check if the item already exists in the list, just update the quantity
+        var qty =  1
+
+        this.setState({products:[...this.state.products, {item: product, quantity: qty, rowPrice: this.priceRow(qty, product.price)}],
+                        showClassicDialog: false,
+                        showGuiltFreeDialog: false,
+                        })
     }
 
     button1Clicked = (e) => {
@@ -185,12 +194,21 @@ class PointOfSales extends Component {
                                 </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                {this.rows.map((row) => (
+                                {/* {this.rows.map((row) => (
                                     <TableRow key={row.desc}>
                                     <TableCell>{row.desc}</TableCell>
                                     <TableCell align="right">{row.qty}</TableCell>
                                     <TableCell align="right">{row.unit}</TableCell>
                                     <TableCell align="right">{this.ccyFormat(row.price)}</TableCell>
+                                    </TableRow>
+                                ))} */}
+
+                                {this.state.products.map((product) => (
+                                    <TableRow key={product.item.id}>
+                                    <TableCell>{product.item.name}</TableCell>
+                                    <TableCell align="right">{product.quantity}</TableCell>
+                                    <TableCell align="right">{product.item.price}</TableCell>
+                                    <TableCell align="right">{this.ccyFormat(product.rowPrice)}</TableCell>
                                     </TableRow>
                                 ))}
 

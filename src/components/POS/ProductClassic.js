@@ -16,7 +16,8 @@ class ProductClassic extends Component {
                         return <ProductClassicItem
                                         key={node.product.id} 
                                         addProductToCart={this.props.addProductToCart}
-                                         product={node.product} />
+                                         product={node.product}
+                                         inventory={node.inventory} />
                     }
                     //return <Product key={node.__id} product={node} />}
                 )}

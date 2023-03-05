@@ -9,7 +9,7 @@ import {Button} from '@mui/material'
 class ProductClassicItem extends Component {
 
     onButtonClick = (e) => {
-        this.props.addProductToCart(this.props.product)
+        this.props.addProductToCart(this.props.product, this.props.inventory)
     }
 
     render() {
