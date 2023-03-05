@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<10335382c26340bb3c05b8e58ce253ca>>
+ * @generated SignedSource<<a9a8d79245b4e6aca0a79aaf362a62a4>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -13,17 +13,16 @@ var v0 = [
   {
     "defaultValue": null,
     "kind": "LocalArgument",
-    "name": "type"
+    "name": "filter"
   }
 ],
-v1 = [
-  {
-    "kind": "Variable",
-    "name": "type",
-    "variableName": "type"
-  }
-],
+v1 = {
+  "kind": "Variable",
+  "name": "filter",
+  "variableName": "filter"
+},
 v2 = [
+  (v1/*: any*/),
   {
     "kind": "Literal",
     "name": "last",
@@ -46,14 +45,16 @@ return {
     "selections": [
       {
         "alias": null,
-        "args": (v1/*: any*/),
+        "args": null,
         "concreteType": "Viewer",
         "kind": "LinkedField",
         "name": "viewer",
         "plural": false,
         "selections": [
           {
-            "args": null,
+            "args": [
+              (v1/*: any*/)
+            ],
             "kind": "FragmentSpread",
             "name": "ProductList_viewer"
           }
@@ -72,7 +73,7 @@ return {
     "selections": [
       {
         "alias": null,
-        "args": (v1/*: any*/),
+        "args": null,
         "concreteType": "Viewer",
         "kind": "LinkedField",
         "name": "viewer",
@@ -207,7 +208,7 @@ return {
                 "storageKey": null
               }
             ],
-            "storageKey": "allProducts(last:100)"
+            "storageKey": null
           },
           {
             "alias": null,
@@ -225,16 +226,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "5c0e4a5a428ff2b019663c68c0dc0e74",
+    "cacheID": "9410be1f62831e94da89c419bfd15592",
     "id": null,
     "metadata": {},
     "name": "ProductListPageQuery",
     "operationKind": "query",
-    "text": "query ProductListPageQuery(\n  $type: String\n) {\n  viewer(type: $type) {\n    ...ProductList_viewer\n    id\n  }\n}\n\nfragment ProductList_viewer on Viewer {\n  allProducts(last: 100) {\n    edges {\n      node {\n        ...Product_productList\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n\nfragment Product_productList on ProductList {\n  product {\n    id\n    name\n    sku\n    price\n    barcode\n  }\n  inventory {\n    quantity\n    id\n  }\n}\n"
+    "text": "query ProductListPageQuery(\n  $filter: ProductFilter\n) {\n  viewer {\n    ...ProductList_viewer_Vt7Yj\n    id\n  }\n}\n\nfragment ProductList_viewer_Vt7Yj on Viewer {\n  allProducts(filter: $filter, last: 100) {\n    edges {\n      node {\n        ...Product_productList\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n\nfragment Product_productList on ProductList {\n  product {\n    id\n    name\n    sku\n    price\n    barcode\n  }\n  inventory {\n    quantity\n    id\n  }\n}\n"
   }
 };
 })();
 
-node.hash = "980c79b5b96032004e71ab7505e6255a";
+node.hash = "112ba2e821c826c1773ff4ecb56fc336";
 
 module.exports = node;

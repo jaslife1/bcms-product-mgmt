@@ -7,8 +7,8 @@ import environment from "../../Environment";
 import ProductClassic from "./ProductClassic";
 
 const ProductClassicPageQuery = graphql`
-    query ProductClassicPageQuery ($filter: ProductFilter, $type: String) {
-        viewer(type: $type) {
+    query ProductClassicPageQuery ($filter: ProductFilter) {
+        viewer{
             ...ProductClassic_viewer @arguments(filter: $filter)
             id
         }
@@ -22,8 +22,7 @@ class ProductClassicPage extends Component {
             <QueryRenderer
                 environment={environment}
                 query={ProductClassicPageQuery}
-                variables={{filter:{code: "Classic"},
-                            type: "Product"}}
+                variables={{filter:{code: "Product", id: "some-id"}}}
                 render={({error, props}) => {
                     if (error) {
                         return <div>{error.message}</div>

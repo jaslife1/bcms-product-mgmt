@@ -428,7 +428,7 @@ interface Node {
 
 type Query {
   #products: [Product!]!
-  viewer(type: String): Viewer!
+  viewer: Viewer!
 
   # Fetches an object given its ID
   node(

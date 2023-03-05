@@ -60,8 +60,8 @@ class ProductList extends Component {
 
 export default createFragmentContainer(ProductList, {
     viewer: graphql`
-        fragment ProductList_viewer on Viewer{
-            allProducts(last:100) @connection(key: "ProductList_allProducts", filters: []) {
+        fragment ProductList_viewer on Viewer @argumentDefinitions(filter: {type: ProductFilter}){
+            allProducts(filter: $filter, last:100) @connection(key: "ProductList_allProducts", filters: []) {
                 edges {
                     node {
                         ...Product_productList
