@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<97aa69a77be81ce732e37516185e7e2b>>
+ * @generated SignedSource<<1ed74de731461c66bfde1f28a0ae75f0>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,12 +11,25 @@
 var node = (function(){
 var v0 = [
   {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "filter"
+  }
+],
+v1 = {
+  "kind": "Variable",
+  "name": "filter",
+  "variableName": "filter"
+},
+v2 = [
+  (v1/*: any*/),
+  {
     "kind": "Literal",
     "name": "last",
     "value": 100
   }
 ],
-v1 = {
+v3 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
@@ -25,7 +38,7 @@ v1 = {
 };
 return {
   "fragment": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
     "name": "StoreListPageQuery",
@@ -39,7 +52,9 @@ return {
         "plural": false,
         "selections": [
           {
-            "args": null,
+            "args": [
+              (v1/*: any*/)
+            ],
             "kind": "FragmentSpread",
             "name": "StoreList_viewer"
           }
@@ -52,7 +67,7 @@ return {
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
     "name": "StoreListPageQuery",
     "selections": [
@@ -66,7 +81,7 @@ return {
         "selections": [
           {
             "alias": null,
-            "args": (v0/*: any*/),
+            "args": (v2/*: any*/),
             "concreteType": "StoreConnection",
             "kind": "LinkedField",
             "name": "allStores",
@@ -88,7 +103,7 @@ return {
                     "name": "node",
                     "plural": false,
                     "selections": [
-                      (v1/*: any*/),
+                      (v3/*: any*/),
                       {
                         "alias": null,
                         "args": null,
@@ -216,34 +231,34 @@ return {
                 "storageKey": null
               }
             ],
-            "storageKey": "allStores(last:100)"
+            "storageKey": null
           },
           {
             "alias": null,
-            "args": (v0/*: any*/),
+            "args": (v2/*: any*/),
             "filters": [],
             "handle": "connection",
             "key": "StoreList_allStores",
             "kind": "LinkedHandle",
             "name": "allStores"
           },
-          (v1/*: any*/)
+          (v3/*: any*/)
         ],
         "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "eca4373aeaa587e51fabb13c1d4bd073",
+    "cacheID": "54ce251fb8158e342c0ee6256fcaf6fb",
     "id": null,
     "metadata": {},
     "name": "StoreListPageQuery",
     "operationKind": "query",
-    "text": "query StoreListPageQuery {\n  viewer {\n    ...StoreList_viewer\n    id\n  }\n}\n\nfragment StoreList_viewer on Viewer {\n  allStores(last: 100) {\n    edges {\n      node {\n        ...Store_store\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n\nfragment Store_store on Store {\n  id\n  name\n  address {\n    address1\n    address2\n    barangay\n    city\n    province\n    country\n    zipcode\n  }\n  active\n  type\n}\n"
+    "text": "query StoreListPageQuery(\n  $filter: StoreFilter\n) {\n  viewer {\n    ...StoreList_viewer_Vt7Yj\n    id\n  }\n}\n\nfragment StoreList_viewer_Vt7Yj on Viewer {\n  allStores(filter: $filter, last: 100) {\n    edges {\n      node {\n        ...Store_store\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n\nfragment Store_store on Store {\n  id\n  name\n  address {\n    address1\n    address2\n    barangay\n    city\n    province\n    country\n    zipcode\n  }\n  active\n  type\n}\n"
   }
 };
 })();
 
-node.hash = "4bbf4640485c472bf9d10cd42e5c0ddc";
+node.hash = "4df92426d74e5d46e5d7a4939077c65a";
 
 module.exports = node;

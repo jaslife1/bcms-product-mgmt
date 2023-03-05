@@ -60,8 +60,8 @@ class StoreList extends Component {
 
 export default createFragmentContainer(StoreList, {
     viewer: graphql`
-        fragment StoreList_viewer on Viewer{
-            allStores(last:100) @connection(key: "StoreList_allStores", filters: []) {
+        fragment StoreList_viewer on Viewer @argumentDefinitions(filter: {type: StoreFilter}){
+            allStores(filter: $filter, last:100) @connection(key: "StoreList_allStores", filters: []) {
                 edges {
                     node {
                         ...Store_store

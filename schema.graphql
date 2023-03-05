@@ -399,6 +399,7 @@ type StoreConnection {
 # Contains all the FILTERS
 
 input EmployeeFilter {
+  code: String
   id: ID
 }
 
@@ -408,6 +409,7 @@ input ProductFilter {
 }
 
 input StoreFilter {
+  code: String
   id: ID
 }
 

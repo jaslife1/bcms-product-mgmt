@@ -7,9 +7,9 @@ import environment from "../../Environment";
 import StoreList from "./StoreList";
 
 const StoreListPageQuery = graphql`
-    query StoreListPageQuery {
+    query StoreListPageQuery ($filter: StoreFilter){
         viewer {
-            ...StoreList_viewer
+            ...StoreList_viewer @arguments(filter: $filter)
         }
     }
 `
@@ -20,6 +20,7 @@ class StoreListPage extends Component {
             <QueryRenderer
                 environment={environment}
                 query={StoreListPageQuery}
+                variables={{filter:{code: "Store", id: "some-id"}}}
                 render={({error, props}) => {
                     if (error) {
                         return <div>{error.message}</div>
