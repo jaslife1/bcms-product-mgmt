@@ -16,6 +16,11 @@ import ProductGuiltFreePage from "./ProductGuiltFreePage";
 
 class PointOfSales extends Component {
 
+    constructor(props) {
+        super(props)
+        this.addProductToCart = this.addProductToCart.bind(this)
+    }
+
     state = {
         products: [],
         showClassicDialog: false,
@@ -23,6 +28,7 @@ class PointOfSales extends Component {
         showDialog: false,
         showErrorDialog: false,
     };
+
 
     TAX_RATE = 0.07;
 
@@ -53,6 +59,10 @@ class PointOfSales extends Component {
     invoiceTaxes = this.TAX_RATE * this.invoiceSubtotal;
     invoiceTotal = this.invoiceTaxes + this.invoiceSubtotal;
 
+    
+    addProductToCart = (e) => {
+        console.log("AddProductToCart: ", e)
+    }
 
     button1Clicked = (e) => {
         console.log("button 1 clicked")
@@ -277,7 +287,7 @@ class PointOfSales extends Component {
                 aria-describedby="alert-dialog-description"
             >
                 <DialogContent>
-                    <ProductClassicPage />
+                    <ProductClassicPage addProductToCart={this.addProductToCart} />
                 </DialogContent>
             </Dialog>
             <Dialog

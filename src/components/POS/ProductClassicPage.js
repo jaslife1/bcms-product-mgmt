@@ -27,7 +27,7 @@ class ProductClassicPage extends Component {
                     if (error) {
                         return <div>{error.message}</div>
                     } else if (props != null){
-                        return <ProductClassic viewer={props.viewer} />
+                        return <ProductClassic viewer={props.viewer} addProductToCart={this.props.addProductToCart} />
                     }
                     return <div>Loading</div>
                 }}
