@@ -405,6 +405,7 @@ input EmployeeFilter {
 
 input ProductFilter {
   code: String
+  subcode: String
   id: ID
 }
 

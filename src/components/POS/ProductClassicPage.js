@@ -22,7 +22,7 @@ class ProductClassicPage extends Component {
             <QueryRenderer
                 environment={environment}
                 query={ProductClassicPageQuery}
-                variables={{filter:{code: "Product", id: "some-id"}}}
+                variables={{filter:{code: "Product", subcode: "Classic", id: "some-id"}}}
                 render={({error, props}) => {
                     if (error) {
                         return <div>{error.message}</div>
