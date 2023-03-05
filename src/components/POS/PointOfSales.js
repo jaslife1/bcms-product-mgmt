@@ -1,8 +1,6 @@
 import React, {Component} from "react";
 import Box from "@mui/material/Box"
-import { TextField, FormControl, InputLabel, OutlinedInput, Button, InputAdornment,
-FormLabel, FormGroup, FormControlLabel, FormHelperText, Switch, Dialog, DialogContent } from "@mui/material";
-import AddNewProductMutation from "../../mutations/AddNewProductMutation";
+import { TextField, Button,Dialog, DialogContent } from "@mui/material";
 import SimpleDialog from "../SimpleDialog";
 
 import Grid from '@mui/material/Unstable_Grid2';
@@ -14,12 +12,14 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import ProductClassicPage from "./ProductClassicPage";
+import ProductGuiltFreePage from "./ProductGuiltFreePage";
 
 class PointOfSales extends Component {
 
     state = {
         products: [],
         showClassicDialog: false,
+        showGuiltFreeDialog: false,
         showDialog: false,
         showErrorDialog: false,
     };
@@ -73,6 +73,11 @@ class PointOfSales extends Component {
     classicButtonClicked = (e) => {
         console.log("Classic Button clicked")
         this.setState({showClassicDialog: true})
+    }
+
+    guiltfreeButtonClicked = (e) => {
+        console.log("Guilt-Free Button clicked")
+        this.setState({showGuiltFreeDialog: true})
     }
 
     button6Clicked = (e) => {
@@ -210,7 +215,7 @@ class PointOfSales extends Component {
                                 <Grid xs={6}>
                                     <Button variant="contained"
                                         fullWidth={true}
-                                        onClick={this.button6Clicked}
+                                        onClick={this.guiltfreeButtonClicked}
                                     >
                                         Guilt-Free
                                     </Button>
@@ -273,32 +278,20 @@ class PointOfSales extends Component {
             >
                 <DialogContent>
                     <ProductClassicPage />
-                    {/* <Grid container spacing={3}>
-                        <Grid xs={4}>
-                            <Button variant="contained"
-                                fullWidth={true}
-                                onClick={this.button6Clicked}
-                            >
-                                Milk Chocolate
-                            </Button>
-                        </Grid>
-                        <Grid xs={4}>
-                            <Button variant="contained"
-                                fullWidth={true}
-                                onClick={this.button6Clicked}
-                            >
-                                55% Dark Chocolate
-                            </Button>
-                        </Grid>
-                        <Grid xs={4}>
-                            <Button variant="contained"
-                                fullWidth={true}
-                                onClick={this.button6Clicked}
-                            >
-                                70% Dark Chocolate
-                            </Button>
-                        </Grid>
-                    </Grid> */}
+                </DialogContent>
+            </Dialog>
+            <Dialog
+                fullWidth={true}
+                maxWidth={"md"}
+                open={this.state.showGuiltFreeDialog}
+                onClose={(e)=>{
+                    this.setState({showGuiltFreeDialog: false})
+                }}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogContent>
+                    <ProductGuiltFreePage />
                 </DialogContent>
             </Dialog>
             <SimpleDialog
