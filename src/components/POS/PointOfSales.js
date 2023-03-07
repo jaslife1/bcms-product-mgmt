@@ -76,7 +76,7 @@ class PointOfSales extends Component {
             } else {
                 temp.quantity += qty
             }
-            
+            temp.rowPrice = this.priceRow(temp.quantity, temp.item.price)
             curProducts[product.id] = temp
         } else {
             console.log("New:",product)
