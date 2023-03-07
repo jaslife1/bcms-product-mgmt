@@ -27,7 +27,7 @@ class ProductGuiltFreePage extends Component {
                     if (error) {
                         return <div>{error.message}</div>
                     } else if (props != null){
-                        return <ProductGuiltFree viewer={props.viewer} />
+                        return <ProductGuiltFree viewer={props.viewer} addProductToCart={this.props.addProductToCart} />
                     }
                     return <div>Loading</div>
                 }}

@@ -4,8 +4,7 @@ import {
     graphql
 } from 'react-relay'
 import Grid from '@mui/material/Unstable_Grid2';
-import {Button} from '@mui/material'
-import ProductClassicItem from "./ProductClassicItem";
+import ProductItem from "./ProductItem";
 
 class ProductClassic extends Component {
 
@@ -13,7 +12,7 @@ class ProductClassic extends Component {
         return(
             <Grid container spacing={3}>
                 {this.props.viewer.allProducts.edges.map(({node}) => {
-                        return <ProductClassicItem
+                        return <ProductItem
                                         key={node.product.id} 
                                         addProductToCart={this.props.addProductToCart}
                                          product={node.product}

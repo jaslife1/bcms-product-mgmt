@@ -1,12 +1,8 @@
 import React, {Component} from "react";
-import {
-    createFragmentContainer,
-    graphql
-} from 'react-relay'
 import Grid from '@mui/material/Unstable_Grid2';
 import {Button} from '@mui/material'
 
-class ProductClassicItem extends Component {
+class ProductItem extends Component {
 
     onButtonClick = (e) => {
         this.props.addProductToCart(this.props.product, this.props.inventory)
@@ -14,7 +10,6 @@ class ProductClassicItem extends Component {
 
     render() {
         return(
-           
                 <Grid xs={4} key={this.props.product.id}>
                         <Button variant="contained"
                                 fullWidth={true}
@@ -31,4 +26,4 @@ class ProductClassicItem extends Component {
     }
 }
 
-export default ProductClassicItem
+export default ProductItem

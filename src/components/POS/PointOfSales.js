@@ -70,7 +70,7 @@ class PointOfSales extends Component {
         if (curProducts.has(product.id)) {
             // Then increase the quantity
             var temp = curProducts.get(product.id)
-            if ((temp.quantity + qty) <= inventory) {
+            if ((temp.quantity + qty) > inventory.quantity) {
                 // TODO: Prompt the user that the quantity is at its limit. And do nothing
 
             } else {
@@ -326,7 +326,7 @@ class PointOfSales extends Component {
                 aria-describedby="alert-dialog-description"
             >
                 <DialogContent>
-                    <ProductGuiltFreePage />
+                    <ProductGuiltFreePage addProductToCart={this.addProductToCart} />
                 </DialogContent>
             </Dialog>
             <SimpleDialog
