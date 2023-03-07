@@ -63,36 +63,31 @@ class PointOfSales extends Component {
     
     addProductToCart = (product, inventory) => {
         console.log("AddProductToCart: ", product, inventory)
-
-        // TODO: Add a check that the purchase has still enough inventory quantity
-        // TODO: Add a check if the item already exists in the list, just update the quantity
         var qty =  1
 
-        // this.setState({products:[...this.state.products, {item: product, quantity: qty, rowPrice: this.priceRow(qty, product.price)}],
-        //                 showClassicDialog: false,
-        //                 showGuiltFreeDialog: false,
-        //                 })
+        var curProducts = new Map(this.state.products)
 
-        this.setState(prevState=>{
-            const newMap = new Map(prevState.products)
+        if (curProducts.has(product.id)) {
+            // Then increase the quantity
+            var temp = curProducts.get(product.id)
+            if ((temp.quantity + qty) <= inventory) {
+                // TODO: Prompt the user that the quantity is at its limit. And do nothing
 
-            if (newMap.has(product.id)) {
-                // Then increase the quantity
-                console.log("Again: ", newMap)
-                var temp = newMap[product.id]
-                console.log("Old:",temp)
-                temp.quantity += qty
-                newMap[product.id] = temp
             } else {
-                console.log("New:",product)
-                newMap.set(product.id, {item: product, quantity: qty, rowPrice: this.priceRow(qty, product.price)})
+                temp.quantity += qty
             }
+            
+            curProducts[product.id] = temp
+        } else {
+            console.log("New:",product)
+            curProducts.set(product.id, {item: product, quantity: qty, rowPrice: this.priceRow(qty, product.price)})
+        }
 
-            return { products: newMap,
-                     showClassicDialog: false,
-                     showGuiltFreeDialog: false,
-                    }
-        })
+        this.setState({products: curProducts,
+                         showClassicDialog: false,
+                         showGuiltFreeDialog: false,
+                    })
+
     }
 
     button1Clicked = (e) => {
