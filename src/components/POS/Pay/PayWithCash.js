@@ -10,6 +10,8 @@ class PayWithCash extends Component {
 
     state = {
         cashTendered: '',
+        showDialog: false,
+        showErrorDialog: false,
     };
 
 
