@@ -13,6 +13,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import ProductClassicPage from "./ProductClassicPage";
 import ProductGuiltFreePage from "./ProductGuiltFreePage";
+import PayPage from "./Pay/PayPage";
 
 class PointOfSales extends Component {
 
@@ -29,6 +30,7 @@ class PointOfSales extends Component {
         total: 0,
         showClassicDialog: false,
         showGuiltFreeDialog: false,
+        showPayDialog: false,
         showDialog: false,
         showErrorDialog: false,
     };
@@ -84,6 +86,12 @@ class PointOfSales extends Component {
                         showGuiltFreeDialog: false,
                     })
 
+    }
+
+    payButton = (e) => {
+        this.setState({
+            showPayDialog: true
+        })
     }
 
     button1Clicked = (e) => {
@@ -290,7 +298,7 @@ class PointOfSales extends Component {
                     <Grid xs={6}>
                         <Button variant="contained"
                             fullWidth={true}
-                            onClick={this.button6Clicked}
+                            onClick={this.payButton}
                         >
                             Pay
                         </Button>
@@ -325,6 +333,22 @@ class PointOfSales extends Component {
                     <ProductGuiltFreePage addProductToCart={this.addProductToCart} />
                 </DialogContent>
             </Dialog>
+
+            <Dialog
+                fullWidth={true}
+                maxWidth={"md"}
+                open={this.state.showPayDialog}
+                onClose={(e)=>{
+                    this.setState({showPayDialog: false})
+                }}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogContent>
+                    <PayPage />
+                </DialogContent>
+            </Dialog>
+
             <SimpleDialog
                     open={this.state.showDialog}
                     title="Add New Product"
