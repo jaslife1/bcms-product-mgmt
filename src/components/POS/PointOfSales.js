@@ -23,6 +23,10 @@ class PointOfSales extends Component {
 
     state = {
         products: new Map(),
+        subtotal: 0,
+        taxes: 0,
+        discounts: 0,
+        total: 0,
         showClassicDialog: false,
         showGuiltFreeDialog: false,
         showDialog: false,
@@ -40,32 +44,19 @@ class PointOfSales extends Component {
         return qty * unit;
     }
 
-    // createRow(desc, qty, unit) {
-    //     const price = this.priceRow(qty, unit);
-    //     return { desc, qty, unit, price };
-    // }
-
     subtotal(items) {
-       // return items.map(({ price }) => price).reduce((sum, i) => sum + i, 0);
-       return 0
+       return items.map(( product ) => product[1].rowPrice).reduce((sum, i) => sum + i, 0);
     }
-
-    rows = [
-    // this.createRow('Paperclips (Box)', 100, 1.15),
-    // this.createRow('Paper (Case)', 10, 45.99),
-    // this.createRow('Waste Basket', 2, 17.99),
-    ];
-
-    invoiceSubtotal = this.subtotal(this.state.products);
-    invoiceTaxes = this.TAX_RATE * this.invoiceSubtotal;
-    invoiceTotal = this.invoiceTaxes + this.invoiceSubtotal;
-
     
     addProductToCart = (product, inventory) => {
         console.log("AddProductToCart: ", product, inventory)
         var qty =  1
 
         var curProducts = new Map(this.state.products)
+        var curSubTotal = this.state.subtotal
+        var curTotal = this.state.total
+        var curTaxes =  this.state.taxes
+        var curDiscounts = this.state.discounts
 
         if (curProducts.has(product.id)) {
             // Then increase the quantity
@@ -79,13 +70,18 @@ class PointOfSales extends Component {
             temp.rowPrice = this.priceRow(temp.quantity, temp.item.price)
             curProducts[product.id] = temp
         } else {
-            console.log("New:",product)
+            //console.log("New:",product)
             curProducts.set(product.id, {item: product, quantity: qty, rowPrice: this.priceRow(qty, product.price)})
         }
 
+        curSubTotal = this.subtotal(Array.from(curProducts))
+        curTotal = curSubTotal - curTaxes - curDiscounts
+
         this.setState({products: curProducts,
-                         showClassicDialog: false,
-                         showGuiltFreeDialog: false,
+                        subtotal: curSubTotal,
+                        total: curTotal,
+                        showClassicDialog: false,
+                        showGuiltFreeDialog: false,
                     })
 
     }
@@ -204,7 +200,7 @@ class PointOfSales extends Component {
                                     <TableCell align="right">Price</TableCell>
                                 </TableRow>
                                 <TableRow>
-                                    <TableCell>Desc</TableCell>
+                                    <TableCell>Description</TableCell>
                                     <TableCell align="right">Qty.</TableCell>
                                     <TableCell align="right">Unit</TableCell>
                                     <TableCell align="right">Sum</TableCell>
@@ -215,23 +211,23 @@ class PointOfSales extends Component {
                                         <TableRow key={product[0]}>
                                             <TableCell>{product[1].item.name}</TableCell>
                                             <TableCell align="right">{product[1].quantity}</TableCell>
-                                            <TableCell align="right">{product[1].item.price}</TableCell>
+                                            <TableCell align="right">{this.ccyFormat(product[1].item.price)}</TableCell>
                                             <TableCell align="right">{this.ccyFormat(product[1].rowPrice)}</TableCell>
                                     </TableRow>
                                     ))}
                                 <TableRow>
                                     <TableCell rowSpan={3} />
                                     <TableCell colSpan={2}>Subtotal</TableCell>
-                                    <TableCell align="right">{this.ccyFormat(this.invoiceSubtotal)}</TableCell>
+                                    <TableCell align="right">{this.ccyFormat(this.state.subtotal)}</TableCell>
                                 </TableRow>
                                 <TableRow>
-                                    <TableCell>Discount</TableCell>
-                                    <TableCell align="right">{`${(this.TAX_RATE * 100).toFixed(0)} %`}</TableCell>
-                                    <TableCell align="right">{this.ccyFormat(this.invoiceTaxes)}</TableCell>
+                                    <TableCell colSpan={2}>Discount</TableCell>
+                                    {/* <TableCell align="right">{`${(this.TAX_RATE * 100).toFixed(0)} %`}</TableCell> */}
+                                    <TableCell align="right">{this.ccyFormat(this.state.discounts)}</TableCell>
                                 </TableRow>
                                 <TableRow>
                                     <TableCell colSpan={2}>Total</TableCell>
-                                    <TableCell align="right">{this.ccyFormat(this.invoiceTotal)}</TableCell>
+                                    <TableCell align="right">{this.ccyFormat(this.state.total)}</TableCell>
                                 </TableRow>
                                 </TableBody>
                             </Table>
