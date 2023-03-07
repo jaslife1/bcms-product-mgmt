@@ -22,7 +22,7 @@ class PointOfSales extends Component {
     }
 
     state = {
-        products: [],
+        products: new Map(),
         showClassicDialog: false,
         showGuiltFreeDialog: false,
         showDialog: false,
@@ -46,7 +46,8 @@ class PointOfSales extends Component {
     // }
 
     subtotal(items) {
-        return items.map(({ price }) => price).reduce((sum, i) => sum + i, 0);
+       // return items.map(({ price }) => price).reduce((sum, i) => sum + i, 0);
+       return 0
     }
 
     rows = [
@@ -67,10 +68,31 @@ class PointOfSales extends Component {
         // TODO: Add a check if the item already exists in the list, just update the quantity
         var qty =  1
 
-        this.setState({products:[...this.state.products, {item: product, quantity: qty, rowPrice: this.priceRow(qty, product.price)}],
-                        showClassicDialog: false,
-                        showGuiltFreeDialog: false,
-                        })
+        // this.setState({products:[...this.state.products, {item: product, quantity: qty, rowPrice: this.priceRow(qty, product.price)}],
+        //                 showClassicDialog: false,
+        //                 showGuiltFreeDialog: false,
+        //                 })
+
+        this.setState(prevState=>{
+            const newMap = new Map(prevState.products)
+
+            if (newMap.has(product.id)) {
+                // Then increase the quantity
+                console.log("Again: ", newMap)
+                var temp = newMap[product.id]
+                console.log("Old:",temp)
+                temp.quantity += qty
+                newMap[product.id] = temp
+            } else {
+                console.log("New:",product)
+                newMap.set(product.id, {item: product, quantity: qty, rowPrice: this.priceRow(qty, product.price)})
+            }
+
+            return { products: newMap,
+                     showClassicDialog: false,
+                     showGuiltFreeDialog: false,
+                    }
+        })
     }
 
     button1Clicked = (e) => {
@@ -194,24 +216,14 @@ class PointOfSales extends Component {
                                 </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                {/* {this.rows.map((row) => (
-                                    <TableRow key={row.desc}>
-                                    <TableCell>{row.desc}</TableCell>
-                                    <TableCell align="right">{row.qty}</TableCell>
-                                    <TableCell align="right">{row.unit}</TableCell>
-                                    <TableCell align="right">{this.ccyFormat(row.price)}</TableCell>
+                                    {Array.from(this.state.products).map((product) => (
+                                        <TableRow key={product[0]}>
+                                            <TableCell>{product[1].item.name}</TableCell>
+                                            <TableCell align="right">{product[1].quantity}</TableCell>
+                                            <TableCell align="right">{product[1].item.price}</TableCell>
+                                            <TableCell align="right">{this.ccyFormat(product[1].rowPrice)}</TableCell>
                                     </TableRow>
-                                ))} */}
-
-                                {this.state.products.map((product) => (
-                                    <TableRow key={product.item.id}>
-                                    <TableCell>{product.item.name}</TableCell>
-                                    <TableCell align="right">{product.quantity}</TableCell>
-                                    <TableCell align="right">{product.item.price}</TableCell>
-                                    <TableCell align="right">{this.ccyFormat(product.rowPrice)}</TableCell>
-                                    </TableRow>
-                                ))}
-
+                                    ))}
                                 <TableRow>
                                     <TableCell rowSpan={3} />
                                     <TableCell colSpan={2}>Subtotal</TableCell>
