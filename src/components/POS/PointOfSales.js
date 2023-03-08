@@ -14,6 +14,7 @@ import Paper from '@mui/material/Paper';
 import ProductClassicPage from "./ProductClassicPage";
 import ProductGuiltFreePage from "./ProductGuiltFreePage";
 import PayPage from "./Pay/PayPage";
+import AddNewSaleMutation from "../../mutations/AddNewSaleMutation";
 
 class PointOfSales extends Component {
 
@@ -25,8 +26,8 @@ class PointOfSales extends Component {
     state = {
         products: new Map(),
         subtotal: 0,
-        taxes: 0,
-        discounts: 0,
+        tax: 0,
+        discount: 0,
         total: 0,
         showClassicDialog: false,
         showGuiltFreeDialog: false,
@@ -46,7 +47,7 @@ class PointOfSales extends Component {
         return qty * unit;
     }
 
-    subtotal(items) {
+    computeSubTotal(items) {
        return items.map(( product ) => product[1].rowPrice).reduce((sum, i) => sum + i, 0);
     }
     
@@ -57,8 +58,8 @@ class PointOfSales extends Component {
         var curProducts = new Map(this.state.products)
         var curSubTotal = this.state.subtotal
         var curTotal = this.state.total
-        var curTaxes =  this.state.taxes
-        var curDiscounts = this.state.discounts
+        var curTax =  this.state.tax
+        var curDiscount = this.state.discount
 
         if (curProducts.has(product.id)) {
             // Then increase the quantity
@@ -76,8 +77,8 @@ class PointOfSales extends Component {
             curProducts.set(product.id, {item: product, quantity: qty, rowPrice: this.priceRow(qty, product.price)})
         }
 
-        curSubTotal = this.subtotal(Array.from(curProducts))
-        curTotal = curSubTotal - curTaxes - curDiscounts
+        curSubTotal = this.computeSubTotal(Array.from(curProducts))
+        curTotal = curSubTotal - curTax - curDiscount
 
         this.setState({products: curProducts,
                         subtotal: curSubTotal,
@@ -231,7 +232,7 @@ class PointOfSales extends Component {
                                 <TableRow>
                                     <TableCell colSpan={2}>Discount</TableCell>
                                     {/* <TableCell align="right">{`${(this.TAX_RATE * 100).toFixed(0)} %`}</TableCell> */}
-                                    <TableCell align="right">{this.ccyFormat(this.state.discounts)}</TableCell>
+                                    <TableCell align="right">{this.ccyFormat(this.state.discount)}</TableCell>
                                 </TableRow>
                                 <TableRow>
                                     <TableCell colSpan={2}>Total</TableCell>
@@ -371,37 +372,65 @@ class PointOfSales extends Component {
     }
 
     addNewSale = (amountTendered) => {
+        amountTendered = parseFloat(amountTendered)
         console.log("addNewSale amount tendered: ", amountTendered)
-        console.log("addNewSale product: ", this.state.products)
-        console.log("addNewSale subtotal: ", this.state.subtotal)
-        console.log("addNewSale discounts: ", this.state.discounts)
-        console.log("addNewSale total: ", this.state.total)
 
-        const {products, subtotal, discounts, total} = this.state
+        const {products, subtotal, tax, discount, total} = this.state
 
-        // const {code, description, name, sku, barcode, weight, quantity, price, active} = this.state
-        // addNewSaleMutation(code, name, description, sku, barcode, weight, quantity, price, active, ()=>{
-        //     console.log("Add new product successful.");
-        //     // Prompt the user of successful addition of product
-        //     this.setState({showDialog: true});
-        //      // Clean up the form
-        //     this.setState({
-        //         code:'Classic',
-        //         name:'',
-        //         description:'',
-        //         sku:'',
-        //         barcode:'',
-        //         price:'',
-        //         weight:'',
-        //         quantity: '',
-        //         active: true,
-        //     })
+        if (amountTendered >= total) {
+            const change = amountTendered - total
 
-        // }, (err) => {
-        //     console.log(err)
-        //     this.setState({showErrorDialog: true, showErrorContent: err});
-            
-        // })
+            //create an array based on the products
+            var productList = []
+
+            products.forEach((val, key)=>{
+                console.log(key, val)
+                var inventory = {
+                    productId: key,
+                    storeId: 1, // TODO: Get the correct storeID
+                    quantity: val.quantity
+                }
+
+                var item = val.item
+                var product = {
+                    code: item.code,
+                    name: item.name,
+                    sku: item.sku,
+                    barcode: item.barcode,
+                    price: item.price,
+                    weight: item.weight,
+                    quantity: val.quantity,
+                    active: true,
+                }
+
+                productList = [...productList, {product: product, inventory: inventory}]
+            })
+
+            AddNewSaleMutation(productList, subtotal, tax, discount, total, amountTendered, change,
+                ()=>{
+                    //success
+                    // TODO: Print the receipt
+                    this.setState({
+                        products: new Map(),
+                        subtotal: 0,
+                        tax: 0,
+                        discount: 0,
+                        total: 0,
+                        showPayDialog: false,
+                    })
+                },
+                (err) =>{
+                    //error
+                    // Show snackbar
+                });
+        } else {
+            // Error, show snackbar
+            // Amount is less than total bill
+        }
+
+        
+
+        
     }
 
 

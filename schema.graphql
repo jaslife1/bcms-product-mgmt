@@ -155,6 +155,21 @@ type ProductInventoryHistory {
   type: String! #New Product, Production, Adjustment
 }
 
+type Sale {
+  id: ID!
+  products: [ProductList!]!
+  subtotal: Float!
+  discount: Float!
+  tax: Float!
+  total: Float!
+  amountTendered: Float!
+  change: Float!
+  customer: Customer
+  discountCard: Discount
+  user: User!
+  dateTransaction: Time!
+}
+
 type StatutoryInformation {
   sssNumber: String
   philhealthNumber: String
@@ -319,6 +334,20 @@ input NewProductInventoryHistory {
   type: String! #New Product, Production, Adjustment
 }
 
+input NewSale {
+  products: [NewProductList!]!
+  subtotal: Float!
+  discount: Float!
+  tax: Float!
+  total: Float!
+  amountTendered: Float!
+  change: Float!
+  customer: NewCustomer
+  discountCard: NewDiscount
+  #TODO: Add UserId once the table os ready already
+  #user: User!
+}
+
 input NewStatutoryInformation {
   sssNumber: String
   philHealthNumber: String
@@ -451,4 +480,5 @@ type Mutation {
   addNewProduction(production: NewProduction!) : Production!
   adjustProductQuantity(adjustment: NewAdjustment!) : Adjustment!
   addNewOrderTransaction(newOrder: NewOrderTransaction!) : OrderTransaction!
+  addNewSale(sale: NewSale!) : Sale!
 }

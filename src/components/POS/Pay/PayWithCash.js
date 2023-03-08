@@ -41,7 +41,7 @@ class PayWithCash extends Component {
                             startAdornment={<InputAdornment position="start">₱</InputAdornment>}
                             label="Cash Tendered"
                             type="number"
-                            placeholder="0"
+                            placeholder="0.00"
                             value={this.state.cashTendered}
                             onChange={(e) => this.setState({ cashTendered: e.target.value })}
                             />
