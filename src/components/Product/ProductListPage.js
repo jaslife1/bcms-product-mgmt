@@ -20,7 +20,7 @@ class ProductListPage extends Component {
             <QueryRenderer
                 environment={environment}
                 query={ProductListPageQuery}
-                variables={{filter:{code: "Product", id: "some-id"}}}
+                variables={{filter:{code: "Product", subcode: "", id: "some-id"}}}
                 render={({error, props}) => {
                     if (error) {
                         return <div>{error.message}</div>
