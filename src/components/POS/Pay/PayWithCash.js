@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import PropTypes from 'prop-types';
 import Box from "@mui/material/Box"
 import { TextField, FormControl, InputLabel, OutlinedInput, Button, InputAdornment,
 FormLabel, FormGroup, FormControlLabel, FormHelperText, Switch, Select, MenuItem } from "@mui/material";
@@ -30,26 +31,26 @@ class PayWithCash extends Component {
             >
                 
                 <div>
-                <FormControl fullWidth 
-                    sx={{ m: 1, width:'25ch' }}
-                >
-                    <InputLabel htmlFor="outlined-adornment-amount">Cash Tendered</InputLabel>
-                    <OutlinedInput
-                        fullWidth={true}
-                        id="outlined-adornment-amount"
-                        startAdornment={<InputAdornment position="start">₱</InputAdornment>}
-                        label="Cash Tendered"
-                        type="number"
-                        placeholder="0"
-                        value={this.state.cashTendered}
-                        onChange={(e) => this.setState({ cashTendered: e.target.value })}
-                        />
+                    <FormControl fullWidth 
+                        sx={{ m: 1, width:'25ch' }}
+                    >
+                        <InputLabel htmlFor="outlined-adornment-amount">Cash Tendered</InputLabel>
+                        <OutlinedInput
+                            fullWidth={true}
+                            id="outlined-adornment-amount"
+                            startAdornment={<InputAdornment position="start">₱</InputAdornment>}
+                            label="Cash Tendered"
+                            type="number"
+                            placeholder="0"
+                            value={this.state.cashTendered}
+                            onChange={(e) => this.setState({ cashTendered: e.target.value })}
+                            />
                     </FormControl>
                 </div>
                 
                 <div>
                     <Button variant="contained"
-                        onClick={()=> this.props.addNewSale()}
+                        onClick={()=> this.props.addNewSale(this.state.cashTendered == '' ? 0 : this.state.cashTendered)}
                     >Pay</Button>
                 </div>
                 <SimpleDialog
@@ -74,5 +75,11 @@ class PayWithCash extends Component {
     }
 
 }
+
+
+PayWithCash.propTypes = {
+    addNewSale: PropTypes.func.isRequired,
+    
+  };
 
 export default PayWithCash;

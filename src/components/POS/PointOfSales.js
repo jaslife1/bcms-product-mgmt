@@ -345,7 +345,8 @@ class PointOfSales extends Component {
                 aria-describedby="alert-dialog-description"
             >
                 <DialogContent>
-                    <PayPage />
+                    <PayPage 
+                        addNewSale={this.addNewSale} />
                 </DialogContent>
             </Dialog>
 
@@ -367,6 +368,40 @@ class PointOfSales extends Component {
                 />
             </>
         )
+    }
+
+    addNewSale = (amountTendered) => {
+        console.log("addNewSale amount tendered: ", amountTendered)
+        console.log("addNewSale product: ", this.state.products)
+        console.log("addNewSale subtotal: ", this.state.subtotal)
+        console.log("addNewSale discounts: ", this.state.discounts)
+        console.log("addNewSale total: ", this.state.total)
+
+        const {products, subtotal, discounts, total} = this.state
+
+        // const {code, description, name, sku, barcode, weight, quantity, price, active} = this.state
+        // addNewSaleMutation(code, name, description, sku, barcode, weight, quantity, price, active, ()=>{
+        //     console.log("Add new product successful.");
+        //     // Prompt the user of successful addition of product
+        //     this.setState({showDialog: true});
+        //      // Clean up the form
+        //     this.setState({
+        //         code:'Classic',
+        //         name:'',
+        //         description:'',
+        //         sku:'',
+        //         barcode:'',
+        //         price:'',
+        //         weight:'',
+        //         quantity: '',
+        //         active: true,
+        //     })
+
+        // }, (err) => {
+        //     console.log(err)
+        //     this.setState({showErrorDialog: true, showErrorContent: err});
+            
+        // })
     }
 
 
