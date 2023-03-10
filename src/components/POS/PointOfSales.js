@@ -15,6 +15,7 @@ import ProductClassicPage from "./ProductClassicPage";
 import ProductGuiltFreePage from "./ProductGuiltFreePage";
 import PayPage from "./Pay/PayPage";
 import AddNewSaleMutation from "../../mutations/AddNewSaleMutation";
+import ChangePage from "./Pay/ChangePage";
 
 class PointOfSales extends Component {
 
@@ -29,9 +30,11 @@ class PointOfSales extends Component {
         tax: 0,
         discount: 0,
         total: 0,
+        change: 0,
         showClassicDialog: false,
         showGuiltFreeDialog: false,
         showPayDialog: false,
+        showChangeDialog: false,
         showDialog: false,
         showErrorDialog: false,
     };
@@ -351,6 +354,22 @@ class PointOfSales extends Component {
                 </DialogContent>
             </Dialog>
 
+            <Dialog
+                fullWidth={true}
+                maxWidth={"md"}
+                open={this.state.showChangeDialog}
+                onClose={(e)=>{
+                    this.setState({showChangeDialog: false})
+                }}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogContent>
+                    <ChangePage 
+                        change={this.state.change} />
+                </DialogContent>
+            </Dialog>
+
             <SimpleDialog
                     open={this.state.showDialog}
                     title="Add New Product"
@@ -379,6 +398,7 @@ class PointOfSales extends Component {
 
         if (amountTendered >= total) {
             const change = amountTendered - total
+            this.setState({change: change})
 
             //create an array based on the products
             var productList = []
@@ -417,6 +437,7 @@ class PointOfSales extends Component {
                         discount: 0,
                         total: 0,
                         showPayDialog: false,
+                        showChangeDialog: true,
                     })
                 },
                 (err) =>{
