@@ -146,6 +146,7 @@ type ProductInventoryHistory {
   adjustmentId: ID # Not required. Changes can come from production
   productId: ID!
   produdctionId: ID # Not required. Changes can come from adjustment
+  saleId: ID # Not required. Changes can come from Sales
   storeId: ID!
   #TODO: Add UserId once the table is ready already
   #userId: ID!
