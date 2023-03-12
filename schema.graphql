@@ -196,7 +196,7 @@ type User {
   username: String!
   password: String!
   #email: String!
-  defaultPassword: Boolean! # True - default password
+  defaultPassword: String # set for default; empty if password has been set already
 }
 
 type UserLoginPayload {
