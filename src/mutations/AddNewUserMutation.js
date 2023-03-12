@@ -10,17 +10,19 @@ const mutation = graphql`
         addNewUser(user: $user) {
             id,
             employeeId,
+            username,
             access,
         }
     }
     `
 
 // 3
-export default (employeeId, access, onSuccessCallback, onErrorCallback) => {
+export default (employeeId, username, access, onSuccessCallback, onErrorCallback) => {
 // 4
     const variables = {
         user: {
             employeeId,
+            username,
             access,
         },
     }
@@ -31,8 +33,8 @@ export default (employeeId, access, onSuccessCallback, onErrorCallback) => {
                         mutation,
                         variables,
                         // 6
-                        onCompleted: () => {
-                            onSuccessCallback()
+                        onCompleted: (response, errors) => {
+                            onSuccessCallback(response, errors)
                             },
                         onError: err => {
                                 onErrorCallback(err)

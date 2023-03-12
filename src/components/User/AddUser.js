@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import Box from "@mui/material/Box"
 import { Button, FormControl, 
-    InputLabel, Select, MenuItem } from "@mui/material";
+    InputLabel, Select, MenuItem, TextField } from "@mui/material";
 import SimpleDialog from "../SimpleDialog";
 import AddUserEmployeeListPage from "./AddUserEmployeeListPage";
 import AddNewUserMutation from "../../mutations/AddNewUserMutation"
@@ -11,8 +11,10 @@ class AddUser extends Component {
     state = {
         employeeId: '',
         access: '',
+        username: '',
         showDialog: false,
         showErrorDialog: false,
+        showErrorContent: '',
     };
 
     setEmployeeId=(val) => {
@@ -35,6 +37,15 @@ class AddUser extends Component {
             >
                 <div>
                     <AddUserEmployeeListPage employeeId={this.state.employeeId} onEmployeeChange={this.setEmployeeId} />
+                </div>
+                <div>
+                    <TextField 
+                        id="outlined-basic" 
+                        label="Username" 
+                        variant="outlined" 
+                        value={this.state.username}
+                        onChange={(e) => this.setState({ username: e.target.value })} 
+                        />
                 </div>
                 
                 <div>
@@ -70,7 +81,7 @@ class AddUser extends Component {
                 <SimpleDialog
                     open={this.state.showErrorDialog}
                     title="Add New User"
-                    content={"Failed to add new user." + this.state.showErrorContent}
+                    content={"Failed to add new user: " + this.state.showErrorContent}
                     onClose={()=>{
                         this.setState({showErrorDialog: false})
                     }}
@@ -83,19 +94,32 @@ class AddUser extends Component {
 
 
     addNewUser = () => {
-        const {employeeId, access} = this.state
+        const {employeeId, username, access} = this.state
         AddNewUserMutation(
             employeeId,
+            username,
             access, 
-            ()=>{
-                console.log("Add new user successful.");
-                // Prompt the user of successful addition of product
-                this.setState({showDialog: true});
-                // Clean up the form
-                this.setState({
-                    employeeId: '',
-                    access: '',
-                })
+            (response, err)=>{
+                console.log(response)
+                console.log(err)
+
+                if (err != null) {
+                    console.log(err)
+                    this.setState({showErrorDialog: true, showErrorContent: err[0].message});
+                } else {
+                    console.log("Add new user successful.");
+                    // Prompt the user of successful addition of user
+                    // Clean up the form
+                    this.setState({
+                        employeeId: '',
+                        access: '',
+                        username: '',
+                        showDialog: true
+                    })
+                }
+
+
+                
 
             }, (err) => {
                 console.log(err)

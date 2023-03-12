@@ -195,7 +195,7 @@ type User {
   access: String!
   username: String!
   password: String!
-  email: String!
+  #email: String!
   defaultPassword: Boolean! # True - default password
 }
 
@@ -379,8 +379,6 @@ input NewUser {
   employeeId: ID!
   access: String!
   username: String!
-  password: String!
-  email: String!
 }
 
 input UserLogin {
