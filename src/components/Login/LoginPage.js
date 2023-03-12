@@ -52,6 +52,8 @@ class LoginPage extends Component {
                     <OutlinedInput
                         id="outlined-adornment-password"
                         type={this.state.showPassword ? 'text' : 'password'}
+                        value={this.state.password}
+                        onChange={(e)=> this.setState({ password: e.target.value })}
                         endAdornment={
                         <InputAdornment position="end">
                             <IconButton
