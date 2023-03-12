@@ -110,6 +110,7 @@ export default function NavigationBar() {
     }
 
     const userId = localStorage.getItem(BCMS_USER_ID)
+    const isAuthenticated = localStorage.getItem(BCMS_USER_ID) != null
 
     return (
         <div>
@@ -119,15 +120,18 @@ export default function NavigationBar() {
             >
                 Home
             </Button>
-            <Button
-                id="basic-button"
-                aria-controls={openProduct ? 'basic-menu' : undefined}
-                aria-haspopup="true"
-                aria-expanded={openProduct ? 'true' : undefined}
-                onClick={handleProductClick}
-            >
-                Product
-            </Button>
+            {isAuthenticated && 
+            
+                <Button
+                    id="basic-button"
+                    aria-controls={openProduct ? 'basic-menu' : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={openProduct ? 'true' : undefined}
+                    onClick={handleProductClick}
+                >
+                    Product
+                </Button>
+            }
             <Menu
                 id="basic-menu"
                 anchorEl={prodEl}
@@ -141,18 +145,24 @@ export default function NavigationBar() {
                 <MenuItem onClick={addNewProduct}>Add New Product</MenuItem>
                 <MenuItem onClick={newProduction}>New Production</MenuItem>
             </Menu>
-            <Button
+            
+            {isAuthenticated &&
+                <Button
                 id="basic-button"
                 onClick={pointofsales}
-            >
-                Point-of-Sales
-            </Button>
-            <Button
-                id="basic-button"
-                onClick={handleStoreClick}
-            >
-                Stores
-            </Button>
+                >
+                    Point-of-Sales
+                </Button>
+            }
+            {isAuthenticated &&
+                <Button
+                    id="basic-button"
+                    onClick={handleStoreClick}
+                >
+                    Stores
+                </Button>
+            }
+            
             <Menu
                 id="basic-menu"
                 anchorEl={storeEl}
@@ -165,18 +175,22 @@ export default function NavigationBar() {
                 <MenuItem onClick={listStores}>Store List</MenuItem>
                 <MenuItem onClick={addNewStore}>Add New Store</MenuItem>
             </Menu>
-            <Button
-                id="basic-button"
-                onClick={reports}
-            >
-                Reports
-            </Button>
-            <Button
-                id="basic-button"
-                onClick={handleEmployeeClick}
-            >
-                Employee
-            </Button>
+            {isAuthenticated &&
+                <Button
+                    id="basic-button"
+                    onClick={reports}
+                >
+                    Reports
+                </Button>
+            }
+            {isAuthenticated &&
+                <Button
+                    id="basic-button"
+                    onClick={handleEmployeeClick}
+                >
+                    Employee
+                </Button>
+            }
             <Menu
                 id="basic-menu"
                 anchorEl={employeeEl}
@@ -192,16 +206,7 @@ export default function NavigationBar() {
                 <MenuItem onClick={addEmployeeEmergencyContact}>Add Employee Emergency Contact</MenuItem>
                 <MenuItem onClick={addNewUser}>Add New User</MenuItem>
             </Menu>
-
-            {userId ?
-                // <div className='ml1 pointer black' 
-                //     onClick={() => {
-                //         localStorage.removeItem(BCMS_USER_ID)
-                //         localStorage.removeItem(BCMS_AUTH_TOKEN)
-                //         this.props.history.push(`/`)
-                //   }}>Logout</div>
-                //   :
-                // <Link to={"/login"}>Login</Link>
+            {isAuthenticated ?
                 <Button
                     id="basic-button"
                     onClick={logoutUser}
@@ -216,6 +221,8 @@ export default function NavigationBar() {
                     Login
                 </Button>
             }
+            
+            
 
         </div>
     );

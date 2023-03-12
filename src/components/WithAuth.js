@@ -6,7 +6,6 @@ const withAuth = (Component) => {
   return class extends React.Component {
     render() {
       const isAuthenticated = localStorage.getItem(BCMS_USER_ID) != null
-      console.log("isAuthenticated: ", isAuthenticated)
       if (!isAuthenticated) {
         return <Navigate to="/login" />;
       }
