@@ -9,7 +9,7 @@ import Switch from "@mui/material/Switch"
 // import AddNewStoreMutation from "../../mutations/AddNewStoreMutation";
 import LogInUserMutation from "../../mutations/LogInUserMutation"
 import SimpleDialog from "../SimpleDialog";
-import {BCMS_AUTH_TOKEN, BCMS_USER_ID} from "../../constants"
+import {BCMS_AUTH_TOKEN, BCMS_USER_ID, BCMS_USER_EMPLOYEE_ID, BCMS_USER_ACCESS} from "../../constants"
 import { useNavigate } from "react-router-dom";
 
 function LoginPage (props){
@@ -31,8 +31,8 @@ function LoginPage (props){
         LogInUserMutation(
             username,
             password,
-            (id, token)=>{
-                saveUserData(id, token)
+            (id, token, employeeId, access)=>{
+                saveUserData(id, token, employeeId, access)
                 navigate("/")
             }, (err) => {
                 // snackbar if the user is not authorized
@@ -40,9 +40,11 @@ function LoginPage (props){
             })
     }
 
-    const saveUserData = (id, token) => {
+    const saveUserData = (id, token, employeeId, access) => {
         localStorage.setItem(BCMS_USER_ID, id)
         localStorage.setItem(BCMS_AUTH_TOKEN, token)
+        localStorage.setItem(BCMS_USER_EMPLOYEE_ID, employeeId)
+        localStorage.setItem(BCMS_USER_ACCESS, access)
    }
 
     return(

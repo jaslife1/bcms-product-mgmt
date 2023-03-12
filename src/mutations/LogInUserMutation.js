@@ -11,6 +11,8 @@ const mutation = graphql`
            token,
            user {
                id
+               employeeId
+               access
            }
         }
     }
@@ -36,7 +38,9 @@ export default (username, password, onSuccessCallback, onErrorCallback) => {
                             if (err == null) {
                                 const id = response.loginUser.user.id
                                 const token = response.loginUser.token
-                                onSuccessCallback(id, token)
+                                const employeeId = response.loginUser.user.employeeId
+                                const access = response.loginUser.user.access
+                                onSuccessCallback(id, token, employeeId, access)
                             } else {
                                 onErrorCallback(err)
                             }

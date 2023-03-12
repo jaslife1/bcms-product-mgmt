@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { Link, useNavigate } from "react-router-dom";
-import { BCMS_USER_ID, BCMS_AUTH_TOKEN } from "../constants";
+import { BCMS_USER_ID, BCMS_AUTH_TOKEN, BCMS_USER_EMPLOYEE_ID, BCMS_USER_ACCESS } from "../constants";
 
 export default function NavigationBar() {
     const [prodEl, setProdEl] = React.useState(null);
@@ -106,11 +106,13 @@ export default function NavigationBar() {
         handleClose()
         localStorage.removeItem(BCMS_USER_ID)
         localStorage.removeItem(BCMS_AUTH_TOKEN)
+        localStorage.removeItem(BCMS_USER_EMPLOYEE_ID)
+        localStorage.removeItem(BCMS_USER_ACCESS)
         navigate("/logout")
     }
 
-    const userId = localStorage.getItem(BCMS_USER_ID)
     const isAuthenticated = localStorage.getItem(BCMS_USER_ID) != null
+    const isUserAdmin = localStorage.getItem(BCMS_USER_ACCESS) != null && (localStorage.getItem(BCMS_USER_ACCESS) == "Admin" || localStorage.getItem(BCMS_USER_ACCESS) == "Super Admin")
 
     return (
         <div>
@@ -120,7 +122,7 @@ export default function NavigationBar() {
             >
                 Home
             </Button>
-            {isAuthenticated && 
+            {isAuthenticated && isUserAdmin &&
             
                 <Button
                     id="basic-button"
@@ -154,7 +156,7 @@ export default function NavigationBar() {
                     Point-of-Sales
                 </Button>
             }
-            {isAuthenticated &&
+            {isAuthenticated && isUserAdmin &&
                 <Button
                     id="basic-button"
                     onClick={handleStoreClick}
@@ -175,7 +177,7 @@ export default function NavigationBar() {
                 <MenuItem onClick={listStores}>Store List</MenuItem>
                 <MenuItem onClick={addNewStore}>Add New Store</MenuItem>
             </Menu>
-            {isAuthenticated &&
+            {isAuthenticated && isUserAdmin &&
                 <Button
                     id="basic-button"
                     onClick={reports}
@@ -183,7 +185,7 @@ export default function NavigationBar() {
                     Reports
                 </Button>
             }
-            {isAuthenticated &&
+            {isAuthenticated && isUserAdmin &&
                 <Button
                     id="basic-button"
                     onClick={handleEmployeeClick}
