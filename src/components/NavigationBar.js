@@ -97,6 +97,18 @@ export default function NavigationBar() {
         navigate("/adduser")
     }
 
+    const loginUser = () => {
+        handleClose()
+        navigate("/login")
+    }
+
+    const logoutUser = () => {
+        handleClose()
+        localStorage.removeItem(BCMS_USER_ID)
+        localStorage.removeItem(BCMS_AUTH_TOKEN)
+        navigate("/logout")
+    }
+
     const userId = localStorage.getItem(BCMS_USER_ID)
 
     return (
@@ -182,14 +194,27 @@ export default function NavigationBar() {
             </Menu>
 
             {userId ?
-                <div className='ml1 pointer black' 
-                    onClick={() => {
-                        localStorage.removeItem(BCMS_USER_ID)
-                        localStorage.removeItem(BCMS_AUTH_TOKEN)
-                        this.props.history.push(`/`)
-                  }}>Logout</div>
-                  :
-                <Link to={"/login"}>Login</Link>
+                // <div className='ml1 pointer black' 
+                //     onClick={() => {
+                //         localStorage.removeItem(BCMS_USER_ID)
+                //         localStorage.removeItem(BCMS_AUTH_TOKEN)
+                //         this.props.history.push(`/`)
+                //   }}>Logout</div>
+                //   :
+                // <Link to={"/login"}>Login</Link>
+                <Button
+                    id="basic-button"
+                    onClick={logoutUser}
+                >
+                    Logout
+                </Button>
+                :
+                <Button
+                    id="basic-button"
+                    onClick={loginUser}
+                >
+                    Login
+                </Button>
             }
 
         </div>

@@ -32,7 +32,7 @@ export default (username, password, onSuccessCallback, onErrorCallback) => {
                         mutation,
                         variables,
                         // 6
-                        onCompleted: (response) => {
+                        onCompleted: (response, err) => {
                             const id = response.loginUser.user.id
                             const token = response.loginUser.token
                             onSuccessCallback(id, token)
