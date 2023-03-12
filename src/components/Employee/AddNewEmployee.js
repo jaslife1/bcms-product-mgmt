@@ -478,7 +478,7 @@ class AddNewEmployee extends Component {
                     tinNumber: '',
                     position: '',
                     salary: '',
-                    store: '',
+                    storeId: '',
                     type: '',
                     dateHired: '',
                     active: true,
