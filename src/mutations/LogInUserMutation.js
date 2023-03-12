@@ -33,10 +33,14 @@ export default (username, password, onSuccessCallback, onErrorCallback) => {
                         variables,
                         // 6
                         onCompleted: (response, err) => {
-                            const id = response.loginUser.user.id
-                            const token = response.loginUser.token
-                            onSuccessCallback(id, token)
-                            },
+                            if (err == null) {
+                                const id = response.loginUser.user.id
+                                const token = response.loginUser.token
+                                onSuccessCallback(id, token)
+                            } else {
+                                onErrorCallback(err)
+                            }
+                        },
                         onError: err => {
                                 onErrorCallback(err)
                             },
