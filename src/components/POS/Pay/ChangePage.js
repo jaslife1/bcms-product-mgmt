@@ -6,6 +6,7 @@ FormLabel, FormGroup, FormControlLabel, FormHelperText, Switch, Select, MenuItem
 //import addNewSaleMutation from "../../mutations/addNewSaleMutation";
 import SimpleDialog from "../../SimpleDialog";
 import Grid from '@mui/material/Unstable_Grid2';
+import withAuth from "../../WithAuth";
 
 class ChangePage extends Component {
 
@@ -39,4 +40,4 @@ ChangePage.propTypes = {
     
   };
 
-export default ChangePage;
+export default withAuth(ChangePage);

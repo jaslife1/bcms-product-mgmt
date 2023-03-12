@@ -4,6 +4,7 @@ import {
     graphql
 } from 'react-relay'
 import {FormControl, InputLabel, Select, MenuItem} from '@mui/material'
+import withAuth from "../WithAuth";
 
 
 
@@ -34,7 +35,7 @@ class AddProductionProduct extends Component {
     }
 }
 
-export default createFragmentContainer(AddProductionProduct, {
+export default createFragmentContainer(withAuth(AddProductionProduct), {
     viewer: graphql`
         fragment AddProductionProduct_viewer on Viewer{
             allProducts(last:100) @connection(key: "AddProductionProduct_allProducts", filters: []) {

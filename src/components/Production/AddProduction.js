@@ -5,6 +5,7 @@ FormLabel, FormGroup, FormControlLabel, FormHelperText, Switch } from "@mui/mate
 import AddNewProductionMutation from "../../mutations/AddNewProductionMutation";
 import SimpleDialog from "../SimpleDialog";
 import AddProductionProductList from "./AddProductionProductList";
+import withAuth from "../WithAuth";
 
 class AddProduction extends Component {
 
@@ -109,4 +110,4 @@ class AddProduction extends Component {
 
 }
 
-export default AddProduction;
+export default withAuth(AddProduction);

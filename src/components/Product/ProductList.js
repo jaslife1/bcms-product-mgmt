@@ -12,6 +12,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
+import withAuth from "../WithAuth";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -58,7 +59,7 @@ class ProductList extends Component {
     }
 }
 
-export default createFragmentContainer(ProductList, {
+export default createFragmentContainer(withAuth(ProductList), {
     viewer: graphql`
         fragment ProductList_viewer on Viewer @argumentDefinitions(filter: {type: ProductFilter}){
             allProducts(filter: $filter, last:100) @connection(key: "ProductList_allProducts", filters: []) {

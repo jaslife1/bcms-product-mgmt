@@ -6,6 +6,7 @@ FormLabel, FormGroup, FormControlLabel, FormHelperText, Switch, Select, MenuItem
 //import addNewSaleMutation from "../../mutations/addNewSaleMutation";
 import SimpleDialog from "../../SimpleDialog";
 import Grid from '@mui/material/Unstable_Grid2';
+import withAuth from "../../WithAuth";
 
 class PayWithCash extends Component {
 
@@ -82,4 +83,4 @@ PayWithCash.propTypes = {
     
   };
 
-export default PayWithCash;
+export default withAuth(PayWithCash);

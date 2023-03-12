@@ -6,6 +6,7 @@ import {
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import { styled } from '@mui/material/styles';
+import withAuth from "../WithAuth";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -45,7 +46,7 @@ class Store extends Component {
 
 }
 
-export default createFragmentContainer(Store, {
+export default createFragmentContainer(withAuth(Store), {
     store: graphql`
         fragment Store_store on Store {
             id

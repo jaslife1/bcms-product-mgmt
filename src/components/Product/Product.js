@@ -11,6 +11,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import SaveIcon  from "@mui/icons-material/Save";
 import SimpleDialog from "../SimpleDialog";
 import AdjustProductQuantityMutation from "../../mutations/AdjustProductQuantityMutation";
+import withAuth from "../WithAuth";
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -140,7 +141,7 @@ class Product extends Component {
 
 }
 
-export default createFragmentContainer(Product, {
+export default createFragmentContainer(withAuth(Product), {
     product: graphql`
         fragment Product_productList on ProductList {
               product {

@@ -6,6 +6,7 @@ import { TextField, Button, FormControl,
 import Switch from "@mui/material/Switch"
 import AddNewStoreMutation from "../../mutations/AddNewStoreMutation";
 import SimpleDialog from "../SimpleDialog";
+import withAuth from "../WithAuth";
 
 class AddStore extends Component {
 
@@ -207,4 +208,4 @@ class AddStore extends Component {
 
 }
 
-export default AddStore;
+export default withAuth(AddStore);

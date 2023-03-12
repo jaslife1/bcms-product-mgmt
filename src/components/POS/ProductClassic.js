@@ -5,6 +5,7 @@ import {
 } from 'react-relay'
 import Grid from '@mui/material/Unstable_Grid2';
 import ProductItem from "./ProductItem";
+import withAuth from "../WithAuth";
 
 class ProductClassic extends Component {
 
@@ -25,7 +26,7 @@ class ProductClassic extends Component {
     }
 }
 
-export default createFragmentContainer(ProductClassic, {
+export default createFragmentContainer(withAuth(ProductClassic), {
     viewer: graphql`
         fragment ProductClassic_viewer on Viewer @argumentDefinitions(filter: {type: ProductFilter}){
             allProducts(filter: $filter, last:100) @connection(key: "ProductClassic_allProducts", filters: []) {

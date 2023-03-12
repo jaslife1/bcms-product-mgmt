@@ -5,6 +5,7 @@ import { Button, FormControl,
 import SimpleDialog from "../SimpleDialog";
 import AddUserEmployeeListPage from "./AddUserEmployeeListPage";
 import AddNewUserMutation from "../../mutations/AddNewUserMutation"
+import withAuth from "../WithAuth";
 
 class AddUser extends Component {
 
@@ -130,4 +131,4 @@ class AddUser extends Component {
 
 }
 
-export default AddUser;
+export default withAuth(AddUser);

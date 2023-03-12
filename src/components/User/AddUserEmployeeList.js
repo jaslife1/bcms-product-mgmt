@@ -4,6 +4,7 @@ import {
     graphql
 } from 'react-relay'
 import {FormControl, InputLabel, Select, MenuItem} from '@mui/material'
+import withAuth from "../WithAuth";
 
 
 
@@ -38,7 +39,7 @@ class AddUserEmployeeList extends Component {
     }
 }
 
-export default createFragmentContainer(AddUserEmployeeList, {
+export default createFragmentContainer(withAuth(AddUserEmployeeList), {
     viewer: graphql`
         fragment AddUserEmployeeList_viewer on Viewer @argumentDefinitions(filter: {type: EmployeeFilter}){
             allEmployees(filter: $filter, last:100) @connection(key: "AddUserEmployeeList_allEmployees", filters: []) {

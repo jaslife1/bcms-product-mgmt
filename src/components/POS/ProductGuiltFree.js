@@ -5,6 +5,7 @@ import {
 } from 'react-relay'
 import Grid from '@mui/material/Unstable_Grid2';
 import ProductItem from "./ProductItem";
+import withAuth from "../WithAuth";
 
 class ProductGuiltFree extends Component {
 
@@ -34,7 +35,7 @@ class ProductGuiltFree extends Component {
     }
 }
 
-export default createFragmentContainer(ProductGuiltFree, {
+export default createFragmentContainer(withAuth(ProductGuiltFree), {
     viewer: graphql`
         fragment ProductGuiltFree_viewer on Viewer @argumentDefinitions(filter: {type: ProductFilter}){
             allProducts(filter: $filter, last:100) @connection(key: "ProductGuiltFree_allProducts", filters: []) {

@@ -5,6 +5,7 @@ import {
 } from 'react-relay'
 import environment from "../../Environment";
 import ProductGuiltFree from "./ProductGuiltFree";
+import withAuth from "../WithAuth";
 
 const ProductGuiltFreePageQuery = graphql`
     query ProductGuiltFreePageQuery ($filter: ProductFilter) {
@@ -37,4 +38,4 @@ class ProductGuiltFreePage extends Component {
     }
 }
 
-export default ProductGuiltFreePage
+export default withAuth(ProductGuiltFreePage)

@@ -1,5 +1,6 @@
 
 import React, {Component} from "react";
+import withAuth from "./WithAuth"
 
 class Home extends Component {
 
@@ -13,4 +14,4 @@ class Home extends Component {
 
 }
 
-export default Home;
+export default withAuth(Home);

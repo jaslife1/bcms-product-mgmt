@@ -1,8 +1,7 @@
 import logo from '../logo.svg';
 import '../styles/App.css';
 import React from 'react';
-import { Route, Routes } from "react-router-dom";
-//import { useHistory } from "react-router"
+import { Route, Routes, Navigate } from "react-router-dom";
 
 import AddProduct from './Product/AddProduct';
 import ProductListPage from './Product/ProductListPage';
@@ -14,9 +13,10 @@ import AddUser from './User/AddUser';
 import AddProduction from './Production/AddProduction';
 import PointOfSales from './POS/PointOfSales';
 import LoginPage from './Login/LoginPage';
+import withAuth from './WithAuth';
+import { BCMS_USER_ID } from '../constants';
 
 export default function App () {
-  //const history = useHistory()
   return (
     <div>
       <Routes>
@@ -29,8 +29,8 @@ export default function App () {
         <Route path="/adduser" element={<AddUser />} />
         <Route path="/addproduction" element={<AddProduction />} />
         <Route path="/pointofsales" element={<PointOfSales />} />
+        {/* <Route path="/pointofsales" element={<Navigate to={isAuthenticated ? "/pointofsales" : "/login"} />} /> */}
         <Route path='/login' element={<LoginPage />} />
-        {/*Add edit of quantity for product */}
       </Routes>
     </div>
   );

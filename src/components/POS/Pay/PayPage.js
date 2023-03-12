@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 // import SimpleDialog from "../SimpleDialog";
 // import Grid from '@mui/material/Unstable_Grid2';
 import PayWithCash from "./PayWithCash";
+import withAuth from "../../WithAuth";
 
 class PayPage extends Component {
 
@@ -20,4 +21,4 @@ PayPage.propTypes = {
     addNewSale: PropTypes.func.isRequired,
   };
 
-export default PayPage;
+export default withAuth(PayPage);

@@ -10,6 +10,7 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
 import { styled } from '@mui/material/styles';
 import AddNewEmployeeMutation from "../../mutations/AddNewEmployeeMutation";
+import withAuth from "../WithAuth";
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -493,4 +494,4 @@ class AddNewEmployee extends Component {
 
 }
 
-export default AddNewEmployee;
+export default withAuth(AddNewEmployee);

@@ -16,6 +16,7 @@ import ProductGuiltFreePage from "./ProductGuiltFreePage";
 import PayPage from "./Pay/PayPage";
 import AddNewSaleMutation from "../../mutations/AddNewSaleMutation";
 import ChangePage from "./Pay/ChangePage";
+import withAuth from "../WithAuth";
 
 class PointOfSales extends Component {
 
@@ -475,4 +476,4 @@ class PointOfSales extends Component {
 
 }
 
-export default PointOfSales;
+export default withAuth(PointOfSales);

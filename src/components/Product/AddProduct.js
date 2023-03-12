@@ -5,6 +5,7 @@ FormLabel, FormGroup, FormControlLabel, FormHelperText, Switch, Select, MenuItem
 import AddNewProductMutation from "../../mutations/AddNewProductMutation";
 import SimpleDialog from "../SimpleDialog";
 import Grid from '@mui/material/Unstable_Grid2';
+import withAuth from "../WithAuth";
 
 class AddProduct extends Component {
 
@@ -217,4 +218,4 @@ class AddProduct extends Component {
 
 }
 
-export default AddProduct;
+export default withAuth(AddProduct);

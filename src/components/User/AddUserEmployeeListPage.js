@@ -5,6 +5,7 @@ import {
 } from 'react-relay'
 import environment from "../../Environment";
 import AddUserEmployeeList from "./AddUserEmployeeList";
+import withAuth from "../WithAuth";
 
 const AddUserEmployeeListPageQuery = graphql`
     query AddUserEmployeeListPageQuery ($filter: EmployeeFilter) {
@@ -35,4 +36,4 @@ class AddUserEmployeeListPage extends Component {
     }
 }
 
-export default AddUserEmployeeListPage
+export default withAuth(AddUserEmployeeListPage)
