@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<1a7052af98cb3e49666cc15bab434504>>
+ * @generated SignedSource<<a437f965bdcbbd6cb93a46b58d462fe1>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,12 +11,25 @@
 var node = (function(){
 var v0 = [
   {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "filter"
+  }
+],
+v1 = {
+  "kind": "Variable",
+  "name": "filter",
+  "variableName": "filter"
+},
+v2 = [
+  (v1/*: any*/),
+  {
     "kind": "Literal",
     "name": "last",
     "value": 100
   }
 ],
-v1 = {
+v3 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
@@ -25,7 +38,7 @@ v1 = {
 };
 return {
   "fragment": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
     "name": "AddUserEmployeeListPageQuery",
@@ -39,7 +52,9 @@ return {
         "plural": false,
         "selections": [
           {
-            "args": null,
+            "args": [
+              (v1/*: any*/)
+            ],
             "kind": "FragmentSpread",
             "name": "AddUserEmployeeList_viewer"
           }
@@ -52,7 +67,7 @@ return {
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
     "name": "AddUserEmployeeListPageQuery",
     "selections": [
@@ -66,7 +81,7 @@ return {
         "selections": [
           {
             "alias": null,
-            "args": (v0/*: any*/),
+            "args": (v2/*: any*/),
             "concreteType": "EmployeeConnection",
             "kind": "LinkedField",
             "name": "allEmployees",
@@ -88,7 +103,7 @@ return {
                     "name": "node",
                     "plural": false,
                     "selections": [
-                      (v1/*: any*/),
+                      (v3/*: any*/),
                       {
                         "alias": null,
                         "args": null,
@@ -174,34 +189,34 @@ return {
                 "storageKey": null
               }
             ],
-            "storageKey": "allEmployees(last:100)"
+            "storageKey": null
           },
           {
             "alias": null,
-            "args": (v0/*: any*/),
+            "args": (v2/*: any*/),
             "filters": [],
             "handle": "connection",
             "key": "AddUserEmployeeList_allEmployees",
             "kind": "LinkedHandle",
             "name": "allEmployees"
           },
-          (v1/*: any*/)
+          (v3/*: any*/)
         ],
         "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "79cb0a64fea32f219322d53a3b6eea18",
+    "cacheID": "e9183240c2503c013ab67cee61ffafef",
     "id": null,
     "metadata": {},
     "name": "AddUserEmployeeListPageQuery",
     "operationKind": "query",
-    "text": "query AddUserEmployeeListPageQuery {\n  viewer {\n    ...AddUserEmployeeList_viewer\n    id\n  }\n}\n\nfragment AddUserEmployeeList_viewer on Viewer {\n  allEmployees(last: 100) {\n    edges {\n      node {\n        id\n        personalInformation {\n          firstName\n          middleName\n          lastName\n          extensionName\n        }\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n"
+    "text": "query AddUserEmployeeListPageQuery(\n  $filter: EmployeeFilter\n) {\n  viewer {\n    ...AddUserEmployeeList_viewer_Vt7Yj\n    id\n  }\n}\n\nfragment AddUserEmployeeList_viewer_Vt7Yj on Viewer {\n  allEmployees(filter: $filter, last: 100) {\n    edges {\n      node {\n        id\n        personalInformation {\n          firstName\n          middleName\n          lastName\n          extensionName\n        }\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n"
   }
 };
 })();
 
-node.hash = "62d0801fe1a9f3a78bfc388c38bc65af";
+node.hash = "e02da85dcd38022987e80dee18d93034";
 
 module.exports = node;

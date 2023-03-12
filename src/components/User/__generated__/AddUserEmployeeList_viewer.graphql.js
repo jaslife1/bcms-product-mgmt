@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<6fa40d75cd8ecd6f7778b54c8d1b4dfb>>
+ * @generated SignedSource<<ff6103bc09e4d519662ba41272e56b1d>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,7 +9,13 @@
 'use strict';
 
 var node = {
-  "argumentDefinitions": [],
+  "argumentDefinitions": [
+    {
+      "defaultValue": null,
+      "kind": "LocalArgument",
+      "name": "filter"
+    }
+  ],
   "kind": "Fragment",
   "metadata": {
     "connection": [
@@ -148,6 +154,6 @@ var node = {
   "abstractKey": null
 };
 
-node.hash = "849686e8ec2429cd4ba14520cdd97235";
+node.hash = "c86b9340fbf78ea00eb36c7dda3b3573";
 
 module.exports = node;

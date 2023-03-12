@@ -40,8 +40,8 @@ class AddUserEmployeeList extends Component {
 
 export default createFragmentContainer(AddUserEmployeeList, {
     viewer: graphql`
-        fragment AddUserEmployeeList_viewer on Viewer{
-            allEmployees(last:100) @connection(key: "AddUserEmployeeList_allEmployees", filters: []) {
+        fragment AddUserEmployeeList_viewer on Viewer @argumentDefinitions(filter: {type: EmployeeFilter}){
+            allEmployees(filter: $filter, last:100) @connection(key: "AddUserEmployeeList_allEmployees", filters: []) {
                 edges {
                     node {
                             id
