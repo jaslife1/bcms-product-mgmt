@@ -1,3 +1,5 @@
+import { BCMS_AUTH_TOKEN } from './constants'
+
 // Import modules needed to instantiate and configure Relay environment
 const {
     Environment,
@@ -8,6 +10,7 @@ const {
   
   // Instantiate Store for cache data
   const store = new Store(new RecordSource())
+  const token  = localStorage.getItem(BCMS_AUTH_TOKEN)
   
   // Create network that knows the GraphQL server. Returns a promise
   const network = Network.create((operation, variables) => {
@@ -16,7 +19,8 @@ const {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify({
         query: operation.text,

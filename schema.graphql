@@ -193,6 +193,16 @@ type User {
   id: ID!
   employeeId: ID!
   access: String!
+  username: String!
+  password: String!
+  email: String!
+  defaultPassword: Boolean! # True - default password
+}
+
+type UserLoginPayload {
+  token: String
+  user: User
+  viewer: Viewer!
 }
 
 # Contains all the INPUT type
@@ -368,6 +378,14 @@ input NewStore {
 input NewUser {
   employeeId: ID!
   access: String!
+  username: String!
+  password: String!
+  email: String!
+}
+
+input UserLogin {
+  username: String!
+  password: String!
 }
 
 # Information about pagination in a connection.
@@ -483,4 +501,6 @@ type Mutation {
   adjustProductQuantity(adjustment: NewAdjustment!) : Adjustment!
   addNewOrderTransaction(newOrder: NewOrderTransaction!) : OrderTransaction!
   addNewSale(sale: NewSale!) : Sale!
+
+  loginUser(user: UserLogin!) : UserLoginPayload!
 }
