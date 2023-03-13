@@ -6,26 +6,23 @@ import {
 
   // 2
 const mutation = graphql`
-    mutation LogInUserMutation($user: UserLogin!) {
-        loginUser(user: $user) {
-           token,
-           user {
+    mutation ChangePasswordMutation($newPassword: ChangePassword!) {
+        changePassword(newPassword: $newPassword) {
                id
                employeeId
                access
-               defaultPassword
-           }
         }
     }
     `
 
 // 3
-export default (username, password, onSuccessCallback, onErrorCallback) => {
+export default (userId, newPassword, onSuccessCallback, onErrorCallback) => {
 // 4
+    console.log("ChagnePasswordMutataion: ", userId, newPassword)
     const variables = {
-        user: {
-            username,
-            password,
+        newPassword: {
+            userId,
+            newPassword,
         },
     }
 
@@ -37,12 +34,7 @@ export default (username, password, onSuccessCallback, onErrorCallback) => {
                         // 6
                         onCompleted: (response, err) => {
                             if (err == null) {
-                                const id = response.loginUser.user.id
-                                const token = response.loginUser.token
-                                const employeeId = response.loginUser.user.employeeId
-                                const access = response.loginUser.user.access
-                                const defaultPassword = response.loginUser.user.defaultPassword
-                                onSuccessCallback(id, token, employeeId, access, defaultPassword)
+                                onSuccessCallback(response, err)
                             } else {
                                 onErrorCallback(err)
                             }

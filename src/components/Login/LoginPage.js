@@ -31,9 +31,15 @@ function LoginPage (props){
         LogInUserMutation(
             username,
             password,
-            (id, token, employeeId, access)=>{
+            (id, token, employeeId, access, defaultPassword)=>{
+                console.log("defaultPassword: ", defaultPassword)
                 saveUserData(id, token, employeeId, access)
-                navigate("/")
+
+                if (defaultPassword !== "") {
+                    navigate("/changepassword")
+                } else {
+                    navigate("/")
+                }
             }, (err) => {
                 // snackbar if the user is not authorized
                 console.log(err)

@@ -207,6 +207,11 @@ type UserLoginPayload {
 
 # Contains all the INPUT type
 
+input ChangePassword {
+  newPassword: String!
+  userId: ID!
+}
+
 input NewAddress {
   address1: String!
   address2: String
@@ -501,4 +506,5 @@ type Mutation {
   addNewSale(sale: NewSale!) : Sale!
 
   loginUser(user: UserLogin!) : UserLoginPayload!
+  changePassword(newPassword: ChangePassword!) : User!
 }

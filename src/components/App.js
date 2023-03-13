@@ -15,6 +15,7 @@ import PointOfSales from './POS/PointOfSales';
 import LoginPage from './Login/LoginPage';
 import withAuth from './WithAuth';
 import { BCMS_USER_ID } from '../constants';
+import ChangePasswordPage from './Login/ChangePasswordPage';
 
 export default function App () {
   return (
@@ -31,6 +32,7 @@ export default function App () {
         <Route path="/pointofsales" element={<PointOfSales />} />
         {/* <Route path="/pointofsales" element={<Navigate to={isAuthenticated ? "/pointofsales" : "/login"} />} /> */}
         <Route path='/login' element={<LoginPage />} />
+        <Route path='/changepassword' element={<ChangePasswordPage />} />
       </Routes>
     </div>
   );
