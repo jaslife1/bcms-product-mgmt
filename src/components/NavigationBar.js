@@ -15,8 +15,7 @@ import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import AdbIcon from '@mui/icons-material/Adb';
 
-const pages = ['Home','Point Of Sales','Product','Stores & Bazaars','Supplies','Employee','Reports'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+
 
 export default function NavigationBar() {
     const [prodEl, setProdEl] = React.useState(null);
@@ -26,7 +25,6 @@ export default function NavigationBar() {
     const openProduct = Boolean(prodEl);
     const openStore = Boolean(storeEl);
     const openEmployee = Boolean(employeeEl);
-
 
     const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -86,12 +84,12 @@ export default function NavigationBar() {
         navigate("/addproduction")
     }
 
-    const pointofsales = () => {
+    const handlePointOfSalesClick = () => {
         handleClose()
         navigate("/pointofsales")
     }
 
-    const reports = () => {
+    const handleReportsClick = () => {
         handleClose()
         navigate("/reports")
     }
@@ -148,6 +146,20 @@ export default function NavigationBar() {
     const isAuthenticated = localStorage.getItem(BCMS_USER_ID) != null
     const isUserAdmin = localStorage.getItem(BCMS_USER_ACCESS) != null && (localStorage.getItem(BCMS_USER_ACCESS) == "Admin" || localStorage.getItem(BCMS_USER_ACCESS) == "Super Admin")
 
+
+    const pages = [ {name: 'Home', action: handleHomeClick},
+                    {name: 'Point Of Sales', action: handlePointOfSalesClick},
+                    {name: 'Product', action: handleProductClick},
+                    {name: 'Stores & Bazaars', action: handleStoreClick},
+                    {name: 'Supplies', action: handleHomeClick},
+                    {name: 'Employee', action: handleEmployeeClick},
+                    {name: 'Reports', action: handleReportsClick}];
+    const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+    const productSubmenu = []
+    const storeSubMenu = []
+    const employeeSubMenu = []
+
+
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
@@ -172,7 +184,7 @@ export default function NavigationBar() {
                         LOGO
                     </Typography>
 
-                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                    {/* <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
                         size="large"
                         aria-label="account of current user"
@@ -202,13 +214,18 @@ export default function NavigationBar() {
                         }}
                         >
                         {pages.map((page) => (
-                            <MenuItem key={page} onClick={handleCloseNavMenu}>
-                            <Typography textAlign="center">{page}</Typography>
+                            <MenuItem key={page.name} 
+                                // onClick={handleCloseNavMenu}
+                                onClick={page.action}
+                                >
+                            <Typography textAlign="center">
+                                {page.name}
+                                </Typography>
                             </MenuItem>
                         ))}
                         </Menu>
-                    </Box>
-                    <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+                    </Box> */}
+                    {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
                     <Typography
                         variant="h5"
                         noWrap
@@ -226,15 +243,16 @@ export default function NavigationBar() {
                         }}
                     >
                         LOGO
-                    </Typography>
+                    </Typography> */}
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
                         <Button
-                            key={page}
-                            onClick={handleCloseNavMenu}
+                            key={page.name}
+                            //onClick={handleCloseNavMenu}
+                            onClick={page.action}
                             sx={{ my: 2, color: 'white', display: 'block' }}
                         >
-                            {page}
+                            {page.name}
                         </Button>
                         ))}
                     </Box>
