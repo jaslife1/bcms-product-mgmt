@@ -18,13 +18,13 @@ import AdbIcon from '@mui/icons-material/Adb';
 
 
 export default function NavigationBar() {
-    const [prodEl, setProdEl] = React.useState(null);
-    const [storeEl, setStoreEl] = React.useState(null);
-    const [employeeEl, setEmployeeEl] = React.useState(null);
+    const [anchorProdEl, setAnchorProdEl] = React.useState(null);
+    const [anchorStoreEl, setAnchorStoreEl] = React.useState(null);
+    const [anchorEmployeeEl, setAnchorEmployeeEl] = React.useState(null);
 
-    const openProduct = Boolean(prodEl);
-    const openStore = Boolean(storeEl);
-    const openEmployee = Boolean(employeeEl);
+    const openProduct = Boolean(anchorProdEl);
+    const openStore = Boolean(anchorStoreEl);
+    const openEmployee = Boolean(anchorEmployeeEl);
 
     const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -52,21 +52,21 @@ export default function NavigationBar() {
         navigate("/")
     };
     const handleProductClick = (event) => {
-        setProdEl(event.currentTarget);
+        setAnchorProdEl(event.currentTarget);
     };
 
     const handleStoreClick = (event) => {
-        setStoreEl(event.currentTarget);
+        setAnchorStoreEl(event.currentTarget);
     }
 
     const handleEmployeeClick = (event)=> {
-        setEmployeeEl(event.currentTarget);
+        setAnchorEmployeeEl(event.currentTarget);
     }
 
     const handleClose = () => {
-        setProdEl(null);
-        setStoreEl(null);
-        setEmployeeEl(null);
+        setAnchorProdEl(null);
+        setAnchorStoreEl(null);
+        setAnchorEmployeeEl(null);
     };
 
     const addNewProduct = () => {
@@ -147,7 +147,7 @@ export default function NavigationBar() {
     const isUserAdmin = localStorage.getItem(BCMS_USER_ACCESS) != null && (localStorage.getItem(BCMS_USER_ACCESS) == "Admin" || localStorage.getItem(BCMS_USER_ACCESS) == "Super Admin")
 
 
-    const pages = [ {name: 'Home', action: handleHomeClick},
+    const adminMenu = [ {name: 'Home', action: handleHomeClick},
                     {name: 'Point Of Sales', action: handlePointOfSalesClick},
                     {name: 'Product', action: handleProductClick},
                     {name: 'Stores & Bazaars', action: handleStoreClick},
@@ -155,9 +155,16 @@ export default function NavigationBar() {
                     {name: 'Employee', action: handleEmployeeClick},
                     {name: 'Reports', action: handleReportsClick}];
     const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-    const productSubmenu = []
-    const storeSubMenu = []
-    const employeeSubMenu = []
+    const productSubmenu = [{name: 'Product List', action: listProducts},
+                        {name: 'Add New Product', action: addNewProduct},
+                        {name: 'Add New Production', action: newProduction}]
+    const storeSubMenu = [{name: 'Store List', action: listStores},
+                        {name: 'Add New Store', action: addNewStore}]
+    const employeeSubMenu = [{name: 'Employee List', action: listEmployees},
+                        {name: 'Add New Employee', action: addNewEmployee},
+                        {name: 'Add Employee Dependent', action: addEmployeeDepdendent},
+                        {name: 'Add Employee Emergency Contact', action: addEmployeeEmergencyContact},
+                        {name: 'Add New User', action: addNewUser}]
 
 
     return (
@@ -245,45 +252,129 @@ export default function NavigationBar() {
                         LOGO
                     </Typography> */}
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        {pages.map((page) => (
-                        <Button
-                            key={page.name}
-                            //onClick={handleCloseNavMenu}
-                            onClick={page.action}
-                            sx={{ my: 2, color: 'white', display: 'block' }}
-                        >
-                            {page.name}
-                        </Button>
+                        {adminMenu.map((page) => (
+                            <div key={page.name}>
+                                <Button
+                                    key={page.name}
+                                    //onClick={handleCloseNavMenu}
+                                    onClick={page.action}
+                                    sx={{ my: 2, color: 'white', display: 'block' }}
+                                >
+                                    {page.name}
+                                </Button>
+                                <Menu
+                                    sx={{ mt: '35px' }}
+                                    id="menu-productbar"
+                                    anchorEl={anchorProdEl}
+                                    anchorOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'left',
+                                    }}
+                                    keepMounted
+                                    transformOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'left',
+                                    }}
+                                    open={openProduct}
+                                    onClose={handleClose}
+                                >
+                                    {productSubmenu.map((subMenu) => (
+                                        <MenuItem
+                                            key={subMenu.name} 
+                                            onClick={subMenu.action}>
+                                                <Typography textAlign="center">
+                                                    {subMenu.name}
+                                                </Typography>
+                                        </MenuItem>
+                                    ))}
+                                </Menu>
+                                <Menu
+                                    sx={{ mt: '35px' }}
+                                    id="menu-storebar"
+                                    anchorEl={anchorStoreEl}
+                                    anchorOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'left',
+                                    }}
+                                    keepMounted
+                                    transformOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'left',
+                                    }}
+                                    open={openStore}
+                                    onClose={handleClose}
+                                >
+                                    {storeSubMenu.map((subMenu) => (
+                                        <MenuItem
+                                            key={subMenu.name} 
+                                            onClick={subMenu.action}>
+                                                <Typography textAlign="center">
+                                                    {subMenu.name}
+                                                </Typography>
+                                        </MenuItem>
+                                    ))}
+                                </Menu>
+                                <Menu
+                                    sx={{ mt: '35px' }}
+                                    id="menu-employeebar"
+                                    anchorEl={anchorEmployeeEl}
+                                    anchorOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'left',
+                                    }}
+                                    keepMounted
+                                    transformOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'left',
+                                    }}
+                                    open={openEmployee}
+                                    onClose={handleClose}
+                                >
+                                    {employeeSubMenu.map((subMenu) => (
+                                        <MenuItem
+                                            key={subMenu.name} 
+                                            onClick={subMenu.action}>
+                                                <Typography textAlign="center">
+                                                    {subMenu.name}
+                                                </Typography>
+                                        </MenuItem>
+                                    ))}
+                                </Menu>
+                            </div>
                         ))}
                     </Box>
 
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
-                        <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                            <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                        </IconButton>
+                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                            </IconButton>
                         </Tooltip>
                         <Menu
-                        sx={{ mt: '45px' }}
-                        id="menu-appbar"
-                        anchorEl={anchorElUser}
-                        anchorOrigin={{
-                            vertical: 'top',
-                            horizontal: 'right',
-                        }}
-                        keepMounted
-                        transformOrigin={{
-                            vertical: 'top',
-                            horizontal: 'right',
-                        }}
-                        open={Boolean(anchorElUser)}
-                        onClose={handleCloseUserMenu}
+                            sx={{ mt: '45px' }}
+                            id="menu-appbar"
+                            anchorEl={anchorElUser}
+                            anchorOrigin={{
+                                vertical: 'top',
+                                horizontal: 'right',
+                            }}
+                            keepMounted
+                            transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'right',
+                            }}
+                            open={Boolean(anchorElUser)}
+                            onClose={handleCloseUserMenu}
                         >
-                        {settings.map((setting) => (
-                            <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                            <Typography textAlign="center">{setting}</Typography>
-                            </MenuItem>
-                        ))}
+                            {settings.map((setting) => (
+                                <MenuItem 
+                                    key={setting} 
+                                    onClick={handleCloseUserMenu}>
+                                        <Typography textAlign="center">
+                                            {setting}
+                                        </Typography>
+                                </MenuItem>
+                            ))}
                         </Menu>
                     </Box>
                     </Toolbar>
@@ -309,7 +400,7 @@ export default function NavigationBar() {
             }
             <Menu
                 id="basic-menu"
-                anchorEl={prodEl}
+                anchorEl={anchorProdEl}
                 open={openProduct}
                 onClose={handleClose}
                 MenuListProps={{
@@ -340,7 +431,7 @@ export default function NavigationBar() {
             
             <Menu
                 id="basic-menu"
-                anchorEl={storeEl}
+                anchorEl={anchorStoreEl}
                 open={openStore}
                 onClose={handleClose}
                 MenuListProps={{
@@ -368,7 +459,7 @@ export default function NavigationBar() {
             }
             <Menu
                 id="basic-menu"
-                anchorEl={employeeEl}
+                anchorEl={anchorEmployeeEl}
                 open={openEmployee}
                 onClose={handleClose}
                 MenuListProps={{
