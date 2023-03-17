@@ -203,8 +203,8 @@ class PointOfSales extends Component {
                 
                 <Grid container spacing={2}>
                     <Grid xs={6}>
-                        <TableContainer component={Paper}>
-                            <Table sx={{ minWidth: 700 }} aria-label="spanning table">
+                        <TableContainer component={Paper} style={{maxHeight: 500, minHeight: 500}}>
+                            <Table sx={{ minWidth: 700 }} stickyHeader aria-label="spanning table sticky">
                                 <TableHead>
                                 <TableRow>
                                     <TableCell align="center" colSpan={3}>
@@ -228,20 +228,20 @@ class PointOfSales extends Component {
                                             <TableCell align="right">{this.ccyFormat(product[1].rowPrice)}</TableCell>
                                     </TableRow>
                                     ))}
-                                <TableRow>
+                                {/* <TableRow>
                                     <TableCell rowSpan={3} />
                                     <TableCell colSpan={2}>Subtotal</TableCell>
                                     <TableCell align="right">{this.ccyFormat(this.state.subtotal)}</TableCell>
                                 </TableRow>
                                 <TableRow>
                                     <TableCell colSpan={2}>Discount</TableCell>
-                                    {/* <TableCell align="right">{`${(this.TAX_RATE * 100).toFixed(0)} %`}</TableCell> */}
+                                    {/* <TableCell align="right">{`${(this.TAX_RATE * 100).toFixed(0)} %`}</TableCell> 
                                     <TableCell align="right">{this.ccyFormat(this.state.discount)}</TableCell>
                                 </TableRow>
                                 <TableRow>
                                     <TableCell colSpan={2}>Total</TableCell>
                                     <TableCell align="right">{this.ccyFormat(this.state.total)}</TableCell>
-                                </TableRow>
+                                </TableRow> */}
                                 </TableBody>
                             </Table>
                         </TableContainer>
