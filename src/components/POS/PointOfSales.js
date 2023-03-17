@@ -17,6 +17,8 @@ import PayPage from "./Pay/PayPage";
 import AddNewSaleMutation from "../../mutations/AddNewSaleMutation";
 import ChangePage from "./Pay/ChangePage";
 import withAuth from "../WithAuth";
+import { BCMS_USER_EMPLOYEE_NAME } from "../../constants";
+import TimeDate from "./TimeDate";
 
 class PointOfSales extends Component {
 
@@ -156,20 +158,29 @@ class PointOfSales extends Component {
     render() {
         return(
             <>
-            <h1>Point of Sales</h1>
+
+            {/* <h1>Point of Sales</h1> */}
             <Box 
                 sx={{ flexGrow: 1 }}
                 component="form"
                 noValidate
                 autoComplete="off"
             >
+                <Grid container spacing={12}>
+                    <Grid xs={8}>
+                        <h1>Point of Sales</h1>
+                    </Grid>
+                    <Grid xs={4}>
+                        <TimeDate />
+                    </Grid>
+                </Grid>
                 <Grid container spacing={6}>
                     <Grid xs={2}>
                         <Button variant="contained"
                             fullWidth={true}
                             onClick={this.button1Clicked}
                         >
-                            Scan Item
+                            Search Item
                         </Button>
                     </Grid>
                     <Grid xs={2}>
@@ -188,8 +199,8 @@ class PointOfSales extends Component {
                             Apply Discount
                         </Button>
                     </Grid>
-                    
                 </Grid>
+               
                 <Grid container spacing={2}>
                     <Grid xs={6}>
                     <TextField
@@ -206,12 +217,12 @@ class PointOfSales extends Component {
                         <TableContainer component={Paper} style={{maxHeight: 500, minHeight: 500}}>
                             <Table sx={{ minWidth: 700 }} stickyHeader aria-label="spanning table sticky">
                                 <TableHead>
-                                <TableRow>
+                                {/* <TableRow>
                                     <TableCell align="center" colSpan={3}>
                                     Details
                                     </TableCell>
                                     <TableCell align="right">Price</TableCell>
-                                </TableRow>
+                                </TableRow> */}
                                 <TableRow>
                                     <TableCell>Description</TableCell>
                                     <TableCell align="right">Qty.</TableCell>
