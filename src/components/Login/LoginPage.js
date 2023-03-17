@@ -10,7 +10,7 @@ import Switch from "@mui/material/Switch"
 // import AddNewStoreMutation from "../../mutations/AddNewStoreMutation";
 import LogInUserMutation from "../../mutations/LogInUserMutation"
 import SimpleDialog from "../SimpleDialog";
-import {BCMS_AUTH_TOKEN, BCMS_USER_ID, BCMS_USER_EMPLOYEE_ID, BCMS_USER_ACCESS} from "../../constants"
+import {BCMS_AUTH_TOKEN, BCMS_USER_ID, BCMS_USER_EMPLOYEE_ID, BCMS_USER_ACCESS, BCMS_USER_EMPLOYEE_NAME} from "../../constants"
 import { useNavigate } from "react-router-dom";
 
 function LoginPage (props){
@@ -33,9 +33,8 @@ function LoginPage (props){
             username,
             password,
             {code: "Employee", subcode: "by-id", id: "some-id"},
-            (id, token, employeeId, access, defaultPassword)=>{
-                console.log("defaultPassword: ", defaultPassword)
-                saveUserData(id, token, employeeId, access)
+            (id, token, employeeId, access, defaultPassword, firstName, lastName)=>{
+                saveUserData(id, token, employeeId, access, firstName, lastName)
 
                 if (defaultPassword !== "") {
                     navigate("/changepassword")
@@ -48,11 +47,12 @@ function LoginPage (props){
             })
     }
 
-    const saveUserData = (id, token, employeeId, access) => {
+    const saveUserData = (id, token, employeeId, access, firstName, lastName) => {
         localStorage.setItem(BCMS_USER_ID, id)
         localStorage.setItem(BCMS_AUTH_TOKEN, token)
         localStorage.setItem(BCMS_USER_EMPLOYEE_ID, employeeId)
         localStorage.setItem(BCMS_USER_ACCESS, access)
+        localStorage.setItem(BCMS_USER_EMPLOYEE_NAME, firstName + " " + lastName)
    }
 
     return(

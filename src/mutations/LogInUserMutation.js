@@ -57,7 +57,9 @@ export default (username, password, filter, onSuccessCallback, onErrorCallback) 
                                 const employeeId = response.loginUser.user.employeeId
                                 const access = response.loginUser.user.access
                                 const defaultPassword = response.loginUser.user.defaultPassword
-                                onSuccessCallback(id, token, employeeId, access, defaultPassword)
+                                const firstName = response.loginUser.viewer.getEmployee.edges[0].node.personalInformation.firstName
+                                const lastName = response.loginUser.viewer.getEmployee.edges[0].node.personalInformation.lastName
+                                onSuccessCallback(id, token, employeeId, access, defaultPassword, firstName, lastName)
                             } else {
                                 onErrorCallback(err)
                             }

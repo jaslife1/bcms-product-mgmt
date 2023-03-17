@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { Link, useNavigate } from "react-router-dom";
-import { BCMS_USER_ID, BCMS_AUTH_TOKEN, BCMS_USER_EMPLOYEE_ID, BCMS_USER_ACCESS } from "../constants";
+import { BCMS_USER_ID, BCMS_AUTH_TOKEN, BCMS_USER_EMPLOYEE_ID, BCMS_USER_ACCESS, BCMS_USER_EMPLOYEE_NAME } from "../constants";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -143,12 +143,13 @@ export default function NavigationBar() {
         localStorage.removeItem(BCMS_AUTH_TOKEN)
         localStorage.removeItem(BCMS_USER_EMPLOYEE_ID)
         localStorage.removeItem(BCMS_USER_ACCESS)
+        localStorage.removeItem(BCMS_USER_EMPLOYEE_NAME)
         navigate("/logout")
     }
 
     const isAuthenticated = localStorage.getItem(BCMS_USER_ID) != null
     const isUserAdmin = localStorage.getItem(BCMS_USER_ACCESS) != null && (localStorage.getItem(BCMS_USER_ACCESS) == "Admin" || localStorage.getItem(BCMS_USER_ACCESS) == "Super Admin")
-
+    const employeeName = localStorage.getItem(BCMS_USER_EMPLOYEE_NAME)
 
     const adminMenu = [ {name: 'Home', action: handleHomeClick},
                     {name: 'Point Of Sales', action: handlePointOfSalesClick},
@@ -306,7 +307,7 @@ export default function NavigationBar() {
                         <>
                             <Tooltip title="Open settings">
                                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                    <Avatar alt="Buhay Chocolate" src="/static/images/avatar/2.jpg" />
+                                    <Avatar alt={employeeName} src="/static/images/avatar/2.jpg" />
                                 </IconButton>
                             </Tooltip>
                             <Menu
