@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import {useQuery, graphql} from 'react-relay';
 import Box from "@mui/material/Box"
 import { TextField, Button, FormControl, 
     OutlinedInput, InputAdornment, IconButton, FormHelperText,
@@ -31,6 +32,7 @@ function LoginPage (props){
         LogInUserMutation(
             username,
             password,
+            {code: "Employee", subcode: "by-id", id: "some-id"},
             (id, token, employeeId, access, defaultPassword)=>{
                 console.log("defaultPassword: ", defaultPassword)
                 saveUserData(id, token, employeeId, access)

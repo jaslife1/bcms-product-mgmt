@@ -202,7 +202,7 @@ type User {
 type UserLoginPayload {
   token: String
   user: User
-  viewer: Viewer!
+  viewer: Viewer
 }
 
 # Contains all the INPUT type
@@ -452,6 +452,7 @@ type StoreConnection {
 
 input EmployeeFilter {
   code: String
+  subcode: String
   id: ID
 }
 
@@ -472,6 +473,7 @@ type Viewer {
   allProducts(filter: ProductFilter, last: Int): ProductConnection!
   allStores(filter: StoreFilter, last: Int): StoreConnection!
   allEmployees(filter: EmployeeFilter, last: Int): EmployeeConnection!
+  getEmployee(filter: EmployeeFilter!) : EmployeeConnection!
   id: ID!
 }
 

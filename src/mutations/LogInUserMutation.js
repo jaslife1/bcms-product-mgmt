@@ -6,7 +6,7 @@ import {
 
   // 2
 const mutation = graphql`
-    mutation LogInUserMutation($user: UserLogin!) {
+    mutation LogInUserMutation($user: UserLogin!, $filter: EmployeeFilter!) {
         loginUser(user: $user) {
            token,
            user {
@@ -15,19 +15,34 @@ const mutation = graphql`
                access
                defaultPassword
            }
+           viewer {
+               getEmployee(filter: $filter) {
+                   edges {
+                       node {
+                           personalInformation {
+                               firstName
+                               lastName
+                           }
+                       }
+                   }
+               }
+           }
         }
     }
     `
 
 // 3
-export default (username, password, onSuccessCallback, onErrorCallback) => {
+export default (username, password, filter, onSuccessCallback, onErrorCallback) => {
 // 4
     const variables = {
         user: {
             username,
             password,
         },
+        filter: filter
     }
+
+    console.log(variables)
 
     // 5
     commitMutation(environment,
