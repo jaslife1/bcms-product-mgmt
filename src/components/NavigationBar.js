@@ -305,6 +305,7 @@ export default function NavigationBar() {
                     <Box sx={{ flexGrow: 0 }}>
                         {isAuthenticated ? 
                         <>
+                            <span style={{'margin-right' : '10px'}}>{localStorage.getItem(BCMS_USER_EMPLOYEE_NAME).toUpperCase()}</span>
                             <Tooltip title="Open settings">
                                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                                     <Avatar alt={employeeName} src="/static/images/avatar/2.jpg" />
