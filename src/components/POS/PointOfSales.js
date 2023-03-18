@@ -118,6 +118,8 @@ class PointOfSales extends Component {
 
         if (quantity != product.quantity) {
 
+            //TODO: Make sure taht we are not updating the quantity beyond the total inventory
+
             if (quantity == 0) {
                 //delete the item from the list
                 curProducts.delete(product.item.id)

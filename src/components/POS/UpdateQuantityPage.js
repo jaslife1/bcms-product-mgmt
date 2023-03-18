@@ -62,7 +62,7 @@ class UpdateQuantityPage extends Component {
 
 UpdateQuantityPage.propTypes = {
     updateQuantity: PropTypes.func.isRequired,
-    product: PropTypes.object.isRequired
+    product: PropTypes.object, //TODO: investigate why this throws an error when updating for the first time if it tagged as required
     
   };
 
