@@ -27,25 +27,29 @@ class PointOfSales extends Component {
     constructor(props) {
         super(props)
         this.addProductToCart = this.addProductToCart.bind(this)
+        this.state = {
+            products: new Map(),
+            updateProduct: null,
+            subtotal: 0,
+            tax: 0,
+            discount: 0,
+            total: 0,
+            change: 0,
+            showClassicDialog: false,
+            showGuiltFreeDialog: false,
+            showCreationDialog: false,
+            showPayDialog: false,
+            showChangeDialog: false,
+            showUpdateQuantityDialog: false,
+            showDialog: false,
+            showErrorDialog: false,
+        };
     }
 
-    state = {
-        products: new Map(),
-        updateProduct: null,
-        subtotal: 0,
-        tax: 0,
-        discount: 0,
-        total: 0,
-        change: 0,
-        showClassicDialog: false,
-        showGuiltFreeDialog: false,
-        showCreationDialog: false,
-        showPayDialog: false,
-        showChangeDialog: false,
-        showUpdateQuantityDialog: false,
-        showDialog: false,
-        showErrorDialog: false,
-    };
+    productButtonStyle = {
+        "minHeight": "150px",
+        "minWidth": "180px",
+    }
 
 
     TAX_RATE = 0.07;
@@ -323,61 +327,74 @@ class PointOfSales extends Component {
                         </TableContainer>
                     </Grid>
                     <Grid xs={6}>
-                            <Grid container spacing={2}>
-                                <Grid xs={6}>
+                            <Grid container spacing={4}>
+                                <Grid xs={3}>
                                     <Button variant="contained"
-                                        fullWidth={true}
+                                        //fullWidth={true}
+                                        // style={{
+                                        //     "width": "150px",
+                                        //     "minHeight":"150px"
+                                        // }}
+                                        style={this.productButtonStyle}
                                         onClick={this.classicButtonClicked}
                                     >
-                                        Classic
+                                        Classic Chocolates
                                     </Button>
+                                    
+                                    
                                 </Grid>
-                                <Grid xs={6}>
+                                <Grid xs={3}>
                                     <Button variant="contained"
-                                        fullWidth={true}
+                                        //fullWidth={true}
+                                        style={this.productButtonStyle}
                                         onClick={this.guiltfreeButtonClicked}
                                     >
-                                        Guilt-Free
+                                        Guilt-Free Chocolates
                                     </Button>
                                 </Grid>
-                                <Grid xs={6}>
+                                <Grid xs={3}>
                                     <Button variant="contained"
-                                        fullWidth={true}
+                                        //fullWidth={true}
+                                        style={this.productButtonStyle}
                                         onClick={this.button5Clicked}
                                     >
-                                        Premium
+                                        Premium Chocolates
                                     </Button>
                                 </Grid>
-                                <Grid xs={6}>
+                                <Grid xs={3}>
                                     <Button variant="contained"
-                                        fullWidth={true}
+                                        //fullWidth={true}
+                                        style={this.productButtonStyle}
                                         onClick={this.button6Clicked}
                                     >
-                                        Specialty
+                                        Specialty Products
                                     </Button>
                                 </Grid>
-                                <Grid xs={6}>
+                                <Grid xs={3}>
                                     <Button variant="contained"
-                                        fullWidth={true}
+                                        //fullWidth={true}
+                                        style={this.productButtonStyle}
                                         onClick={this.creationButtonClicked}
                                     >
-                                        Creations
+                                        Buhay Creations
                                     </Button>
                                 </Grid>
-                                <Grid xs={6}>
+                                <Grid xs={3}>
                                     <Button variant="contained"
-                                        fullWidth={true}
+                                        //fullWidth={true}
+                                        style={this.productButtonStyle}
                                         onClick={this.button5Clicked}
                                     >
-                                        Food
+                                        Food 
                                     </Button>
                                 </Grid>
-                                <Grid xs={6}>
+                                <Grid xs={3}>
                                     <Button variant="contained"
-                                        fullWidth={true}
+                                        //fullWidth={true}
+                                        style={this.productButtonStyle}
                                         onClick={this.button6Clicked}
                                     >
-                                        Drinks
+                                        Drinks 
                                     </Button>
                                 </Grid>
                             </Grid>
