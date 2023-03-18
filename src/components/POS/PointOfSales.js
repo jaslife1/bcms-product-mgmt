@@ -1,6 +1,6 @@
 import React, {Component, createRef} from "react";
 import Box from "@mui/material/Box"
-import { TextField, Button,Dialog, DialogContent } from "@mui/material";
+import { TextField, Button,Dialog, DialogContent, Typography } from "@mui/material";
 import SimpleDialog from "../SimpleDialog";
 
 import Grid from '@mui/material/Unstable_Grid2';
@@ -30,6 +30,7 @@ class PointOfSales extends Component {
         this.state = {
             products: new Map(),
             updateProduct: null,
+            customer: null,
             subtotal: 0,
             tax: 0,
             discount: 0,
@@ -289,6 +290,11 @@ class PointOfSales extends Component {
                             </Grid>
 
                             <Grid xs={12}>
+                                <Typography>Customer: {(this.state.customer != null)? this.state.customer.name : "Walk-in"}</Typography>
+                            </Grid>
+
+
+                            <Grid xs={12}>
                                 <TextField
                                     fullWidth={true}
                                     id="outlined-basic" 
@@ -298,7 +304,7 @@ class PointOfSales extends Component {
                             </Grid>
 
                             <Grid xs={12}>
-                                <TableContainer component={Paper} style={{maxHeight: 500, minHeight: 500}}>
+                                <TableContainer component={Paper} style={{height: 450}}>
                                     <Table sx={{ minWidth: 700 }} stickyHeader aria-label="spanning table sticky">
                                         <TableHead>
                                     
