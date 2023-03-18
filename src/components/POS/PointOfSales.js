@@ -20,6 +20,7 @@ import withAuth from "../WithAuth";
 import TimeDate from "./TimeDate";
 import ProductCreationPage from "./Creations/ProductCreationPage";
 import UpdateQuantityPage from "./UpdateQuantityPage";
+import BillSummaryPage from "./Bill/BillSummaryPage";
 
 class PointOfSales extends Component {
 
@@ -377,6 +378,13 @@ class PointOfSales extends Component {
                                         Drinks
                                     </Button>
                                 </Grid>
+                            </Grid>
+                            <Grid>
+                                <BillSummaryPage 
+                                    subtotal={this.state.subtotal}
+                                    tax={this.state.tax}
+                                    discount={this.state.discount}
+                                    total={this.state.total} />
                             </Grid>
                     </Grid>
                 </Grid>
