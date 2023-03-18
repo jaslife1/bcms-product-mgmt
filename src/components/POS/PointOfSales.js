@@ -19,6 +19,7 @@ import ChangePage from "./Pay/ChangePage";
 import withAuth from "../WithAuth";
 import TimeDate from "./TimeDate";
 import ProductCreationPage from "./Creations/ProductCreationPage";
+import UpdateQuantityPage from "./UpdateQuantityPage";
 
 class PointOfSales extends Component {
 
@@ -29,6 +30,7 @@ class PointOfSales extends Component {
 
     state = {
         products: new Map(),
+        updateProduct: null,
         subtotal: 0,
         tax: 0,
         discount: 0,
@@ -39,6 +41,7 @@ class PointOfSales extends Component {
         showCreationDialog: false,
         showPayDialog: false,
         showChangeDialog: false,
+        showUpdateQuantityDialog: false,
         showDialog: false,
         showErrorDialog: false,
     };
@@ -97,6 +100,40 @@ class PointOfSales extends Component {
 
     }
 
+    updateQuantityOfItem = (quantity) => {
+        console.log("UpdateQuantityOfItem: ", quantity)
+
+        var curProducts = new Map (this.state.products)
+        var curSubTotal = this.state.subtotal
+        var curTotal = this.state.total
+        var curTax =  this.state.tax
+        var curDiscount = this.state.discount
+
+        var product = this.state.products.get(this.state.updateProduct.item.id)
+
+        if (quantity != product.quantity) {
+            product.quantity = quantity
+            product.rowPrice = this.priceRow(product.quantity, product.item.price)
+            curProducts[product.item.id] = product
+
+            curSubTotal = this.computeSubTotal(Array.from(curProducts))
+            curTotal = curSubTotal - curTax - curDiscount
+
+            this.setState({products: curProducts,
+                subtotal: curSubTotal,
+                total: curTotal,
+            })
+
+        } else {
+            // do nothing since it is the same
+        }
+
+        this.setState({
+            showUpdateQuantityDialog: false,
+            updateProduct: null,
+        })
+    }
+
     payButton = (e) => {
         this.setState({
             showPayDialog: true
@@ -115,8 +152,12 @@ class PointOfSales extends Component {
         console.log("button 3 clicked")
     }
 
-    button4Clicked = (e) => {
-        console.log("button 4 clicked")
+    productInTableClicked = (product) => {
+        console.log("productInTableClicked: ", product)
+        this.setState({
+            showUpdateQuantityDialog: true,
+            updateProduct: product
+            })
     }
 
     classicButtonClicked = (e) => {
@@ -165,8 +206,6 @@ class PointOfSales extends Component {
     render() {
         return(
             <>
-
-            {/* <h1>Point of Sales</h1> */}
             <Box 
                 sx={{ flexGrow: 1 }}
                 component="form"
@@ -239,7 +278,13 @@ class PointOfSales extends Component {
                                 </TableHead>
                                 <TableBody>
                                     {Array.from(this.state.products).map((product) => (
-                                        <TableRow key={product[0]}>
+                                        <TableRow
+                                            key={product[0]}
+                                            onClick={(e)=>{
+                                                e.stopPropagation()
+                                                this.productInTableClicked(product[1])
+                                            }}
+                                            >
                                             <TableCell>{product[1].item.name}</TableCell>
                                             <TableCell align="right">{product[1].quantity}</TableCell>
                                             <TableCell align="right">{this.ccyFormat(product[1].item.price)}</TableCell>
@@ -411,6 +456,24 @@ class PointOfSales extends Component {
                 </DialogContent>
             </Dialog>
 
+            <Dialog
+                fullWidth={true}
+                maxWidth={"md"}
+                open={this.state.showUpdateQuantityDialog}
+                onClose={(e)=>{
+                    this.setState({showUpdateQuantityDialog: false})
+                }}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogContent>
+                    <UpdateQuantityPage
+                        updateQuantity={this.updateQuantityOfItem} 
+                        product={this.state.updateProduct}
+                     />
+                </DialogContent>
+            </Dialog>
+
             <SimpleDialog
                     open={this.state.showDialog}
                     title="Add New Product"
@@ -419,14 +482,14 @@ class PointOfSales extends Component {
                         this.setState({showDialog: false})
                     }}
                 />
-                <SimpleDialog
-                    open={this.state.showErrorDialog}
-                    title="Add New Product"
-                    content={"Failed to add new product." + this.state.showErrorContent}
-                    onClose={()=>{
-                        this.setState({showErrorDialog: false})
-                    }}
-                />
+            <SimpleDialog
+                open={this.state.showErrorDialog}
+                title="Add New Product"
+                content={"Failed to add new product." + this.state.showErrorContent}
+                onClose={()=>{
+                    this.setState({showErrorDialog: false})
+                }}
+            />
             </>
         )
     }
@@ -473,6 +536,7 @@ class PointOfSales extends Component {
                     // TODO: Print the receipt
                     this.setState({
                         products: new Map(),
+                        updateProduct: null,
                         subtotal: 0,
                         tax: 0,
                         discount: 0,
