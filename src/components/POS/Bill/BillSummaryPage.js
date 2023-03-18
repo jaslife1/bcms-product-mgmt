@@ -46,8 +46,14 @@ class BillSummaryPage extends Component {
                         <TableRow
                             key="total"
                         >
-                            <TableCell>Total</TableCell>
-                            <TableCell align="right">₱ {this.ccyFormat(this.props.total)}</TableCell>
+                            <TableCell
+                                style={{
+                                "fontSize": "30px"
+                            }}>Total</TableCell>
+                            <TableCell align="right"
+                                style={{
+                                    "fontSize": "30px"
+                                }}>₱ {this.ccyFormat(this.props.total)}</TableCell>
 
                         </TableRow>
 
