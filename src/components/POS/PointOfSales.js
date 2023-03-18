@@ -112,13 +112,19 @@ class PointOfSales extends Component {
         var product = this.state.products.get(this.state.updateProduct.item.id)
 
         if (quantity != product.quantity) {
-            product.quantity = quantity
-            product.rowPrice = this.priceRow(product.quantity, product.item.price)
-            curProducts[product.item.id] = product
 
+            if (quantity == 0) {
+                //delete the item from the list
+                curProducts.delete(product.item.id)
+            } else {
+                product.quantity = quantity
+                product.rowPrice = this.priceRow(product.quantity, product.item.price)
+                curProducts[product.item.id] = product
+            }
+            
             curSubTotal = this.computeSubTotal(Array.from(curProducts))
             curTotal = curSubTotal - curTax - curDiscount
-
+            
             this.setState({products: curProducts,
                 subtotal: curSubTotal,
                 total: curTotal,
