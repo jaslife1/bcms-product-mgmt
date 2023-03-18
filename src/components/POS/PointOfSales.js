@@ -333,6 +333,7 @@ class PointOfSales extends Component {
                                 <Button variant="contained"
                                     fullWidth={true}
                                     style={this.optionButtonStyle}
+                                    disabled={!(this.state.products.size > 0)}
                                     onClick={this.payButton}
                                 >
                                     Pay
