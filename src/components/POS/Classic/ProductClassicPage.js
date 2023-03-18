@@ -3,9 +3,9 @@ import {
     QueryRenderer,
     graphql
 } from 'react-relay'
-import environment from "../../Environment";
+import environment from "../../../Environment";
 import ProductClassic from "./ProductClassic";
-import withAuth from "../WithAuth";
+import withAuth from "../../WithAuth";
 
 const ProductClassicPageQuery = graphql`
     query ProductClassicPageQuery ($filter: ProductFilter) {

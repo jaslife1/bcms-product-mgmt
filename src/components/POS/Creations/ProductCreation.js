@@ -4,10 +4,10 @@ import {
     graphql
 } from 'react-relay'
 import Grid from '@mui/material/Unstable_Grid2';
-import ProductItem from "./ProductItem";
-import withAuth from "../WithAuth";
+import ProductItem from "../ProductItem";
+import withAuth from "../../WithAuth";
 
-class ProductClassic extends Component {
+class ProductCreation extends Component {
 
     render() {
         return(
@@ -26,10 +26,10 @@ class ProductClassic extends Component {
     }
 }
 
-export default createFragmentContainer(withAuth(ProductClassic), {
+export default createFragmentContainer(withAuth(ProductCreation), {
     viewer: graphql`
-        fragment ProductClassic_viewer on Viewer @argumentDefinitions(filter: {type: ProductFilter}){
-            allProducts(filter: $filter, last:100) @connection(key: "ProductClassic_allProducts", filters: []) {
+        fragment ProductCreation_viewer on Viewer @argumentDefinitions(filter: {type: ProductFilter}){
+            allProducts(filter: $filter, last:100) @connection(key: "ProductCreation_allProducts", filters: []) {
                 edges {
                     node {
                         product {

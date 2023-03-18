@@ -3,9 +3,9 @@ import {
     QueryRenderer,
     graphql
 } from 'react-relay'
-import environment from "../../Environment";
+import environment from "../../../Environment";
 import ProductGuiltFree from "./ProductGuiltFree";
-import withAuth from "../WithAuth";
+import withAuth from "../../WithAuth";
 
 const ProductGuiltFreePageQuery = graphql`
     query ProductGuiltFreePageQuery ($filter: ProductFilter) {

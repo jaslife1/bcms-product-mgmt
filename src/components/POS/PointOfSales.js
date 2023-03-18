@@ -11,14 +11,14 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import ProductClassicPage from "./ProductClassicPage";
-import ProductGuiltFreePage from "./ProductGuiltFreePage";
+import ProductClassicPage from "./Classic/ProductClassicPage";
+import ProductGuiltFreePage from "./Guilt-Free/ProductGuiltFreePage";
 import PayPage from "./Pay/PayPage";
 import AddNewSaleMutation from "../../mutations/AddNewSaleMutation";
 import ChangePage from "./Pay/ChangePage";
 import withAuth from "../WithAuth";
 import TimeDate from "./TimeDate";
-import ProductCreationPage from "./ProductCreationPage";
+import ProductCreationPage from "./Creations/ProductCreationPage";
 
 class PointOfSales extends Component {
 
@@ -233,7 +233,7 @@ class PointOfSales extends Component {
                                 <TableRow>
                                     <TableCell>Description</TableCell>
                                     <TableCell align="right">Qty.</TableCell>
-                                    <TableCell align="right">Unit</TableCell>
+                                    <TableCell align="right">Unit Price</TableCell>
                                     <TableCell align="right">Sum</TableCell>
                                 </TableRow>
                                 </TableHead>

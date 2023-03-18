@@ -3,9 +3,9 @@ import {
     QueryRenderer,
     graphql
 } from 'react-relay'
-import environment from "../../Environment";
+import environment from "../../../Environment";
 import ProductCreation from "./ProductCreation";
-import withAuth from "../WithAuth";
+import withAuth from "../../WithAuth";
 
 const ProductCreationPageQuery = graphql`
     query ProductCreationPageQuery ($filter: ProductFilter) {

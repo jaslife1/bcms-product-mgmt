@@ -4,8 +4,8 @@ import {
     graphql
 } from 'react-relay'
 import Grid from '@mui/material/Unstable_Grid2';
-import ProductItem from "./ProductItem";
-import withAuth from "../WithAuth";
+import ProductItem from "../ProductItem";
+import withAuth from "../../WithAuth";
 
 class ProductGuiltFree extends Component {
 
