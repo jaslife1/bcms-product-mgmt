@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, createRef} from "react";
 import Box from "@mui/material/Box"
 import { TextField, Button,Dialog, DialogContent } from "@mui/material";
 import SimpleDialog from "../SimpleDialog";
@@ -17,8 +17,8 @@ import PayPage from "./Pay/PayPage";
 import AddNewSaleMutation from "../../mutations/AddNewSaleMutation";
 import ChangePage from "./Pay/ChangePage";
 import withAuth from "../WithAuth";
-import { BCMS_USER_EMPLOYEE_NAME } from "../../constants";
 import TimeDate from "./TimeDate";
+import ProductCreationPage from "./ProductCreationPage";
 
 class PointOfSales extends Component {
 
@@ -36,6 +36,7 @@ class PointOfSales extends Component {
         change: 0,
         showClassicDialog: false,
         showGuiltFreeDialog: false,
+        showCreationDialog: false,
         showPayDialog: false,
         showChangeDialog: false,
         showDialog: false,
@@ -91,6 +92,7 @@ class PointOfSales extends Component {
                         total: curTotal,
                         showClassicDialog: false,
                         showGuiltFreeDialog: false,
+                        showCreationDialog: false,
                     })
 
     }
@@ -125,6 +127,11 @@ class PointOfSales extends Component {
     guiltfreeButtonClicked = (e) => {
         console.log("Guilt-Free Button clicked")
         this.setState({showGuiltFreeDialog: true})
+    }
+
+    creationButtonClicked = (e) => {
+        console.log("Creation Button clicked")
+        this.setState({showCreationDialog: true})
     }
 
     button6Clicked = (e) => {
@@ -294,6 +301,14 @@ class PointOfSales extends Component {
                                 <Grid xs={6}>
                                     <Button variant="contained"
                                         fullWidth={true}
+                                        onClick={this.creationButtonClicked}
+                                    >
+                                        Creations
+                                    </Button>
+                                </Grid>
+                                <Grid xs={6}>
+                                    <Button variant="contained"
+                                        fullWidth={true}
                                         onClick={this.button5Clicked}
                                     >
                                         Food
@@ -347,6 +362,20 @@ class PointOfSales extends Component {
             >
                 <DialogContent>
                     <ProductGuiltFreePage addProductToCart={this.addProductToCart} />
+                </DialogContent>
+            </Dialog>
+            <Dialog
+                fullWidth={true}
+                maxWidth={"md"}
+                open={this.state.showCreationDialog}
+                onClose={(e)=>{
+                    this.setState({showCreationDialog: false})
+                }}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogContent>
+                    <ProductCreationPage addProductToCart={this.addProductToCart} />
                 </DialogContent>
             </Dialog>
 
