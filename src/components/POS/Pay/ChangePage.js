@@ -9,7 +9,13 @@ import Grid from '@mui/material/Unstable_Grid2';
 import withAuth from "../../WithAuth";
 
 class ChangePage extends Component {
-
+    ccyFormat(num) {
+        //return `${num.toFixed(2)}`;
+        return num.toLocaleString(undefined, {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+          });
+    }
 
     render() {
         return(
@@ -25,7 +31,7 @@ class ChangePage extends Component {
                 autoComplete="off"
             >
                 <div>
-                    {this.props.change}
+                    ₱ {this.ccyFormat(this.props.change)}
                 </div>
             </Box>
             </>
