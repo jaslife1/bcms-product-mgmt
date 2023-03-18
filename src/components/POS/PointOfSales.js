@@ -50,7 +50,11 @@ class PointOfSales extends Component {
     TAX_RATE = 0.07;
 
     ccyFormat(num) {
-        return `${num.toFixed(2)}`;
+        //return `${num.toFixed(2)}`;
+        return num.toLocaleString(undefined, {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+          });
     }
 
     priceRow(qty, unit) {
@@ -293,8 +297,8 @@ class PointOfSales extends Component {
                                             >
                                             <TableCell>{product[1].item.name}</TableCell>
                                             <TableCell align="right">{product[1].quantity}</TableCell>
-                                            <TableCell align="right">{this.ccyFormat(product[1].item.price)}</TableCell>
-                                            <TableCell align="right">{this.ccyFormat(product[1].rowPrice)}</TableCell>
+                                            <TableCell align="right">₱ {this.ccyFormat(product[1].item.price)}</TableCell>
+                                            <TableCell align="right">₱ {this.ccyFormat(product[1].rowPrice)}</TableCell>
                                     </TableRow>
                                     ))}
                                 {/* <TableRow>
