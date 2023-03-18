@@ -56,6 +56,8 @@ class PointOfSales extends Component {
         "minHeight" : "70px"
     }
 
+   
+
 
     TAX_RATE = 0.07;
 
@@ -197,33 +199,43 @@ class PointOfSales extends Component {
         this.setState({showCreationDialog: true})
     }
 
-    button6Clicked = (e) => {
-        console.log("button 6 clicked")
+    premiumButtonClicked = (e) => {
+        console.log("Premium Button Clicked")
     }
 
-    button7Clicked = (e) => {
-        console.log("button 7 clicked")
+    specialtyProductButtonClicked = (e) => {
+        console.log("Specialty Product Button Clicked")
     }
 
-    button8Clicked = (e) => {
-        console.log("button 8 clicked")
+    foodButtonClicked = (e) => {
+        console.log("Food Button clicked")
     }
 
-    button9Clicked = (e) => {
-        console.log("button 9 clicked")
+    drinksButtonClicked = (e) => {
+        console.log("Drinks Button clicked")
     }
 
-    button10Clicked = (e) => {
-        console.log("button 10 clicked")
+    searchProductButtonClicked = (e) => {
+        console.log("Search Product Button clicked")
     }
 
-    button11Clicked = (e) => {
-        console.log("button 11 clicked")
+    customerButtonClicked = (e) => {
+        console.log("Customer Button clicked")
     }
 
-    button12Clicked = (e) => {
-        console.log("button 12 clicked")
+    applyDiscountButtonClicked = (e) => {
+        console.log("Apply Discount Button clicked")
     }
+
+    productButtons = [
+        {"name":"Classic Chocolates", "action": this.classicButtonClicked},
+        {"name":"Guilt-Free Chocolates", "action": this.guiltfreeButtonClicked},
+        {"name":"Premium Chocolates", "action": this.premiumButtonClicked},
+        {"name":"Specialty Products", "action": this.specialtyProductButtonClicked},
+        {"name":"Buhay Creations", "action": this.creationButtonClicked},
+        {"name":"Food", "action": this.foodButtonClicked},
+        {"name":"Drinks", "action": this.drinksButtonClicked},
+    ]
 
     render() {
         return(
@@ -252,7 +264,7 @@ class PointOfSales extends Component {
                                 <Button variant="contained"
                                     //fullWidth={true}
                                     style={this.optionButtonStyle}
-                                    onClick={this.button1Clicked}
+                                    onClick={this.searchProductButtonClicked}
                                 >
                                     Search Product
                                 </Button>
@@ -261,7 +273,7 @@ class PointOfSales extends Component {
                                 <Button variant="contained"
                                     //fullWidth={true}
                                     style={this.optionButtonStyle}
-                                    onClick={this.button2Clicked}
+                                    onClick={this.customerButtonClicked}
                                 >
                                     Customer
                                 </Button>
@@ -270,7 +282,7 @@ class PointOfSales extends Component {
                                 <Button variant="contained"
                                     //fullWidth={true}
                                     style={this.optionButtonStyle}
-                                    onClick={this.button3Clicked}
+                                    onClick={this.applyDiscountButtonClicked}
                                 >
                                     Apply Discount
                                 </Button>
@@ -333,75 +345,18 @@ class PointOfSales extends Component {
                     <Grid xs={6}> {/**Main Right part */}
                     
                         <Grid container spacing={4}>
-                            <Grid xs={3}>
-                                <Button variant="contained"
-                                    //fullWidth={true}
-                                    // style={{
-                                    //     "width": "150px",
-                                    //     "minHeight":"150px"
-                                    // }}
-                                    style={this.productButtonStyle}
-                                    onClick={this.classicButtonClicked}
-                                >
-                                    Classic Chocolates
-                                </Button>
-                                
-                                
-                            </Grid>
-                            <Grid xs={3}>
-                                <Button variant="contained"
-                                    //fullWidth={true}
-                                    style={this.productButtonStyle}
-                                    onClick={this.guiltfreeButtonClicked}
-                                >
-                                    Guilt-Free Chocolates
-                                </Button>
-                            </Grid>
-                            <Grid xs={3}>
-                                <Button variant="contained"
-                                    //fullWidth={true}
-                                    style={this.productButtonStyle}
-                                    onClick={this.button5Clicked}
-                                >
-                                    Premium Chocolates
-                                </Button>
-                            </Grid>
-                            <Grid xs={3}>
-                                <Button variant="contained"
-                                    //fullWidth={true}
-                                    style={this.productButtonStyle}
-                                    onClick={this.button6Clicked}
-                                >
-                                    Specialty Products
-                                </Button>
-                            </Grid>
-                            <Grid xs={3}>
-                                <Button variant="contained"
-                                    //fullWidth={true}
-                                    style={this.productButtonStyle}
-                                    onClick={this.creationButtonClicked}
-                                >
-                                    Buhay Creations
-                                </Button>
-                            </Grid>
-                            <Grid xs={3}>
-                                <Button variant="contained"
-                                    //fullWidth={true}
-                                    style={this.productButtonStyle}
-                                    onClick={this.button5Clicked}
-                                >
-                                    Food 
-                                </Button>
-                            </Grid>
-                            <Grid xs={3}>
-                                <Button variant="contained"
-                                    //fullWidth={true}
-                                    style={this.productButtonStyle}
-                                    onClick={this.button6Clicked}
-                                >
-                                    Drinks 
-                                </Button>
-                            </Grid>
+                            {this.productButtons.map((product) => {
+                                return <Grid
+                                         key={product.name}
+                                         xs={3}>
+                                    <Button variant="contained"
+                                        style={this.productButtonStyle}
+                                        onClick={product.action}
+                                    >
+                                        {product.name}
+                                    </Button>
+                                </Grid>
+                            })}
                         </Grid>
                         <Grid>
                             <BillSummaryPage 
