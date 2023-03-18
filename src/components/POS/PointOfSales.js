@@ -228,6 +228,14 @@ class PointOfSales extends Component {
         console.log("Apply Discount Button clicked")
     }
 
+    scanItemKeyDown = (e) => {
+        if (e.key == 'Enter') {
+            e.preventDefault()
+
+            // query the database for this barcode
+        }
+    }
+
     productButtons = [
         {"name":"Classic Chocolates", "action": this.classicButtonClicked},
         {"name":"Guilt-Free Chocolates", "action": this.guiltfreeButtonClicked},
@@ -300,6 +308,7 @@ class PointOfSales extends Component {
                                     id="outlined-basic" 
                                     variant="outlined" 
                                     label="Scan Item"
+                                    onKeyDown={this.scanItemKeyDown}
                                 />
                             </Grid>
 
