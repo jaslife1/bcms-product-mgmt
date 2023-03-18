@@ -237,7 +237,184 @@ class PointOfSales extends Component {
                         <TimeDate />
                     </Grid>
                 </Grid>
-                <Grid container spacing={6}>
+
+
+                <Grid container spacing={2} disableEqualOverflow> {/** Outer container */}
+
+                    <Grid xs={6}> {/**Main Left part */}
+                        <Grid container spacing={12} rowSpacing={2}>
+                            <Grid xs={4}>
+                                <Button variant="contained"
+                                    fullWidth={true}
+                                    onClick={this.button1Clicked}
+                                >
+                                    Search Item
+                                </Button>
+                            </Grid>
+                            <Grid xs={4}>
+                                <Button variant="contained"
+                                    fullWidth={true}
+                                    onClick={this.button2Clicked}
+                                >
+                                    Customer
+                                </Button>
+                            </Grid>
+                            <Grid xs={2}>
+                                <Button variant="contained"
+                                    fullWidth={true}
+                                    onClick={this.button3Clicked}
+                                >
+                                    Apply Discount
+                                </Button>
+                            </Grid>
+
+                            <Grid xs={10}>
+                                <TextField
+                                    fullWidth={true}
+                                    id="outlined-basic" 
+                                    variant="outlined" 
+                                    label="Scan Item"
+                                />
+                            </Grid>
+
+                            <Grid xs={12}>
+                                <TableContainer component={Paper} style={{maxHeight: 500, minHeight: 500}}>
+                                    <Table sx={{ minWidth: 700 }} stickyHeader aria-label="spanning table sticky">
+                                        <TableHead>
+                                    
+                                        <TableRow>
+                                            <TableCell>Description</TableCell>
+                                            <TableCell align="right">Qty.</TableCell>
+                                            <TableCell align="right">Unit Price</TableCell>
+                                            <TableCell align="right">Sum</TableCell>
+                                        </TableRow>
+                                        </TableHead>
+                                        <TableBody>
+                                            {Array.from(this.state.products).map((product) => (
+                                                <TableRow
+                                                    key={product[0]}
+                                                    onClick={(e)=>{
+                                                        e.stopPropagation()
+                                                        this.productInTableClicked(product[1])
+                                                    }}
+                                                    >
+                                                    <TableCell>{product[1].item.name}</TableCell>
+                                                    <TableCell align="right">{product[1].quantity}</TableCell>
+                                                    <TableCell align="right">₱ {this.ccyFormat(product[1].item.price)}</TableCell>
+                                                    <TableCell align="right">₱ {this.ccyFormat(product[1].rowPrice)}</TableCell>
+                                            </TableRow>
+                                            ))}
+                                        </TableBody>
+                                    </Table>
+                                </TableContainer>
+                            </Grid>
+
+                            <Grid xs={12}>
+                                <Button variant="contained"
+                                    fullWidth={true}
+                                    onClick={this.payButton}
+                                >
+                                    Pay
+                                </Button>
+                            </Grid>
+
+                        </Grid>
+
+                    </Grid> {/**Main Left Part */}
+                    <Grid xs={6}> {/**Main Right part */}
+                    
+                        <Grid container spacing={4}>
+                            <Grid xs={3}>
+                                <Button variant="contained"
+                                    //fullWidth={true}
+                                    // style={{
+                                    //     "width": "150px",
+                                    //     "minHeight":"150px"
+                                    // }}
+                                    style={this.productButtonStyle}
+                                    onClick={this.classicButtonClicked}
+                                >
+                                    Classic Chocolates
+                                </Button>
+                                
+                                
+                            </Grid>
+                            <Grid xs={3}>
+                                <Button variant="contained"
+                                    //fullWidth={true}
+                                    style={this.productButtonStyle}
+                                    onClick={this.guiltfreeButtonClicked}
+                                >
+                                    Guilt-Free Chocolates
+                                </Button>
+                            </Grid>
+                            <Grid xs={3}>
+                                <Button variant="contained"
+                                    //fullWidth={true}
+                                    style={this.productButtonStyle}
+                                    onClick={this.button5Clicked}
+                                >
+                                    Premium Chocolates
+                                </Button>
+                            </Grid>
+                            <Grid xs={3}>
+                                <Button variant="contained"
+                                    //fullWidth={true}
+                                    style={this.productButtonStyle}
+                                    onClick={this.button6Clicked}
+                                >
+                                    Specialty Products
+                                </Button>
+                            </Grid>
+                            <Grid xs={3}>
+                                <Button variant="contained"
+                                    //fullWidth={true}
+                                    style={this.productButtonStyle}
+                                    onClick={this.creationButtonClicked}
+                                >
+                                    Buhay Creations
+                                </Button>
+                            </Grid>
+                            <Grid xs={3}>
+                                <Button variant="contained"
+                                    //fullWidth={true}
+                                    style={this.productButtonStyle}
+                                    onClick={this.button5Clicked}
+                                >
+                                    Food 
+                                </Button>
+                            </Grid>
+                            <Grid xs={3}>
+                                <Button variant="contained"
+                                    //fullWidth={true}
+                                    style={this.productButtonStyle}
+                                    onClick={this.button6Clicked}
+                                >
+                                    Drinks 
+                                </Button>
+                            </Grid>
+                        </Grid>
+                        <Grid>
+                            <BillSummaryPage 
+                                subtotal={this.state.subtotal}
+                                tax={this.state.tax}
+                                discount={this.state.discount}
+                                total={this.state.total} />
+                        </Grid>
+
+                    </Grid> {/**Main Right Part */}
+
+                </Grid> {/** Outer container */}
+
+
+
+
+
+
+
+
+
+                {/* <Grid container spacing={6}>
                     <Grid xs={2}>
                         <Button variant="contained"
                             fullWidth={true}
@@ -262,9 +439,9 @@ class PointOfSales extends Component {
                             Apply Discount
                         </Button>
                     </Grid>
-                </Grid>
+                </Grid> */}
                
-                <Grid container spacing={2}>
+                {/* <Grid container spacing={2}>
                     <Grid xs={6}>
                     <TextField
                         fullWidth={true}
@@ -273,11 +450,11 @@ class PointOfSales extends Component {
                         label="Scan Item"
                     />
                     </Grid>
-                </Grid>
+                </Grid> */}
                 
                 <Grid container spacing={2}>
                     <Grid xs={6}>
-                        <TableContainer component={Paper} style={{maxHeight: 500, minHeight: 500}}>
+                        {/* <TableContainer component={Paper} style={{maxHeight: 500, minHeight: 500}}>
                             <Table sx={{ minWidth: 700 }} stickyHeader aria-label="spanning table sticky">
                                 <TableHead>
                                 {/* <TableRow>
@@ -285,7 +462,7 @@ class PointOfSales extends Component {
                                     Details
                                     </TableCell>
                                     <TableCell align="right">Price</TableCell>
-                                </TableRow> */}
+                                </TableRow> *
                                 <TableRow>
                                     <TableCell>Description</TableCell>
                                     <TableCell align="right">Qty.</TableCell>
@@ -321,13 +498,13 @@ class PointOfSales extends Component {
                                 <TableRow>
                                     <TableCell colSpan={2}>Total</TableCell>
                                     <TableCell align="right">{this.ccyFormat(this.state.total)}</TableCell>
-                                </TableRow> */}
+                                </TableRow> 
                                 </TableBody>
                             </Table>
-                        </TableContainer>
+                        </TableContainer> */}
                     </Grid>
                     <Grid xs={6}>
-                            <Grid container spacing={4}>
+                            {/* <Grid container spacing={4}>
                                 <Grid xs={3}>
                                     <Button variant="contained"
                                         //fullWidth={true}
@@ -404,18 +581,18 @@ class PointOfSales extends Component {
                                     tax={this.state.tax}
                                     discount={this.state.discount}
                                     total={this.state.total} />
-                            </Grid>
+                            </Grid> */}
                     </Grid>
                 </Grid>
                 <Grid container spacing={1}>
-                    <Grid xs={6}>
+                    {/* <Grid xs={6}>
                         <Button variant="contained"
                             fullWidth={true}
                             onClick={this.payButton}
                         >
                             Pay
                         </Button>
-                    </Grid>
+                    </Grid> */}
                 </Grid>
             </Box>
             <Dialog
