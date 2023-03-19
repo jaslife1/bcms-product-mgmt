@@ -45,6 +45,12 @@ class PayWithCash extends Component {
                             placeholder="0.00"
                             value={this.state.cashTendered}
                             onChange={(e) => this.setState({ cashTendered: e.target.value })}
+                            onKeyDown={(e) => {
+                                    if (e.key === "Enter") {
+                                        e.preventDefault()
+                                        this.props.addNewSale(this.state.cashTendered == '' ? 0 : this.state.cashTendered)
+                                    }
+                                }}
                             />
                     </FormControl>
                 </div>
