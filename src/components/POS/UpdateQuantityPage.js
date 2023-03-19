@@ -1,10 +1,7 @@
 import React, {Component} from "react";
 import PropTypes from 'prop-types';
 import Box from "@mui/material/Box"
-import { TextField, FormControl, InputLabel, OutlinedInput, Button, InputAdornment,
-FormLabel, FormGroup, FormControlLabel, FormHelperText, Switch, Select, MenuItem } from "@mui/material";
-//import addNewSaleMutation from "../../mutations/addNewSaleMutation";
-import SimpleDialog from "../SimpleDialog";
+import { TextField, FormControl, Button} from "@mui/material";
 import withAuth from "../WithAuth";
 
 class UpdateQuantityPage extends Component {
@@ -48,8 +45,8 @@ class UpdateQuantityPage extends Component {
                 
                 <div>
                     <Button variant="contained"
-                        enabled={(this.state.quantity != '' && this.state.quantity > 0) ? 'true' : 'false'}
-                        onClick={()=> this.props.updateQuantity(this.state.quantity == '' ? 0 : this.state.quantity)}
+                        enabled={(this.state.quantity !== '' && this.state.quantity > 0) ? 'true' : 'false'}
+                        onClick={()=> this.props.updateQuantity(this.state.quantity === '' ? 0 : this.state.quantity)}
                     >Update</Button>
                 </div>
             </Box>

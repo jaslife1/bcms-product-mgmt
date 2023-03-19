@@ -459,6 +459,7 @@ input EmployeeFilter {
 input ProductFilter {
   code: String
   subcode: String
+  barcode: String
   id: ID
 }
 
@@ -474,6 +475,7 @@ type Viewer {
   allStores(filter: StoreFilter, last: Int): StoreConnection!
   allEmployees(filter: EmployeeFilter, last: Int): EmployeeConnection!
   getEmployee(filter: EmployeeFilter!) : EmployeeConnection!
+  getProduct(filter: ProductFilter!, last: Int): ProductConnection!
   id: ID!
 }
 

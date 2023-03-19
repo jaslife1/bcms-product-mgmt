@@ -1,8 +1,7 @@
-import React, {Component, createRef} from "react";
+import React, {Component} from "react";
 import Box from "@mui/material/Box"
 import { TextField, Button,Dialog, DialogContent, Typography } from "@mui/material";
 import SimpleDialog from "../SimpleDialog";
-
 import Grid from '@mui/material/Unstable_Grid2';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -21,6 +20,33 @@ import TimeDate from "./TimeDate";
 import ProductCreationPage from "./Creations/ProductCreationPage";
 import UpdateQuantityPage from "./UpdateQuantityPage";
 import BillSummaryPage from "./Bill/BillSummaryPage";
+import { fetchQuery, graphql } from "react-relay";
+import environment from "../../Environment";
+
+const PointOfSalesQuery = graphql`
+    query PointOfSalesQuery($filter: ProductFilter!) {
+        viewer {
+            getProduct(filter: $filter) {
+                edges {
+                        node {
+                            product {
+                                id
+                                name
+                                sku
+                                price
+                                barcode
+                                weight
+                                code
+                            }
+                            inventory {
+                                quantity
+                            }
+                        }
+                    }
+            }
+        }
+    }
+`
 
 class PointOfSales extends Component {
 
@@ -30,6 +56,7 @@ class PointOfSales extends Component {
         this.state = {
             products: new Map(),
             updateProduct: null,
+            scanItemBarcode: '',
             customer: null,
             subtotal: 0,
             tax: 0,
@@ -110,6 +137,7 @@ class PointOfSales extends Component {
         this.setState({products: curProducts,
                         subtotal: curSubTotal,
                         total: curTotal,
+                        scanItemBarcode: '',
                         showClassicDialog: false,
                         showGuiltFreeDialog: false,
                         showCreationDialog: false,
@@ -128,11 +156,11 @@ class PointOfSales extends Component {
 
         var product = this.state.products.get(this.state.updateProduct.item.id)
 
-        if (quantity != product.quantity) {
+        if (quantity !== product.quantity) {
 
             //TODO: Make sure taht we are not updating the quantity beyond the total inventory
 
-            if (quantity == 0) {
+            if (quantity === 0) {
                 //delete the item from the list
                 curProducts.delete(product.item.id)
             } else {
@@ -163,18 +191,6 @@ class PointOfSales extends Component {
         this.setState({
             showPayDialog: true
         })
-    }
-
-    button1Clicked = (e) => {
-        console.log("button 1 clicked")
-    }
-
-    button2Clicked = (e) => {
-        console.log("button 2 clicked")
-    }
-
-    button3Clicked = (e) => {
-        console.log("button 3 clicked")
     }
 
     productInTableClicked = (product) => {
@@ -229,10 +245,34 @@ class PointOfSales extends Component {
     }
 
     scanItemKeyDown = (e) => {
-        if (e.key == 'Enter') {
+        if (e.key === 'Enter') {
             e.preventDefault()
-
+            console.log(e.target.value)
+            const barcode = e.target.value
             // query the database for this barcode
+            const variables={filter:{code: "Product", barcode: barcode, id: "some-id"}}
+            const query = PointOfSalesQuery
+            //const envi = environment
+
+           const promise = fetchQuery(environment, query, variables)
+           promise.subscribe({
+               start:() => {
+                   console.log("start:")
+               },
+               complete: () => {
+                   console.log("complete:")
+               },
+               error: (error) => {
+                   console.error("error: ", error)
+               },
+               next: (data) => {
+                   console.log("next: ", data)
+                   const product = data.viewer.getProduct.edges[0].node.product
+                   const inventory = data.viewer.getProduct.edges[0].node.inventory
+
+                   this.addProductToCart(product, inventory)
+               }
+           })
         }
     }
 
@@ -308,8 +348,11 @@ class PointOfSales extends Component {
                                     id="outlined-basic" 
                                     variant="outlined" 
                                     label="Scan Item"
+                                    value={this.state.scanItemBarcode}
+                                    onChange={(e) => this.setState({scanItemBarcode: e.target.value})}
                                     onKeyDown={this.scanItemKeyDown}
                                 />
+                                {/* <ScanItemContainer addProductToCart={this.addProductToCart} /> */}
                             </Grid>
 
                             <Grid xs={12}>
