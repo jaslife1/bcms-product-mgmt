@@ -39,6 +39,12 @@ class UpdateQuantityPage extends Component {
                             type="number"
                             value={this.state.quantity}
                             onChange={(e) => this.setState({ quantity: e.target.value })}
+                            onKeyDown={(e) => {
+                                if (e.key === "Enter") {
+                                    e.preventDefault()
+                                    this.props.updateQuantity(this.state.quantity === '' ? 0 : this.state.quantity)
+                                }
+                            }}
                             />
                     </FormControl>
                 </div>
